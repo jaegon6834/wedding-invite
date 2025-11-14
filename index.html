@@ -10,11 +10,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
-  <!-- Kakao JavaScript SDK -->
+  <!-- Kakao JavaScript SDK (카카오톡 공유용) -->
   <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-  <!-- Kakao Maps JavaScript API (autoload 비활성화) -->
+  <!-- Kakao Maps JavaScript API (autoload 기본값 true) -->
   <script type="text/javascript"
-          src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6fa997e63ec0359541d10b0328f9b29e&autoload=false"></script>
+          src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6fa997e63ec0359541d10b0328f9b29e"></script>
 
   <style>
     :root {
@@ -317,7 +317,7 @@
     .story-section {
       background: var(--accent);
       color: #000000;
-      padding-top: 72px;   /* 위아래 여백 축소 */
+      padding-top: 72px;
       padding-bottom: 64px;
     }
 
@@ -1156,7 +1156,7 @@
 </div>
 
 <script>
-  /* ===== Kakao 초기화 ===== */
+  /* ===== Kakao 초기화 (공유용) ===== */
   (function initKakaoSDK() {
     if (typeof Kakao !== "undefined" && !Kakao.isInitialized()) {
       Kakao.init("6fa997e63ec0359541d10b0328f9b29e");
@@ -1199,7 +1199,7 @@
   let galleryImages = [];
   let currentIndex = 0;
 
-  /* ===== 방명록 로딩 ===== */
+  /* ===== 방명록 로딩 (localStorage) ===== */
   function loadRSVP() {
     const list = document.getElementById("rsvp-list");
     if (!list) return;
@@ -1219,34 +1219,37 @@
           (entry.message ? '<div class="rsvp-item-msg">' + entry.message + "</div>" : "");
         list.appendChild(item);
       });
-    } catch (e) {
-      // 파싱 실패 시 무시
-    }
+    } catch (e) {}
   }
 
-  /* ===== Kakao Map 로드 + 초기화 ===== */
-  function loadKakaoMap() {
-    if (!window.kakao || !kakao.maps) return;
+  /* ===== Kakao Map 초기화 (재시도 방식) ===== */
+  function initMap() {
+    // Kakao Maps 스크립트가 아직 안 올라왔으면 재시도
+    if (!window.kakao || !kakao.maps) {
+      console.log("Kakao map not ready, retrying...");
+      setTimeout(initMap, 300);
+      return;
+    }
 
-    kakao.maps.load(function () {
-      const container = document.getElementById("kakao-map");
-      if (!container) return;
+    const container = document.getElementById("kakao-map");
+    if (!container) return;
 
-      // 드레스가든 근처 대략 좌표
-      const position = new kakao.maps.LatLng(37.5112, 127.0594);
+    // 드레스가든 근처 좌표 (필요하면 실제 좌표로 변경 가능)
+    const position = new kakao.maps.LatLng(37.5112, 127.0594);
 
-      const options = {
-        center: position,
-        level: 3
-      };
+    const options = {
+      center: position,
+      level: 3
+    };
 
-      const map = new kakao.maps.Map(container, options);
+    const map = new kakao.maps.Map(container, options);
 
-      const marker = new kakao.maps.Marker({
-        position: position
-      });
-      marker.setMap(map);
+    const marker = new kakao.maps.Marker({
+      position: position
     });
+
+    marker.setMap(map);
+    console.log("Kakao map loaded!");
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -1270,12 +1273,8 @@
 
     loadRSVP();
 
-    // Kakao Map 초기화
-    if (window.kakao && kakao.maps) {
-      loadKakaoMap();
-    } else {
-      setTimeout(loadKakaoMap, 800);
-    }
+    // Kakao Map 초기화 시도
+    initMap();
   });
 
   /* ===== 라이트박스 + 슬라이드 ===== */
@@ -1370,7 +1369,6 @@
     const title = "재곤 & 예림 결혼식 초대장";
     const description = "2026년 2월 22일, 드레스가든 4층 블리스돔홀에서 뵙겠습니다.";
 
-    // Kakao Link 우선
     if (typeof Kakao !== "undefined" && Kakao.isInitialized()) {
       Kakao.Link.sendDefault({
         objectType: "feed",
@@ -1394,7 +1392,6 @@
         ]
       });
     } else {
-      // Kakao 사용이 어려운 환경에서는 URL 복사
       copyInviteUrl();
     }
   }
