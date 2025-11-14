@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>재곤 & 예림 결혼식 초대장</title>
+
+  <!-- 필체 / 영문 폰트 (Our Wedding, 이름 등에 사용) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     :root {
       --accent: #ff7a00;
       --text: #ffffff;
       --bg: #000000;
+      --card-bg: #111111;
     }
 
     * {
@@ -22,7 +31,8 @@
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Noto Sans KR", "맑은 고딕", sans-serif;
     }
 
     .page {
@@ -30,11 +40,10 @@
       overflow-x: hidden;
     }
 
-    /* ===== 공통 섹션 ===== */
     section {
-      padding: 56px 24px;
       max-width: 640px;
       margin: 0 auto;
+      padding: 56px 24px;
     }
 
     .section-title {
@@ -53,7 +62,7 @@
       margin-bottom: 26px;
     }
 
-    /* ===== 음악 토글 버튼 (고정 우상단) ===== */
+    /* ===== 음악 토글 버튼 (고정) ===== */
     .music-toggle {
       position: fixed;
       top: calc(env(safe-area-inset-top, 0px) + 10px);
@@ -61,8 +70,8 @@
       padding: 6px 10px;
       font-size: 11px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.35);
-      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(0, 0, 0, 0.55);
       color: #ffffff;
       backdrop-filter: blur(6px);
       cursor: pointer;
@@ -70,28 +79,28 @@
       align-items: center;
       gap: 4px;
       z-index: 1000;
-      transition: background .2s ease, border-color .2s ease, color .2s ease, transform .1s ease;
+      transition: background 0.2s ease, border-color 0.2s ease,
+        color 0.2s ease, transform 0.1s ease;
     }
+
     .music-toggle.on {
       background: var(--accent);
       border-color: var(--accent);
       color: #000;
     }
+
     .music-toggle:active {
       transform: scale(0.96);
     }
 
-    /* ===== 히어로 메인 (레퍼런스 느낌) ===== */
+    /* ===== 히어로 메인 ===== */
     .hero {
-      position: relative;
-      width: 100%;
+      padding: 0;
       height: 90vh;
       max-height: 820px;
       display: flex;
       justify-content: center;
-      align-items: flex-end;
-      overflow: hidden;
-      padding: 0;
+      align-items: stretch;
     }
 
     .hero-inner-wrapper {
@@ -100,12 +109,14 @@
       max-width: 640px;
       margin: 0 auto;
       height: 100%;
+      /* 레퍼런스처럼 각진 사진 느낌을 위해 radius 제거 */
+      border-radius: 0;
+      overflow: hidden;
     }
 
     .hero-bg {
       position: absolute;
       inset: 0;
-      overflow: hidden;
     }
 
     .hero-bg img {
@@ -121,9 +132,9 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,0.05) 0%,
-        rgba(0,0,0,0.25) 40%,
-        rgba(0,0,0,0.85) 100%
+        rgba(0, 0, 0, 0.05) 0%,
+        rgba(0, 0, 0, 0.25) 40%,
+        rgba(0, 0, 0, 0.85) 100%
       );
     }
 
@@ -140,19 +151,21 @@
     }
 
     .hero-label {
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 10px;
+      font-family: "Poppins", -apple-system, BlinkMacSystemFont, system-ui,
+        sans-serif;
     }
 
     .hero-script {
-      font-family: "Georgia", serif;
-      font-size: 30px;
-      letter-spacing: 0.16em;
+      font-family: "Great Vibes", cursive;
+      font-size: 34px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       color: var(--accent);
     }
 
@@ -167,6 +180,8 @@
       text-transform: uppercase;
       opacity: 0.85;
       margin-bottom: 16px;
+      font-family: "Poppins", -apple-system, BlinkMacSystemFont, system-ui,
+        sans-serif;
     }
 
     .hero-date {
@@ -174,100 +189,150 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 6px;
-      opacity: 0.95;
+      color: var(--accent);
+      font-family: "Poppins", -apple-system, BlinkMacSystemFont, system-ui,
+        sans-serif;
     }
 
     .hero-place {
       font-size: 13px;
       line-height: 1.7;
-      opacity: 0.88;
     }
 
-    /* ===== SAVE THE DATE 오벌 배지 섹션 ===== */
+    .hero-place-main {
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-family: "Poppins", -apple-system, BlinkMacSystemFont, system-ui,
+        sans-serif;
+    }
+
+    .hero-place-sub {
+      opacity: 0.86;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ===== SAVE THE DATE 섹션 ===== */
     .save-date-section {
-      padding-top: 32px;
+      text-align: center;
     }
 
     .save-date-pill {
-      margin: 0 auto 20px;
-      padding: 8px 28px;
-      border-radius: 999px;
-      border: 1px solid var(--accent);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
-      letter-spacing: 0.14em;
+      padding: 8px 26px;
+      border-radius: 9999px;
+      border: 1px solid var(--accent);
+      font-size: 12px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
+      margin-bottom: 16px;
+      font-family: "Poppins", -apple-system, BlinkMacSystemFont, system-ui,
+        sans-serif;
     }
 
-    .save-date-text {
-      text-align: center;
-      font-size: 14px;
+    .save-date-kor {
+      font-size: 13px;
       line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .save-date-message {
+      font-size: 13px;
+      line-height: 1.8;
       opacity: 0.92;
     }
 
-    /* ===== INVITATION 카드 (엽서 이미지 + 텍스트) ===== */
+    /* ===== 엽서 + 손글씨 ===== */
     .postcard {
-      margin-top: 40px;
-      background: #111111;
-      border-radius: 16px;
-      padding: 22px 18px 20px;
-      border: 1px solid rgba(255,255,255,0.16);
+      margin-top: 32px;
     }
 
     .postcard-image {
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 18px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: #080808;
+      max-width: 320px;
+      margin: 0 auto 18px;
     }
 
     .postcard-image img {
       width: 100%;
       display: block;
-      object-fit: cover;
+      /* 사진은 각지게 */
+      border-radius: 0;
+      border: none;
+    }
+
+    .postcard-info {
+      font-size: 13px;
+      line-height: 1.7;
+      text-align: center;
+      opacity: 0.92;
+      margin-bottom: 10px;
     }
 
     .postcard-row {
       display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-      font-size: 14px;
+      justify-content: center;
+      gap: 16px;
+      font-size: 13px;
+      margin-bottom: 6px;
     }
 
     .postcard-label {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--accent);
-      margin-bottom: 3px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+      text-align: left;
     }
 
     .postcard-script {
       margin-top: 12px;
       text-align: center;
-      font-family: "Georgia", serif;
-      font-size: 17px;
+      font-family: "Great Vibes", cursive;
+      font-size: 22px;
       color: var(--accent);
-      letter-spacing: 0.16em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
     }
 
-    /* ===== Groom / Bride 영어 이름 섹션 ===== */
+    .postcard-handwriting {
+      margin-top: 18px;
+      font-size: 13px;
+      opacity: 0.9;
+      line-height: 1.7;
+    }
+
+    /* 실제 손글씨 이미지를 쓸 경우 이 박스 안에 img로 교체 */
+    .postcard-handwriting-box {
+      margin-top: 10px;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .postcard-handwriting-box img {
+      width: 100%;
+      display: block;
+      border-radius: 0;
+    }
+
+    /* ===== Groom / Bride 이름 ===== */
     .couple-section-inner {
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: #111111;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: var(--card-bg);
       padding: 22px 18px 18px;
     }
 
     .couple-row {
       display: flex;
-      justify-content: space-between;
       gap: 24px;
+      justify-content: space-between;
     }
 
     .couple-col {
@@ -276,32 +341,98 @@
     }
 
     .couple-label {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--accent);
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       margin-bottom: 8px;
+      font-family: "Poppins", -apple-system, BlinkMacSystemFont, system-ui,
+        sans-serif;
     }
 
     .couple-name-eng {
       font-size: 14px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      font-family: "Poppins", -apple-system, BlinkMacSystemFont, system-ui,
+        sans-serif;
     }
 
-    .couple-name-kor {
+    /* ===== 메인 2, 3 사진 ===== */
+    .main-photo-section {
+      padding-top: 36px;
+    }
+
+    .main-photo-wrapper {
+      width: 100%;
+    }
+
+    .main-photo-wrapper img {
+      width: 100%;
+      display: block;
+      border-radius: 0;
+    }
+
+    /* ===== 오렌지 배경 스토리(Childhood) ===== */
+    .story-section {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .story-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .story-title {
       font-size: 13px;
-      opacity: 0.9;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      font-family: "Poppins", -apple-system, BlinkMacSystemFont, system-ui,
+        sans-serif;
+    }
+
+    .story-heading {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    .story-photo-wrap {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .story-photo-main {
+      width: 100%;
+      display: block;
+      border-radius: 0;
+    }
+
+    .story-letter {
+      position: absolute;
+      bottom: 6%;
+      right: 4%;
+      width: 45%;
+      max-width: 220px;
+      border-radius: 0;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .story-text {
+      font-size: 13px;
+      line-height: 1.7;
     }
 
     /* ===== 부모님 섹션 ===== */
     .parent-card {
-      background: #111111;
-      border-radius: 16px;
+      background: var(--card-bg);
+      border-radius: 12px;
       padding: 20px 18px 18px;
-      border: 1px solid rgba(255,255,255,0.18);
-      margin-bottom: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      margin-bottom: 24px;
     }
 
     .parent-label {
@@ -321,8 +452,8 @@
       width: 88px;
       height: 88px;
       object-fit: cover;
-      border-radius: 10px;
       display: block;
+      border-radius: 0;
     }
 
     .parent-names {
@@ -346,31 +477,38 @@
 
     .parent-letter-image {
       margin-top: 10px;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: #080808;
     }
 
     .parent-letter-image img {
       width: 100%;
       display: block;
-      object-fit: cover;
+      border-radius: 0;
     }
 
-    /* ===== 9장 그리드 섹션 ===== */
+    /* ===== 갤러리 메인 + 그리드 ===== */
+    .gallery-main {
+      margin-bottom: 16px;
+    }
+
+    .gallery-main img {
+      width: 100%;
+      display: block;
+      cursor: pointer;
+      border-radius: 0;
+    }
+
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 모바일 포함 항상 3열 */
+      grid-template-columns: repeat(3, 1fr);
       gap: 6px;
-      margin-top: 12px;
+      margin-top: 8px;
     }
 
     .photo-grid-item {
-      border-radius: 10px;
+      border-radius: 0;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.12);
       background: #080808;
+      cursor: pointer;
     }
 
     .photo-grid-item img {
@@ -378,27 +516,339 @@
       height: 100%;
       display: block;
       object-fit: cover;
+      border-radius: 0;
+    }
+
+    /* ===== 라이트박스 ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .lightbox.show {
+      display: flex;
+    }
+
+    .lightbox-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 960px;
+      width: 100%;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-image-wrapper {
+      max-width: 640px;
+      width: 100%;
+    }
+
+    .lightbox-image-wrapper img {
+      width: 100%;
+      display: block;
+      border-radius: 0;
+    }
+
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-close {
+      top: 24px;
+      right: 24px;
+    }
+
+    .lightbox-prev {
+      left: 24px;
+    }
+
+    .lightbox-next {
+      right: 24px;
+    }
+
+    /* ===== 캘린더 ===== */
+    .calendar-section {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .calendar-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    .calendar-heading {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .calendar-sub {
+      text-align: center;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .calendar-day-label {
+      font-weight: 500;
+      padding-bottom: 4px;
+    }
+
+    .calendar-cell {
+      padding: 8px 0;
+      border-radius: 6px;
+    }
+
+    .calendar-cell span {
+      display: inline-block;
+    }
+
+    .calendar-cell.highlight {
+      background: #000;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* ===== 오시는 길 / 지도 ===== */
+    .location-section {
+      background: #000;
+    }
+
+    .location-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .map-embed {
+      width: 100%;
+      border-radius: 0;
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .map-embed iframe {
+      width: 100%;
+      height: 220px;
+      border: 0;
+      display: block;
+    }
+
+    .copy-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .copy-text {
+      font-size: 13px;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .copy-btn {
+      flex-shrink: 0;
+      padding: 7px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .transport-block {
+      margin-top: 12px;
+    }
+
+    .transport-title {
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .transport-text {
+      font-size: 13px;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+
+    /* ===== 계좌 섹션 ===== */
+    .account-card {
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: var(--card-bg);
+      padding: 20px 18px 18px;
+      margin-bottom: 14px;
+    }
+
+    .account-title {
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .account-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .account-label {
+      flex-shrink: 0;
+      min-width: 42px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .account-value {
+      flex: 1;
+    }
+
+    /* ===== 참석 여부 ===== */
+    .rsvp-form {
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: var(--card-bg);
+      padding: 20px 18px 18px;
+      font-size: 13px;
+    }
+
+    .rsvp-row {
+      margin-bottom: 10px;
+    }
+
+    .rsvp-label {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .rsvp-input,
+    .rsvp-select,
+    .rsvp-textarea {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: #050505;
+      color: #fff;
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+
+    .rsvp-textarea {
+      min-height: 72px;
+      resize: vertical;
+    }
+
+    .rsvp-submit {
+      margin-top: 8px;
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 10px 0;
+      background: var(--accent);
+      color: #000;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* ===== 공유 영역 ===== */
+    .share-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .share-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: #050505;
+      color: #fff;
+      font-size: 13px;
+      padding: 10px 14px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .share-btn.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #000;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      opacity: 0.6;
+      margin-top: 18px;
     }
 
     @media (max-width: 360px) {
       .hero-script {
-        font-size: 26px;
+        font-size: 30px;
       }
+
       .hero-content {
         padding-bottom: 32px;
       }
     }
 
     @media (min-width: 768px) {
-      .hero-inner-wrapper {
-        border-radius: 20px;
-        overflow: hidden;
-      }
       section {
         padding: 64px 24px;
       }
+
+      .story-inner,
+      .calendar-inner,
+      .location-inner {
+        padding: 56px 24px;
+      }
+
       .couple-row {
         gap: 40px;
+      }
+
+      .map-embed iframe {
+        height: 260px;
       }
     }
   </style>
@@ -408,12 +858,9 @@
 <div class="page">
 
   <!-- ===== BGM ===== -->
-  <audio id="bgm"
-         src="bgm.mp4"
-         preload="auto"
-         loop></audio>
+  <audio id="bgm" src="bgm.mp4" preload="auto" loop></audio>
 
-  <!-- 음악 토글 버튼 (전체 공통) -->
+  <!-- 음악 토글 -->
   <button type="button" class="music-toggle" id="music-toggle" onclick="toggleMusic()">
     <span>♪</span><span>Music Off</span>
   </button>
@@ -422,8 +869,8 @@
   <section class="hero">
     <div class="hero-inner-wrapper">
       <div class="hero-bg">
-        <!-- 메인 배경 사진 -->
-        <img src="images/hero-main.jpg" alt="메인 배경">
+        <!-- 메인 대표 사진 -->
+        <img src="images/hero-main.jpg" alt="메인 배경" />
         <div class="hero-overlay"></div>
       </div>
 
@@ -432,44 +879,54 @@
         <p class="hero-script">Our Wedding</p>
 
         <p class="hero-names-kor">김재곤 · 하예림</p>
-        <p class="hero-names-eng">KIM JAE GON &nbsp; &amp; &nbsp; YELIM HA</p>
+        <p class="hero-names-eng">KIM JAE GON &amp; YELIM HA</p>
 
         <p class="hero-date">2026.02.22 SUN 4:30 PM</p>
         <p class="hero-place">
-          드레스가든 4층 블리스돔홀<br>
-          서울 강남구 영동대로 707
+          <span class="hero-place-main">DRESS GARDEN 4F BLISS DOME HALL</span
+          ><br />
+          <span class="hero-place-sub">SEOUL GANGNAM-GU YEONGDONG-DAERO 707</span>
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ===== SAVE THE DATE + INVITATION 섹션 ===== -->
+  <!-- ===== SAVE THE DATE + 한글 정보 ===== -->
   <section class="save-date-section">
     <div class="save-date-pill">SAVE THE DATE</div>
-    <p class="save-date-text">
-      서로가 마주보며 다져온 사랑을 이제 함께 한 방향을 바라보며 걸어가고자 합니다.<br>
-      귀한 걸음 하셔서 저희의 시작을 따뜻한 마음으로 축복해 주시면 감사하겠습니다.
+
+    <p class="save-date-kor">
+      2026년 2월 22일 일요일 오후 4시 30분<br />
+      드레스가든 4층 블리스돔홀<br />
+      서울특별시 강남구 영동대로 707
     </p>
 
+    <p class="save-date-message">
+      서로가 마주보며 다져온 사랑을<br />
+      이제 함께 한 방향을 바라보며 걸어가고자 합니다.<br />
+      귀한 걸음 하셔서 저희의 시작을 따뜻한 마음으로<br />
+      축복해 주시면 감사하겠습니다.
+    </p>
+
+    <!-- 엽서 이미지 + 손글씨 자리 -->
     <div class="postcard">
       <div class="postcard-image">
-        <!-- 엽서 디자인 이미지 -->
-        <img src="images/postcard.jpg" alt="엽서 이미지">
+        <!-- 엽서 디자인 이미지 (알파 PNG 추천) -->
+        <img src="images/postcard.jpg" alt="엽서 이미지" />
       </div>
 
-      <div class="postcard-row">
-        <div>
-          <div class="postcard-label">DATE</div>
-          <div>2026.02.22. SUN 04:30PM</div>
+      <div class="postcard-info">
+        <div class="postcard-row">
+          <div>
+            <div class="postcard-label">DATE</div>
+            <div>2026.02.22. SUN 04:30PM</div>
+          </div>
+          <div>
+            <div class="postcard-label">PLACE</div>
+            <div>드레스가든 4층 블리스돔홀</div>
+          </div>
         </div>
 
-        <div style="text-align:right;">
-          <div class="postcard-label">PLACE</div>
-          <div>드레스가든 4층 블리스돔홀</div>
-        </div>
-      </div>
-
-      <div class="postcard-row">
         <div>
           <div class="postcard-label">ADDRESS</div>
           <div>서울 강남구 영동대로 707</div>
@@ -477,10 +934,20 @@
       </div>
 
       <div class="postcard-script">Save the Date</div>
+
+      <!-- 우리 두 사람 손글씨 이미지 들어갈 자리 (지금은 텍스트) -->
+      <div class="postcard-handwriting">
+        우리 두 사람의 손글씨가 들어갈 자리입니다. 나중에
+        <strong>손글씨 PNG 이미지</strong>를 제작하시면 아래 박스를
+        <code>&lt;img src="images/couple-letter.jpg"&gt;</code> 형태로 교체하면 됩니다.
+      </div>
+      <div class="postcard-handwriting-box">
+        <!-- 예: <img src="images/couple-letter.jpg" alt="신랑신부 손글씨"> -->
+      </div>
     </div>
   </section>
 
-  <!-- ===== Groom / Bride 영어 이름 섹션 ===== -->
+  <!-- ===== Groom / Bride 영어 이름 ===== -->
   <section>
     <div class="section-title">Couple</div>
     <div class="section-heading">Groom &amp; Bride</div>
@@ -490,18 +957,80 @@
         <div class="couple-col">
           <div class="couple-label">Groom</div>
           <div class="couple-name-eng">KIM JAE GON</div>
-          <div class="couple-name-kor">김재곤</div>
         </div>
         <div class="couple-col">
           <div class="couple-label">Bride</div>
           <div class="couple-name-eng">YELIM HA</div>
-          <div class="couple-name-kor">하예림</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 부모님 섹션 ===== -->
+  <!-- ===== 메인 2 사진 (임시로 grid-4 사용) ===== -->
+  <section class="main-photo-section">
+    <div class="main-photo-wrapper">
+      <!-- 실제로는 메인2 전용 사진으로 교체 -->
+      <img src="images/grid-4.jpg" alt="메인 사진 2" />
+    </div>
+  </section>
+
+  <!-- ===== 오렌지 배경: Groom's Childhood ===== -->
+  <section class="story-section">
+    <div class="story-inner">
+      <div class="story-title">GROOM'S CHILDHOOD</div>
+      <div class="story-heading">어린 재곤의 순간들</div>
+
+      <div class="story-photo-wrap">
+        <!-- 실제 어릴 적 사진으로 교체 (예: images/groom-childhood.jpg) -->
+        <img
+          src="images/grid-6.jpg"
+          alt="신랑 어린 시절"
+          class="story-photo-main"
+        />
+        <!-- 신랑 부모님 손글씨 이미지 오버레이 -->
+        <img
+          src="images/parents-groom-letter.jpg"
+          alt="신랑 부모님 손글씨"
+          class="story-letter"
+        />
+      </div>
+
+      <div class="story-text">
+        어린 시절의 사진과 함께, 신랑 부모님의 손글씨가 함께 들어가는 영역입니다.
+        실제 콘텐츠에 맞게 사진과 손글씨 이미지를 교체하시면 됩니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 오렌지 배경: Bride's Childhood ===== -->
+  <section class="story-section">
+    <div class="story-inner">
+      <div class="story-title">BRIDE'S CHILDHOOD</div>
+      <div class="story-heading">어린 예림의 순간들</div>
+
+      <div class="story-photo-wrap">
+        <!-- 실제 어릴 적 사진으로 교체 (예: images/bride-childhood.jpg) -->
+        <img
+          src="images/grid-7.jpg"
+          alt="신부 어린 시절"
+          class="story-photo-main"
+        />
+        <!-- 신부 부모님 손글씨 이미지 오버레이 -->
+        <img
+          src="images/parents-bride-letter.jpg"
+          alt="신부 부모님 손글씨"
+          class="story-letter"
+        />
+      </div>
+
+      <div class="story-text">
+        어린 시절의 사진과 함께, 신부 부모님의 손글씨가 함께 들어가는 영역입니다.
+        실제 콘텐츠에 맞게 사진과 손글씨 이미지를 교체하시면 됩니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 양가 부모님 섹션 ===== -->
   <section>
     <div class="section-title">Family</div>
     <div class="section-heading">양가 부모님</div>
@@ -511,7 +1040,7 @@
       <div class="parent-label">Groom Side</div>
       <div class="parent-top">
         <div class="parent-photo">
-          <img src="images/parents-groom.jpg" alt="신랑측 부모님">
+          <img src="images/parents-groom.jpg" alt="신랑측 부모님" />
         </div>
         <div class="parent-names">
           <div class="role">신랑측</div>
@@ -523,7 +1052,10 @@
 신랑 부모님 손글씨나 짧은 인사말이 들어갈 자리입니다.
       </div>
       <div class="parent-letter-image">
-        <img src="images/parents-groom-letter.jpg" alt="신랑측 부모님 손글씨">
+        <img
+          src="images/parents-groom-letter.jpg"
+          alt="신랑측 부모님 손글씨"
+        />
       </div>
     </div>
 
@@ -532,7 +1064,7 @@
       <div class="parent-label">Bride Side</div>
       <div class="parent-top">
         <div class="parent-photo">
-          <img src="images/parents-bride.jpg" alt="신부측 부모님">
+          <img src="images/parents-bride.jpg" alt="신부측 부모님" />
         </div>
         <div class="parent-names">
           <div class="role">신부측</div>
@@ -544,50 +1076,324 @@
 신부 부모님 손글씨나 짧은 인사말이 들어갈 자리입니다.
       </div>
       <div class="parent-letter-image">
-        <img src="images/parents-bride-letter.jpg" alt="신부측 부모님 손글씨">
+        <img
+          src="images/parents-bride-letter.jpg"
+          alt="신부측 부모님 손글씨"
+        />
       </div>
     </div>
   </section>
 
-  <!-- ===== 9장 그리드 사진 섹션 ===== -->
+  <!-- ===== 메인 3 사진 + 우리 손글씨 ===== -->
+  <section class="main-photo-section">
+    <div class="section-title">Story</div>
+    <div class="section-heading">우리의 지금</div>
+
+    <div class="main-photo-wrapper" style="margin-bottom: 14px;">
+      <!-- 실제 메인3 전용 사진으로 교체 (지금은 grid-5 임시) -->
+      <img src="images/grid-5.jpg" alt="메인 사진 3" />
+    </div>
+
+    <div style="font-size: 13px; line-height: 1.8; opacity: 0.92;">
+      이 영역에는 두 사람이 서로에게 전하는 손글씨 문구 혹은 짧은 편지가 들어갑니다.
+      나중에 손글씨 이미지를 제작하시면, 위 사진 위나 아래에 <code>&lt;img&gt;</code>로 교체하셔도 됩니다.
+    </div>
+  </section>
+
+  <!-- ===== 갤러리 메인 + 그리드 (라이트박스) ===== -->
   <section>
-    <div class="section-title">Photos</div>
-    <div class="section-heading">우리의 순간</div>
+    <div class="section-title">Gallery</div>
+    <div class="section-heading">우리의 순간들</div>
+
+    <!-- 그리드 메인 사진 (클릭 시 확대) -->
+    <div class="gallery-main">
+      <img
+        src="images/grid-1.jpg"
+        alt="갤러리 메인 사진"
+        onclick="openLightbox(0)"
+      />
+    </div>
 
     <div class="photo-grid">
-      <div class="photo-grid-item">
-        <img src="images/grid-1.jpg" alt="그리드 사진 1">
+      <div class="photo-grid-item" onclick="openLightbox(0)">
+        <img src="images/grid-1.jpg" alt="그리드 사진 1" />
       </div>
-      <div class="photo-grid-item">
-        <img src="images/grid-2.jpg" alt="그리드 사진 2">
+      <div class="photo-grid-item" onclick="openLightbox(1)">
+        <img src="images/grid-2.jpg" alt="그리드 사진 2" />
       </div>
-      <div class="photo-grid-item">
-        <img src="images/grid-3.jpg" alt="그리드 사진 3">
+      <div class="photo-grid-item" onclick="openLightbox(2)">
+        <img src="images/grid-3.jpg" alt="그리드 사진 3" />
       </div>
-      <div class="photo-grid-item">
-        <img src="images/grid-4.jpg" alt="그리드 사진 4">
+      <div class="photo-grid-item" onclick="openLightbox(3)">
+        <img src="images/grid-4.jpg" alt="그리드 사진 4" />
       </div>
-      <div class="photo-grid-item">
-        <img src="images/grid-5.jpg" alt="그리드 사진 5">
+      <div class="photo-grid-item" onclick="openLightbox(4)">
+        <img src="images/grid-5.jpg" alt="그리드 사진 5" />
       </div>
-      <div class="photo-grid-item">
-        <img src="images/grid-6.jpg" alt="그리드 사진 6">
+      <div class="photo-grid-item" onclick="openLightbox(5)">
+        <img src="images/grid-6.jpg" alt="그리드 사진 6" />
       </div>
-      <div class="photo-grid-item">
-        <img src="images/grid-7.jpg" alt="그리드 사진 7">
+      <div class="photo-grid-item" onclick="openLightbox(6)">
+        <img src="images/grid-7.jpg" alt="그리드 사진 7" />
       </div>
-      <div class="photo-grid-item">
-        <img src="images/grid-8.jpg" alt="그리드 사진 8">
+      <div class="photo-grid-item" onclick="openLightbox(7)">
+        <img src="images/grid-8.jpg" alt="그리드 사진 8" />
       </div>
-      <div class="photo-grid-item">
-        <img src="images/grid-9.jpg" alt="그리드 사진 9">
+      <div class="photo-grid-item" onclick="openLightbox(8)">
+        <img src="images/grid-9.jpg" alt="그리드 사진 9" />
+      </div>
+      <!-- 나중에 12~15장으로 늘리고 싶으면 여기만 grid-10~15 추가 -->
+    </div>
+  </section>
+
+  <!-- 라이트박스 영역 -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" type="button" onclick="closeLightbox()">
+        ×
+      </button>
+      <button class="lightbox-prev" type="button" onclick="prevImage()">
+        ‹
+      </button>
+      <div class="lightbox-image-wrapper">
+        <img id="lightbox-img" src="" alt="Gallery image" />
+      </div>
+      <button class="lightbox-next" type="button" onclick="nextImage()">
+        ›
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== 캘린더 섹션 (2026년 2월, 22일 하이라이트) ===== -->
+  <section class="calendar-section">
+    <div class="calendar-inner">
+      <div class="calendar-heading">FEBRUARY 2026</div>
+      <div class="calendar-sub">2026년 2월 22일 일요일 오후 4시 30분</div>
+
+      <div class="calendar-grid">
+        <!-- 요일 -->
+        <div class="calendar-day-label">SUN</div>
+        <div class="calendar-day-label">MON</div>
+        <div class="calendar-day-label">TUE</div>
+        <div class="calendar-day-label">WED</div>
+        <div class="calendar-day-label">THU</div>
+        <div class="calendar-day-label">FRI</div>
+        <div class="calendar-day-label">SAT</div>
+
+        <!-- 1주차 (2월 1일은 일요일) -->
+        <div class="calendar-cell"><span>1</span></div>
+        <div class="calendar-cell"><span>2</span></div>
+        <div class="calendar-cell"><span>3</span></div>
+        <div class="calendar-cell"><span>4</span></div>
+        <div class="calendar-cell"><span>5</span></div>
+        <div class="calendar-cell"><span>6</span></div>
+        <div class="calendar-cell"><span>7</span></div>
+        <!-- 2주차 -->
+        <div class="calendar-cell"><span>8</span></div>
+        <div class="calendar-cell"><span>9</span></div>
+        <div class="calendar-cell"><span>10</span></div>
+        <div class="calendar-cell"><span>11</span></div>
+        <div class="calendar-cell"><span>12</span></div>
+        <div class="calendar-cell"><span>13</span></div>
+        <div class="calendar-cell"><span>14</span></div>
+        <!-- 3주차 -->
+        <div class="calendar-cell"><span>15</span></div>
+        <div class="calendar-cell"><span>16</span></div>
+        <div class="calendar-cell"><span>17</span></div>
+        <div class="calendar-cell"><span>18</span></div>
+        <div class="calendar-cell"><span>19</span></div>
+        <div class="calendar-cell"><span>20</span></div>
+        <div class="calendar-cell"><span>21</span></div>
+        <!-- 4주차 (하이라이트: 22) -->
+        <div class="calendar-cell highlight"><span>22</span></div>
+        <div class="calendar-cell"><span>23</span></div>
+        <div class="calendar-cell"><span>24</span></div>
+        <div class="calendar-cell"><span>25</span></div>
+        <div class="calendar-cell"><span>26</span></div>
+        <div class="calendar-cell"><span>27</span></div>
+        <div class="calendar-cell"><span>28</span></div>
       </div>
     </div>
   </section>
 
+  <!-- ===== 오시는 길 / 지도 / 교통 안내 ===== -->
+  <section class="location-section">
+    <div class="location-inner">
+      <div class="section-title">Location</div>
+      <div class="section-heading">오시는 길</div>
+
+      <div class="map-embed">
+        <!-- 구글 지도 임베드 (원하면 나중에 네이버/카카오로 교체 가능) -->
+        <iframe
+          src="https://www.google.com/maps?q=%EC%84%9C%EC%9A%B8+%EA%B0%95%EB%82%A8%EA%B5%AC+%EC%98%81%EB%8F%99%EB%8C%80%EB%A1%9C+707&output=embed"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <div class="copy-row">
+        <div class="copy-text">
+          서울 강남구 영동대로 707 드레스가든 4층 블리스돔홀
+        </div>
+        <button
+          class="copy-btn"
+          type="button"
+          onclick="copyText('서울 강남구 영동대로 707 드레스가든 4층 블리스돔홀')"
+        >
+          주소 복사
+        </button>
+      </div>
+
+      <div class="transport-block">
+        <div class="transport-title">지하철</div>
+        <div class="transport-text">
+          예시) 2호선 삼성역 ○번 출구 도보 ○분, 9호선 봉은사역 ○번 출구 도보 ○분<br />
+          실제 동선을 파악하신 뒤 문구를 수정하시면 됩니다.
+        </div>
+      </div>
+
+      <div class="transport-block">
+        <div class="transport-title">버스</div>
+        <div class="transport-text">
+          예시) ○○사거리, ○○빌딩 정류장 하차 후 도보 ○분 등으로 안내 문구를 작성하실 수 있습니다.
+        </div>
+      </div>
+
+      <div class="transport-block">
+        <div class="transport-title">자가용</div>
+        <div class="transport-text">
+          예시) 건물 내 주차 가능 / 인근 공영주차장 이용 안내 등, 실제 안내에 맞게 문구를 수정하시면 됩니다.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 마음 전하는 곳 / 계좌 ===== -->
+  <section>
+    <div class="section-title">Account</div>
+    <div class="section-heading">마음 전하는 곳</div>
+
+    <div class="account-card">
+      <div class="account-title">신랑측 계좌</div>
+      <div class="account-row">
+        <div class="account-label">은행</div>
+        <div class="account-value">예시) 우리은행</div>
+      </div>
+      <div class="account-row">
+        <div class="account-label">계좌</div>
+        <div class="account-value" id="groom-account">
+          0000-000-000000
+        </div>
+        <button
+          class="copy-btn"
+          type="button"
+          onclick="copyText(document.getElementById('groom-account').innerText)"
+        >
+          복사
+        </button>
+      </div>
+      <div class="account-row">
+        <div class="account-label">예금주</div>
+        <div class="account-value">김재곤</div>
+      </div>
+    </div>
+
+    <div class="account-card">
+      <div class="account-title">신부측 계좌</div>
+      <div class="account-row">
+        <div class="account-label">은행</div>
+        <div class="account-value">예시) 국민은행</div>
+      </div>
+      <div class="account-row">
+        <div class="account-label">계좌</div>
+        <div class="account-value" id="bride-account">
+          0000-000-000000
+        </div>
+        <button
+          class="copy-btn"
+          type="button"
+          onclick="copyText(document.getElementById('bride-account').innerText)"
+        >
+          복사
+        </button>
+      </div>
+      <div class="account-row">
+        <div class="account-label">예금주</div>
+        <div class="account-value">하예림</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 참석 여부 ===== -->
+  <section>
+    <div class="section-title">RSVP</div>
+    <div class="section-heading">참석 여부</div>
+
+    <div class="rsvp-form">
+      <form onsubmit="handleRSVP(event)">
+        <div class="rsvp-row">
+          <label class="rsvp-label" for="rsvp-name">이름</label>
+          <input
+            id="rsvp-name"
+            class="rsvp-input"
+            type="text"
+            placeholder="이름을 입력해주세요."
+            required
+          />
+        </div>
+
+        <div class="rsvp-row">
+          <label class="rsvp-label" for="rsvp-side">신랑측 / 신부측</label>
+          <select id="rsvp-side" class="rsvp-select">
+            <option value="groom">신랑측</option>
+            <option value="bride">신부측</option>
+          </select>
+        </div>
+
+        <div class="rsvp-row">
+          <label class="rsvp-label" for="rsvp-count">참석 인원</label>
+          <select id="rsvp-count" class="rsvp-select">
+            <option value="1">본인 1인</option>
+            <option value="2">본인 포함 2인</option>
+            <option value="3">본인 포함 3인 이상</option>
+          </select>
+        </div>
+
+        <div class="rsvp-row">
+          <label class="rsvp-label" for="rsvp-message">전하고 싶은 말 (선택)</label>
+          <textarea
+            id="rsvp-message"
+            class="rsvp-textarea"
+            placeholder="전하고 싶은 말을 자유롭게 적어주세요."
+          ></textarea>
+        </div>
+
+        <button type="submit" class="rsvp-submit">참석 의사 전달하기</button>
+      </form>
+    </div>
+
+    <!-- 공유 영역 -->
+    <div class="share-row">
+      <button type="button" class="share-btn primary" onclick="shareKakao()">
+        카카오톡으로 청첩장 공유하기
+      </button>
+      <button
+        type="button"
+        class="share-btn"
+        onclick="copyCurrentUrl()"
+      >
+        청첩장 주소 복사하기
+      </button>
+    </div>
+
+    <div class="footer">
+      © 2026 JAE GON &amp; YELIM WEDDING INVITATION
+    </div>
+  </section>
 </div>
 
 <script>
+  /* ===== BGM 토글 ===== */
   let isMusicPlaying = false;
 
   function updateMusicButton() {
@@ -608,10 +1414,13 @@
     if (!audio) return;
 
     if (audio.paused) {
-      audio.play().then(() => {
-        isMusicPlaying = true;
-        updateMusicButton();
-      });
+      audio
+        .play()
+        .then(() => {
+          isMusicPlaying = true;
+          updateMusicButton();
+        })
+        .catch(() => {});
     } else {
       audio.pause();
       isMusicPlaying = false;
@@ -622,18 +1431,110 @@
   document.addEventListener("DOMContentLoaded", function () {
     const audio = document.getElementById("bgm");
     if (!audio) return;
-
     audio.volume = 0.65;
 
-    audio.play().then(() => {
-      isMusicPlaying = true;
-      updateMusicButton();
-    }).catch(() => {
-      isMusicPlaying = false;
-      updateMusicButton();
-    });
+    audio
+      .play()
+      .then(() => {
+        isMusicPlaying = true;
+        updateMusicButton();
+      })
+      .catch(() => {
+        isMusicPlaying = false;
+        updateMusicButton();
+      });
   });
-</script>
 
+  /* ===== 갤러리 라이트박스 ===== */
+  const galleryImages = [
+    "images/grid-1.jpg",
+    "images/grid-2.jpg",
+    "images/grid-3.jpg",
+    "images/grid-4.jpg",
+    "images/grid-5.jpg",
+    "images/grid-6.jpg",
+    "images/grid-7.jpg",
+    "images/grid-8.jpg",
+    "images/grid-9.jpg"
+    // 나중에 10~15까지 추가하면 여기에 경로만 늘리면 됨
+  ];
+
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const lb = document.getElementById("lightbox");
+    const img = document.getElementById("lightbox-img");
+    img.src = galleryImages[currentIndex];
+    lb.classList.add("show");
+  }
+
+  function closeLightbox() {
+    const lb = document.getElementById("lightbox");
+    lb.classList.remove("show");
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    const img = document.getElementById("lightbox-img");
+    img.src = galleryImages[currentIndex];
+  }
+
+  function prevImage() {
+    currentIndex =
+      (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    const img = document.getElementById("lightbox-img");
+    img.src = galleryImages[currentIndex];
+  }
+
+  /* ===== 공통 복사 함수 ===== */
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        alert("복사되었습니다.");
+      });
+    } else {
+      const temp = document.createElement("textarea");
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      alert("복사되었습니다.");
+    }
+  }
+
+  function copyCurrentUrl() {
+    copyText(window.location.href);
+  }
+
+  /* ===== 참석 여부 전송(간단 알림만) ===== */
+  function handleRSVP(event) {
+    event.preventDefault();
+    const name = document.getElementById("rsvp-name").value.trim();
+    if (!name) return;
+    alert("참석 의사가 전달되었습니다. 감사합니다, " + name + "님.");
+    event.target.reset();
+  }
+
+  /* ===== 카카오톡 공유 버튼 (실제 카카오 SDK 대신 기본 공유/복사) ===== */
+  function shareKakao() {
+    const url = window.location.href;
+    const title = document.title || "재곤 & 예림 결혼식 초대장";
+
+    if (navigator.share) {
+      navigator
+        .share({
+          title: title,
+          text: "재곤 & 예림 결혼식 초대장",
+          url: url
+        })
+        .catch(() => {});
+    } else {
+      copyText(url);
+      alert("청첩장 주소가 복사되었습니다. 카카오톡에 붙여넣기 해서 공유해 주세요.");
+    }
+  }
+</script>
 </body>
 </html>
