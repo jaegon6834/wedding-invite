@@ -12,8 +12,9 @@
 
   <!-- Kakao JavaScript SDK -->
   <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-  <!-- Kakao Maps JavaScript API -->
-  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6fa997e63ec0359541d10b0328f9b29e"></script>
+  <!-- Kakao Maps JavaScript API (autoload 비활성화) -->
+  <script type="text/javascript"
+          src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6fa997e63ec0359541d10b0328f9b29e&autoload=false"></script>
 
   <style>
     :root {
@@ -316,7 +317,7 @@
     .story-section {
       background: var(--accent);
       color: #000000;
-      padding-top: 72px;   /* 위아래 여백 축소 버전 */
+      padding-top: 72px;   /* 위아래 여백 축소 */
       padding-bottom: 64px;
     }
 
@@ -1223,25 +1224,29 @@
     }
   }
 
-  /* ===== Kakao Map 초기화 ===== */
-  function initKakaoMap() {
-    const container = document.getElementById("kakao-map");
-    if (!container || !window.kakao || !kakao.maps) return;
+  /* ===== Kakao Map 로드 + 초기화 ===== */
+  function loadKakaoMap() {
+    if (!window.kakao || !kakao.maps) return;
 
-    // 드레스가든 근처 대략 좌표 (원하면 실제 좌표로 교체 가능)
-    const position = new kakao.maps.LatLng(37.5112, 127.0594);
+    kakao.maps.load(function () {
+      const container = document.getElementById("kakao-map");
+      if (!container) return;
 
-    const options = {
-      center: position,
-      level: 3
-    };
+      // 드레스가든 근처 대략 좌표
+      const position = new kakao.maps.LatLng(37.5112, 127.0594);
 
-    const map = new kakao.maps.Map(container, options);
+      const options = {
+        center: position,
+        level: 3
+      };
 
-    const marker = new kakao.maps.Marker({
-      position: position
+      const map = new kakao.maps.Map(container, options);
+
+      const marker = new kakao.maps.Marker({
+        position: position
+      });
+      marker.setMap(map);
     });
-    marker.setMap(map);
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -1265,11 +1270,11 @@
 
     loadRSVP();
 
-    // Kakao Map 초기화 (SDK 로드 타이밍 대비)
+    // Kakao Map 초기화
     if (window.kakao && kakao.maps) {
-      initKakaoMap();
+      loadKakaoMap();
     } else {
-      setTimeout(initKakaoMap, 800);
+      setTimeout(loadKakaoMap, 800);
     }
   });
 
