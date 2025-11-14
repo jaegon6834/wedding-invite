@@ -10,6 +10,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
+  <!-- Kakao JavaScript SDK -->
+  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <!-- Kakao Maps JavaScript API -->
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6fa997e63ec0359541d10b0328f9b29e"></script>
+
   <style>
     :root {
       --accent: #ff7a00;
@@ -382,7 +387,7 @@
     .letter-photo-wrap img.main {
       width: 100%;
       border-radius: 0;
-      height: auto; /* 원본 비율 유지 */
+      height: auto;
     }
 
     .letter-photo-wrap img.letter {
@@ -820,7 +825,7 @@
   <div class="hero-wrap">
     <section class="hero">
       <div class="hero-bg">
-        <!-- 메인 히어로 이미지는 기존대로 hero-main.jpg 사용 (루트에 있으면 그대로 두면 됨) -->
+        <!-- 메인 히어로 이미지 -->
         <img src="hero-main.jpg" alt="메인 배경">
       </div>
 
@@ -865,7 +870,7 @@
       </div>
       <div>
         <div class="names-label">Bride</div>
-        <div class.names-en>HA YELIM</div>
+        <div class="names-en">HA YELIM</div>
       </div>
     </div>
   </section>
@@ -882,7 +887,6 @@
       <div class="story-heading">Groom's Childhood</div>
       <div class="story-inner">
         <div class="story-photo-wrap">
-          <!-- 신랑 어린 시절 독립 이미지 -->
           <img class="main" src="images/groom-childhood.jpg" alt="신랑 어린 시절">
           <div class="story-label-top">김병길 &amp; 김향숙
 의 아들 재곤</div>
@@ -896,7 +900,6 @@
       <div class="story-heading">Bride's Childhood</div>
       <div class="story-inner">
         <div class="story-photo-wrap">
-          <!-- 신부 어린 시절 독립 이미지 -->
           <img class="main" src="images/bride-childhood.jpg" alt="신부 어린 시절">
           <div class="story-label-top">하재웅 &amp; 김지영
 의 딸 예림</div>
@@ -1009,9 +1012,8 @@
       <span class="pill-title">오시는 길</span>
     </div>
 
-    <div class="map-embed">
-      지도 영역 (Kakao / Naver / Google Map 삽입 예정)
-    </div>
+    <!-- Kakao Map 영역 -->
+    <div id="kakao-map" class="map-embed"></div>
 
     <div class="map-address">
       서울특별시 강남구 영동대로 707<br>
@@ -1153,6 +1155,13 @@
 </div>
 
 <script>
+  /* ===== Kakao 초기화 ===== */
+  (function initKakaoSDK() {
+    if (typeof Kakao !== "undefined" && !Kakao.isInitialized()) {
+      Kakao.init("6fa997e63ec0359541d10b0328f9b29e");
+    }
+  })();
+
   /* ===== BGM 토글 ===== */
   let isMusicPlaying = false;
 
@@ -1214,6 +1223,27 @@
     }
   }
 
+  /* ===== Kakao Map 초기화 ===== */
+  function initKakaoMap() {
+    const container = document.getElementById("kakao-map");
+    if (!container || !window.kakao || !kakao.maps) return;
+
+    // 드레스가든 근처 대략 좌표 (원하면 실제 좌표로 교체 가능)
+    const position = new kakao.maps.LatLng(37.5112, 127.0594);
+
+    const options = {
+      center: position,
+      level: 3
+    };
+
+    const map = new kakao.maps.Map(container, options);
+
+    const marker = new kakao.maps.Marker({
+      position: position
+    });
+    marker.setMap(map);
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     const audio = document.getElementById("bgm");
     if (audio) {
@@ -1234,6 +1264,13 @@
     });
 
     loadRSVP();
+
+    // Kakao Map 초기화 (SDK 로드 타이밍 대비)
+    if (window.kakao && kakao.maps) {
+      initKakaoMap();
+    } else {
+      setTimeout(initKakaoMap, 800);
+    }
   });
 
   /* ===== 라이트박스 + 슬라이드 ===== */
@@ -1322,18 +1359,37 @@
     alert("방명록에 기록이 남겨졌습니다.");
   }
 
-  /* ===== 공유 기능 ===== */
+  /* ===== 공유 기능 (카카오톡 우선) ===== */
   function shareInvite() {
     const url = window.location.href;
-    const text = "재곤 & 예림의 결혼식에 초대합니다.";
+    const title = "재곤 & 예림 결혼식 초대장";
+    const description = "2026년 2월 22일, 드레스가든 4층 블리스돔홀에서 뵙겠습니다.";
 
-    if (navigator.share) {
-      navigator.share({
-        title: "재곤 & 예림 결혼식 초대장",
-        text,
-        url
+    // Kakao Link 우선
+    if (typeof Kakao !== "undefined" && Kakao.isInitialized()) {
+      Kakao.Link.sendDefault({
+        objectType: "feed",
+        content: {
+          title: title,
+          description: description,
+          imageUrl: "https://jaegon6834.github.io/wedding-invite/hero-main.jpg",
+          link: {
+            mobileWebUrl: url,
+            webUrl: url
+          }
+        },
+        buttons: [
+          {
+            title: "청첩장 열기",
+            link: {
+              mobileWebUrl: url,
+              webUrl: url
+            }
+          }
+        ]
       });
     } else {
+      // Kakao 사용이 어려운 환경에서는 URL 복사
       copyInviteUrl();
     }
   }
