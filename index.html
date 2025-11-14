@@ -311,7 +311,7 @@
     .story-section {
       background: var(--accent);
       color: #000000;
-      padding-top: 72px;   /* 위아래 여백 1/3 수준으로 축소 */
+      padding-top: 72px;   /* 위아래 여백 축소 버전 */
       padding-bottom: 64px;
     }
 
@@ -382,8 +382,7 @@
     .letter-photo-wrap img.main {
       width: 100%;
       border-radius: 0;
-      /* 원본 비율 유지 위해 높이/자르기 제거 */
-      height: auto;
+      height: auto; /* 원본 비율 유지 */
     }
 
     .letter-photo-wrap img.letter {
@@ -408,15 +407,28 @@
 
     .gallery-main {
       margin-bottom: 0;
-      padding: 0; /* 메인과 그리드 사이 흰 여백 제거 */
+      padding: 0;
     }
 
-    .gallery-main img {
+    .gallery-main-wrap {
+      position: relative;
+    }
+
+    .gallery-main-wrap img.main {
       width: 100%;
       border-radius: 0;
       height: 380px;
       object-fit: cover;
       cursor: pointer;
+    }
+
+    .gallery-main-wrap img.gallery-letter {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 12px;
+      width: 70%;
+      max-width: 320px;
     }
 
     .photo-grid {
@@ -560,7 +572,7 @@
       font-size: 13px;
       line-height: 1.8;
       margin-bottom: 10px;
-      text-align: right; /* 주소 오른쪽 정렬 */
+      text-align: right;
     }
 
     .btn-copy {
@@ -576,7 +588,7 @@
 
     .btn-copy-map {
       display: block;
-      margin-left: auto; /* 버튼도 오른쪽 끝으로 */
+      margin-left: auto;
     }
 
     .map-divider {
@@ -650,7 +662,7 @@
       font-size: 12px;
       opacity: 0.8;
       line-height: 1.7;
-      text-align: center; /* 가운데 정렬 */
+      text-align: center;
     }
 
     /* ===== 13. 방명록 ===== */
@@ -808,6 +820,7 @@
   <div class="hero-wrap">
     <section class="hero">
       <div class="hero-bg">
+        <!-- 메인 히어로 이미지는 기존대로 hero-main.jpg 사용 (루트에 있으면 그대로 두면 됨) -->
         <img src="hero-main.jpg" alt="메인 배경">
       </div>
 
@@ -852,7 +865,7 @@
       </div>
       <div>
         <div class="names-label">Bride</div>
-        <div class="names-en">HA YELIM</div>
+        <div class.names-en>HA YELIM</div>
       </div>
     </div>
   </section>
@@ -869,7 +882,8 @@
       <div class="story-heading">Groom's Childhood</div>
       <div class="story-inner">
         <div class="story-photo-wrap">
-          <img class="main" src="images/grid-1.jpg" alt="신랑 어린 시절">
+          <!-- 신랑 어린 시절 독립 이미지 -->
+          <img class="main" src="images/groom-childhood.jpg" alt="신랑 어린 시절">
           <div class="story-label-top">김병길 &amp; 김향숙
 의 아들 재곤</div>
           <img class="letter" src="images/parents-groom-letter.png" alt="신랑 부모님 손글씨" onerror="this.style.display='none';">
@@ -882,7 +896,8 @@
       <div class="story-heading">Bride's Childhood</div>
       <div class="story-inner">
         <div class="story-photo-wrap">
-          <img class="main" src="images/grid-2.jpg" alt="신부 어린 시절">
+          <!-- 신부 어린 시절 독립 이미지 -->
+          <img class="main" src="images/bride-childhood.jpg" alt="신부 어린 시절">
           <div class="story-label-top">하재웅 &amp; 김지영
 의 딸 예림</div>
           <img class="letter" src="images/parents-bride-letter.png" alt="신부 부모님 손글씨" onerror="this.style.display='none';">
@@ -895,7 +910,8 @@
   <section class="letter-section">
     <div class="letter-photo-wrap">
       <img class="main" src="images/grid-3.jpg" alt="메인 두 번째 사진">
-      <img class="letter" src="images/our-letter.png" alt="신랑 신부 손글씨" onerror="this.style.display='none';">
+      <!-- 신랑·신부 공통 문장(신랑 손글씨 PNG) -->
+      <img class="letter" src="images/groom-letter.png" alt="신랑 신부 손글씨" onerror="this.style.display='none';">
     </div>
     <div class="letter-text">
       함께 걸어온 시간보다 앞으로 걸어갈 시간이 더 길기에...
@@ -905,7 +921,11 @@
   <!-- 9. 갤러리 -->
   <section class="gallery-section">
     <div class="gallery-main">
-      <img src="images/grid-9.jpg" alt="갤러리 메인 사진" class="gallery-click">
+      <div class="gallery-main-wrap">
+        <img src="images/grid-9.jpg" alt="갤러리 메인 사진" class="gallery-click main">
+        <!-- 신부 손글씨 PNG 오버레이 -->
+        <img src="images/bride-letter.png" alt="신부 손글씨" class="gallery-letter" onerror="this.style.display='none';">
+      </div>
     </div>
 
     <div class="photo-grid">
