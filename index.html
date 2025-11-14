@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>재곤 & 예림 결혼식 초대장</title>
 
-  <!-- 폰트 (세리프 + 필기체) -->
+  <!-- 폰트 (세리프 + 필기체 + 한국어 필기체) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -124,7 +124,7 @@
       font-size: 13px;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 14px; /* 위/아래 간격 넓힘 (YOU'RE INVITED TO ↔ OUR WEDDING) */
       color: var(--accent-soft);
     }
 
@@ -133,7 +133,8 @@
       font-size: 44px;
       line-height: 1;
       color: var(--accent);
-      margin-bottom: 16px;
+      margin-bottom: 24px; /* OUR WEDDING ↔ 날짜 간격 더 넓게 */
+      letter-spacing: 0.08em; /* 좌우로 조금 더 퍼지게 */
     }
 
     .hero-date-line {
@@ -160,14 +161,16 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 28px;
+      padding: 9px 30px;
       border-radius: 999px;
-      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #000;
+      border: none;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 13px;
-      letter-spacing: 0.22em;
+      font-weight: 600;              /* 조금 더 두껍게 */
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--accent);
     }
 
     /* ========= 2. SAVE THE DATE + 한글 안내 ========= */
@@ -183,15 +186,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 42px;
+      padding: 6px 46px;            /* 세로 얇게, 가로 길게 → 오벌 느낌 */
       border-radius: 999px;
       border: 1px solid var(--accent-soft);
       font-family: "Cormorant Garamond", "Times New Roman", serif;
-      font-size: 12px;
-      letter-spacing: 0.26em;
+      font-size: 11px;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--accent-soft);
-      background: transparent; /* 배경 제거 → 버튼 느낌 줄이기 */
+      background: transparent;      /* 배경 제거 → 버튼 느낌 최소화 */
     }
 
     .save-text {
@@ -231,7 +234,7 @@
       background: #000;
       color: #fff;
       padding-top: 48px;
-      padding-bottom: 64px;
+      padding-bottom: 56px; /* 아래 여백 조금 줄임 (다음 사진이 더 딱 붙도록) */
       text-align: center;
     }
 
@@ -271,11 +274,12 @@
       color: #ffffff;
     }
 
-    /* ========= 5. 메인 사진 2 ========= */
+    /* ========= 5. 메인 사진 2 (Groom & Bride 아래 사진) ========= */
     .main-photo {
       background: #000;
-      padding-top: 0;
-      padding-bottom: 0;
+      padding: 0;          /* 상하좌우 패딩 0 → 위/아래 섹션과 딱 붙게 */
+      max-width: 640px;
+      margin: 0 auto;
     }
 
     .main-photo img {
@@ -306,13 +310,14 @@
     }
 
     .story-inner {
-      background: var(--accent-light-bg);
-      padding: 18px 14px 16px;
+      /* 카드 배경 제거 → 오렌지 위에 사진만 보이도록 */
+      background: transparent;
+      padding: 0;
     }
 
     .story-photo-wrap {
       position: relative;
-      max-width: 320px;  /* 사진 액자 크기 줄이기 */
+      max-width: 360px;  /* 사진 조금 더 키움 */
       margin: 0 auto;
     }
 
@@ -325,10 +330,11 @@
       position: absolute;
       left: 10px;
       top: 10px;
-      font-size: 12px;
+      font-size: 14px;
       color: #ffffff;
       text-shadow: 0 0 4px rgba(0,0,0,0.5);
-      white-space: nowrap;
+      white-space: pre-line; /* 줄바꿈 적용 */
+      font-family: "Nanum Pen Script", cursive; /* 감성 필기체 */
     }
 
     .story-photo-wrap img.letter {
@@ -350,7 +356,7 @@
 
     .letter-photo-wrap {
       position: relative;
-      max-width: 640px;
+      max-width: 520px;     /* 살짝 줄인 크기 */
       margin: 0 auto;
     }
 
@@ -368,8 +374,6 @@
       max-width: 320px;
     }
 
-    /* 텍스트 레터는 사용 안함 → 숨김 처리
-       (나중에 필요하면 다시 쓰면 됨) */
     .letter-text {
       display: none;
     }
@@ -379,7 +383,7 @@
       background: #ffffff;
       color: #000;
       padding-top: 40px;
-      padding-bottom: 40px;
+      padding-bottom: 0;   /* 아래 패딩 제거 → 바로 오렌지로 이어지게 */
     }
 
     .gallery-main {
@@ -447,6 +451,7 @@
       gap: 8px;
       align-items: baseline;
       margin-bottom: 10px;
+      font-family: "Cormorant Garamond", "Times New Roman", serif;
     }
 
     .calendar-month {
@@ -466,6 +471,7 @@
       grid-template-columns: repeat(7, 1fr);
       gap: 4px;
       font-size: 11px;
+      font-family: "Cormorant Garamond", "Times New Roman", serif; /* 위와 무드 통일 */
     }
 
     .calendar-grid div {
@@ -734,7 +740,8 @@
   <div class="hero-wrap">
     <section class="hero">
       <div class="hero-bg">
-        <img src="JRB_0996_main.jpg" alt="메인 배경">
+        <!-- 메인 사진 파일 이름이 hero-main.jpg 라고 가정 -->
+        <img src="hero-main.jpg" alt="메인 배경">
       </div>
 
       <div class="hero-inner">
@@ -785,7 +792,7 @@
     </div>
   </section>
 
-  <!-- 5. 메인 사진 2 (텍스트 없이 바로 사진) -->
+  <!-- 5. 메인 사진 2 -->
   <section class="main-photo">
     <img src="images/grid-7.jpg" alt="메인 두 번째 사진">
   </section>
@@ -799,7 +806,8 @@
         <div class="story-photo-wrap">
           <!-- 신랑 어린 시절 사진 (예시로 grid-1) -->
           <img class="main" src="images/grid-1.jpg" alt="신랑 어린 시절">
-          <div class="story-label-top">김병길 &amp; 김향숙의 아들 재곤</div>
+          <div class="story-label-top">김병길 &amp; 김향숙
+의 아들 재곤</div>
           <!-- 신랑 부모님 손글씨 알파 이미지 -->
           <img class="letter" src="images/parents-groom-letter.png" alt="신랑 부모님 손글씨" onerror="this.style.display='none';">
         </div>
@@ -813,7 +821,8 @@
         <div class="story-photo-wrap">
           <!-- 신부 어린 시절 사진 (예시로 grid-2) -->
           <img class="main" src="images/grid-2.jpg" alt="신부 어린 시절">
-          <div class="story-label-top">하재웅 &amp; 김지영의 딸 예림</div>
+          <div class="story-label-top">하재웅 &amp; 김지영
+의 딸 예림</div>
           <!-- 신부 부모님 손글씨 알파 이미지 -->
           <img class="letter" src="images/parents-bride-letter.png" alt="신부 부모님 손글씨" onerror="this.style.display='none';">
         </div>
@@ -829,7 +838,6 @@
       <!-- 신랑 신부 손글씨 알파 이미지 (파일 준비되면 교체) -->
       <img class="letter" src="images/our-letter.png" alt="신랑 신부 손글씨" onerror="this.style.display='none';">
     </div>
-    <!-- letter-text는 숨김 상태 -->
     <div class="letter-text">
       함께 걸어온 시간보다 앞으로 걸어갈 시간이 더 길기에...
     </div>
@@ -842,7 +850,6 @@
     </div>
 
     <div class="photo-grid">
-      <!-- 12장 예시 (grid-1 ~ grid-12) / 10~12는 나중에 올려도 됨 -->
       <div class="photo-grid-item"><img src="images/grid-1.jpg" alt="사진 1" class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-2.jpg" alt="사진 2" class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-3.jpg" alt="사진 3" class="gallery-click"></div>
@@ -923,7 +930,7 @@
       <span class="pill-title">오시는 길</span>
     </div>
 
-    <!-- 나중에 카카오/네이버/구글 지도 iframe 또는 지도 이미지로 교체 -->
+    <!-- 나중에 지도 iframe 또는 지도 이미지로 교체 -->
     <div class="map-embed">
       지도 영역 (Kakao / Naver / Google Map 삽입 예정)
     </div>
@@ -1155,13 +1162,15 @@
     }
   }
 
-  /* ===== RSVP (알림용) ===== */
+  /* ===== RSVP (현재는 알림만) ===== */
   function submitRSVP() {
     const name = document.getElementById("rsvp-name").value.trim();
     if (!name) {
       alert("성함을 입력해주세요.");
       return;
     }
+
+    // 여기서는 단순 알림만 띄움 (데이터 저장 X)
     alert("참석 의사가 정상적으로 전달되었습니다.\n감사합니다.");
   }
 
