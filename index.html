@@ -62,7 +62,6 @@
       text-align: center;
       width: 100%;
       color: white;
-      /* 여기 padding 수정: 위쪽 여백 크게 줌 */
       padding: 72px 24px 0;
     }
 
@@ -102,9 +101,9 @@
       opacity: 0.9;
     }
 
-    /* ===== 음악 토글 버튼 ===== */
+    /* ===== 음악 토글 버튼 (고정 우상단) ===== */
     .music-toggle {
-      position: fixed; /* 화면 기준 고정 */
+      position: fixed;
       top: calc(env(safe-area-inset-top, 0px) + 10px);
       right: 16px;
       padding: 6px 10px;
@@ -159,6 +158,20 @@
       border-radius: 14px;
       padding: 22px 18px 20px;
       border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .postcard-image {
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: #080808;
+    }
+
+    .postcard-image img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
     }
 
     .postcard-row {
@@ -234,10 +247,24 @@
       white-space: pre-line;
     }
 
-    /* ===== 3장 그리드 섹션 ===== */
+    .parent-letter-image {
+      margin-top: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: #080808;
+    }
+
+    .parent-letter-image img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ===== 9장 그리드 섹션 ===== */
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr); /* 모바일 포함 항상 3열 */
       gap: 6px;
       margin-top: 10px;
     }
@@ -275,7 +302,7 @@
 <body>
 <div class="page">
 
-  <!-- ===== BGM (로컬 파일 기준) ===== -->
+  <!-- ===== BGM ===== -->
   <audio id="bgm"
          src="bgm.mp4"
          preload="auto"
@@ -284,7 +311,8 @@
   <!-- ===== 히어로 메인 ===== -->
   <section class="hero">
     <div class="hero-bg">
-      <img src="JRB_0996_main.jpg" alt="메인 배경">
+      <!-- images/hero-main.jpg 파일을 images 폴더에 업로드했다고 가정 -->
+      <img src="images/hero-main.jpg" alt="메인 배경">
     </div>
 
     <div class="hero-inner">
@@ -315,6 +343,11 @@
     <div class="section-heading">초대합니다</div>
 
     <div class="postcard">
+      <!-- 엽서 이미지 -->
+      <div class="postcard-image">
+        <img src="images/postcard.jpg" alt="엽서 이미지">
+      </div>
+
       <div class="postcard-row">
         <div>
           <div class="postcard-label">Date</div>
@@ -358,7 +391,10 @@
       </div>
       <div class="parent-handwriting">
 신랑 부모님 손글씨나 짧은 인사말이 들어갈 자리입니다.
-원하시면 이미지를 넣는 형태로 변경해도 됩니다.
+지금은 손글씨 이미지를 별도 박스로 노출하도록 구성했습니다.
+      </div>
+      <div class="parent-letter-image">
+        <img src="images/parents-groom-letter.jpg" alt="신랑측 부모님 손글씨">
       </div>
     </div>
 
@@ -377,12 +413,15 @@
       </div>
       <div class="parent-handwriting">
 신부 부모님 손글씨나 짧은 인사말이 들어갈 자리입니다.
-한두 문장 정도로 간단하게 담아도 충분합니다.
+역시 손글씨 이미지를 아래에 배치했습니다.
+      </div>
+      <div class="parent-letter-image">
+        <img src="images/parents-bride-letter.jpg" alt="신부측 부모님 손글씨">
       </div>
     </div>
   </section>
 
-  <!-- ===== 3장 그리드 사진 섹션 ===== -->
+  <!-- ===== 9장 그리드 사진 섹션 ===== -->
   <section>
     <div class="section-title">Photos</div>
     <div class="section-heading">우리의 순간</div>
@@ -396,6 +435,24 @@
       </div>
       <div class="photo-grid-item">
         <img src="images/grid-3.jpg" alt="그리드 사진 3">
+      </div>
+      <div class="photo-grid-item">
+        <img src="images/grid-4.jpg" alt="그리드 사진 4">
+      </div>
+      <div class="photo-grid-item">
+        <img src="images/grid-5.jpg" alt="그리드 사진 5">
+      </div>
+      <div class="photo-grid-item">
+        <img src="images/grid-6.jpg" alt="그리드 사진 6">
+      </div>
+      <div class="photo-grid-item">
+        <img src="images/grid-7.jpg" alt="그리드 사진 7">
+      </div>
+      <div class="photo-grid-item">
+        <img src="images/grid-8.jpg" alt="그리드 사진 8">
+      </div>
+      <div class="photo-grid-item">
+        <img src="images/grid-9.jpg" alt="그리드 사진 9">
       </div>
     </div>
   </section>
