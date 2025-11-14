@@ -124,7 +124,7 @@
       font-size: 13px;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      margin-bottom: 14px; /* 위/아래 간격 넓힘 (YOU'RE INVITED TO ↔ OUR WEDDING) */
+      margin-bottom: 16px;
       color: var(--accent-soft);
     }
 
@@ -133,24 +133,24 @@
       font-size: 44px;
       line-height: 1;
       color: var(--accent);
-      margin-bottom: 24px; /* OUR WEDDING ↔ 날짜 간격 더 넓게 */
-      letter-spacing: 0.08em; /* 좌우로 조금 더 퍼지게 */
+      margin-bottom: 26px;
+      letter-spacing: 0.12em; /* 좌우로 더 퍼지게 */
     }
 
     .hero-date-line {
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 15px;
-      letter-spacing: 0.26em;   /* 더 넓게 → 더 길어 보이도록 */
+      letter-spacing: 0.28em;   /* 더 넓게 → 더 길어 보이게 */
       text-transform: uppercase;
       color: var(--accent-soft);
-      font-weight: 600;          /* 살짝 볼드 */
+      font-weight: 600;
       margin-bottom: 4px;
     }
 
     .hero-place-line {
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 13px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;   /* 살짝 줄여서 한 줄로 들어가게 */
       text-transform: uppercase;
       color: var(--accent-soft);
       font-weight: 400;
@@ -158,18 +158,25 @@
 
     /* ========= 공통 pill 제목 ========= */
     .pill-title {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 9px 30px;
+
+      /* 4:1에 가깝게 슬림한 오벌 */
+      width: 160px;
+      height: 40px;
+
+      margin: 0 auto;
+
       border-radius: 999px;
       background: var(--accent);
       color: #000;
+
       border: none;
-      font-family: "Cormorant Garamond", "Times New Roman", serif;
-      font-size: 13px;
-      font-weight: 600;              /* 조금 더 두껍게 */
-      letter-spacing: 0.16em;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
@@ -177,28 +184,34 @@
     .save-section {
       background: #000;
       color: #fff;
-      padding-top: 28px;
+      padding-top: 52px;   /* 위 여백 조금 더 늘림 */
       padding-bottom: 40px;
       text-align: center;
     }
 
     .save-pill {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 6px 46px;            /* 세로 얇게, 가로 길게 → 오벌 느낌 */
-      border-radius: 999px;
+
+      /* 4:1 느낌 오벌, 날짜 라인보다 조금 짧게 */
+      width: 200px;
+      height: 50px;
+
+      margin: 0 auto;
+
+      border-radius: 50%;
       border: 1px solid var(--accent-soft);
+      background: transparent;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 11px;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.30em;
       text-transform: uppercase;
       color: var(--accent-soft);
-      background: transparent;      /* 배경 제거 → 버튼 느낌 최소화 */
     }
 
     .save-text {
-      margin-top: 18px;
+      margin-top: 20px;
       font-size: 13px;
       line-height: 1.8;
       color: #f5f5f5;
@@ -234,7 +247,7 @@
       background: #000;
       color: #fff;
       padding-top: 48px;
-      padding-bottom: 56px; /* 아래 여백 조금 줄임 (다음 사진이 더 딱 붙도록) */
+      padding-bottom: 56px;
       text-align: center;
     }
 
@@ -255,7 +268,7 @@
 
     .names-block {
       display: inline-flex;
-      gap: 96px; /* Groom / Bride 사이 간격 넓게 */
+      gap: 96px;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 12px;
       letter-spacing: 0.18em;
@@ -274,10 +287,10 @@
       color: #ffffff;
     }
 
-    /* ========= 5. 메인 사진 2 (Groom & Bride 아래 사진) ========= */
+    /* ========= 5. 메인 사진 2 ========= */
     .main-photo {
       background: #000;
-      padding: 0;          /* 상하좌우 패딩 0 → 위/아래 섹션과 딱 붙게 */
+      padding: 36px 20px 40px;  /* 위아래 여백 확보 → 손글씨 자리 */
       max-width: 640px;
       margin: 0 auto;
     }
@@ -285,7 +298,8 @@
     .main-photo img {
       width: 100%;
       border-radius: 0;
-      display: block;
+      height: 380px;          /* 비율 고정 */
+      object-fit: cover;      /* 위아래 살짝 크롭 */
     }
 
     /* ========= 6~7. 오렌지 배경 Groom/Bride Childhood ========= */
@@ -303,21 +317,21 @@
 
     .story-heading {
       font-family: "Cormorant Garamond", "Times New Roman", serif;
-      font-size: 15px;
-      letter-spacing: 0.18em;
+      font-size: 16px;
+      letter-spacing: 0.20em;
       text-transform: uppercase;
       margin-bottom: 18px;
+      font-weight: 600;      /* 더 굵게 */
     }
 
     .story-inner {
-      /* 카드 배경 제거 → 오렌지 위에 사진만 보이도록 */
       background: transparent;
       padding: 0;
     }
 
     .story-photo-wrap {
       position: relative;
-      max-width: 360px;  /* 사진 조금 더 키움 */
+      max-width: 360px;
       margin: 0 auto;
     }
 
@@ -330,11 +344,11 @@
       position: absolute;
       left: 10px;
       top: 10px;
-      font-size: 14px;
+      font-size: 15px;  /* 살짝 키움 */
       color: #ffffff;
       text-shadow: 0 0 4px rgba(0,0,0,0.5);
-      white-space: pre-line; /* 줄바꿈 적용 */
-      font-family: "Nanum Pen Script", cursive; /* 감성 필기체 */
+      white-space: pre-line;
+      font-family: "Nanum Pen Script", cursive;
     }
 
     .story-photo-wrap img.letter {
@@ -346,7 +360,7 @@
       border-radius: 0;
     }
 
-    /* ========= 8. Letter 섹션 (화이트 배경) ========= */
+    /* ========= 8. Letter 섹션 ========= */
     .letter-section {
       background: #ffffff;
       color: #000;
@@ -356,13 +370,15 @@
 
     .letter-photo-wrap {
       position: relative;
-      max-width: 520px;     /* 살짝 줄인 크기 */
+      max-width: 520px;
       margin: 0 auto;
     }
 
     .letter-photo-wrap img.main {
       width: 100%;
       border-radius: 0;
+      height: 380px;
+      object-fit: cover;
     }
 
     .letter-photo-wrap img.letter {
@@ -378,22 +394,25 @@
       display: none;
     }
 
-    /* ========= 9. 갤러리 (화이트 배경) ========= */
+    /* ========= 9. 갤러리 ========= */
     .gallery-section {
       background: #ffffff;
       color: #000;
       padding-top: 40px;
-      padding-bottom: 0;   /* 아래 패딩 제거 → 바로 오렌지로 이어지게 */
+      padding-bottom: 0;   /* 바로 오렌지로 이어지게 */
     }
 
     .gallery-main {
       margin-bottom: 14px;
+      padding: 32px 20px 12px;  /* 위아래 여백 확보 → 손글씨 자리 */
     }
 
     .gallery-main img {
       width: 100%;
       border-radius: 0;
       cursor: pointer;
+      height: 380px;
+      object-fit: cover;
     }
 
     .photo-grid {
@@ -410,7 +429,6 @@
       cursor: pointer;
     }
 
-    /* 라이트박스 */
     .lightbox {
       position: fixed;
       inset: 0;
@@ -428,21 +446,21 @@
       display: flex;
     }
 
-    /* ========= 10. 캘린더 (오렌지 전체 배경) ========= */
+    /* ========= 10. 캘린더 ========= */
     .calendar-section {
       background: var(--accent);
       color: #000;
-      padding-top: 36px;
-      padding-bottom: 40px;
+      padding-top: 48px;   /* 위아래 여백 늘림 */
+      padding-bottom: 48px;
       text-align: center;
     }
 
     .calendar-highlight-text {
       font-family: "Cormorant Garamond", "Times New Roman", serif;
-      font-size: 14px;
+      font-size: 16px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .calendar-header {
@@ -450,17 +468,17 @@
       justify-content: center;
       gap: 8px;
       align-items: baseline;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
     }
 
     .calendar-month {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
     }
 
     .calendar-year {
-      font-size: 12px;
+      font-size: 13px;
       opacity: 0.8;
     }
 
@@ -470,12 +488,12 @@
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 4px;
-      font-size: 11px;
-      font-family: "Cormorant Garamond", "Times New Roman", serif; /* 위와 무드 통일 */
+      font-size: 13px;  /* 조금 키움 */
+      font-family: "Cormorant Garamond", "Times New Roman", serif;
     }
 
     .calendar-grid div {
-      padding: 4px 0;
+      padding: 6px 0; /* 위아래 패딩 */
     }
 
     .calendar-dayname {
@@ -492,7 +510,7 @@
       font-weight: 600;
     }
 
-    /* ========= 11. 오시는 길 (화이트 배경) ========= */
+    /* ========= 11. 오시는 길 ========= */
     .map-section {
       background: #ffffff;
       color: #000;
@@ -555,7 +573,7 @@
       color: #555;
     }
 
-    /* ========= 12. 마음 전하실 곳 (연한 오렌지 배경) ========= */
+    /* ========= 12. 마음 전하실 곳 ========= */
     .account-section {
       background: var(--accent-light-bg);
       color: #000;
@@ -608,7 +626,7 @@
       line-height: 1.6;
     }
 
-    /* ========= 13. 참석 여부 (같은 연한 오렌지 배경) ========= */
+    /* ========= 13. 방명록 ========= */
     .rsvp-section {
       background: var(--accent-light-bg);
       color: #000;
@@ -641,7 +659,8 @@
     }
 
     .rsvp-input,
-    .rsvp-select {
+    .rsvp-select,
+    .rsvp-textarea {
       width: 100%;
       padding: 8px 10px;
       background: #ffffff;
@@ -649,13 +668,15 @@
       border: 1px solid rgba(0,0,0,0.18);
       color: #000;
       font-size: 13px;
+      resize: vertical;
+      min-height: 34px;
     }
 
     .rsvp-btn {
       margin-top: 4px;
       width: 100%;
       padding: 10px 0;
-      border-radius: 8px; /* 끝부분만 살짝 라운드 */
+      border-radius: 8px;
       border: none;
       background: #000;
       color: #fff;
@@ -664,7 +685,7 @@
       font-weight: 600;
     }
 
-    /* ========= 14. 공유 섹션 (화이트 배경) ========= */
+    /* ========= 14. 공유 섹션 ========= */
     .share-section {
       background: #ffffff;
       color: #000;
@@ -740,7 +761,7 @@
   <div class="hero-wrap">
     <section class="hero">
       <div class="hero-bg">
-        <!-- 메인 사진 파일 이름이 hero-main.jpg 라고 가정 -->
+        <!-- 메인 사진 -->
         <img src="hero-main.jpg" alt="메인 배경">
       </div>
 
@@ -748,7 +769,7 @@
         <div class="hero-top">YOU'RE INVITED TO</div>
         <div class="hero-script">Our Wedding</div>
         <div class="hero-date-line">2026.02.22 SUN 04:30PM</div>
-        <div class="hero-place-line">THE DRESS GARDEN 4F BLISS DOME HALL</div>
+        <div class="hero-place-line">DRESS GARDEN 4F BLISS DOME HALL</div>
       </div>
     </section>
   </div>
@@ -804,7 +825,7 @@
       <div class="story-heading">Groom's Childhood</div>
       <div class="story-inner">
         <div class="story-photo-wrap">
-          <!-- 신랑 어린 시절 사진 (예시로 grid-1) -->
+          <!-- 신랑 어린 시절 사진 -->
           <img class="main" src="images/grid-1.jpg" alt="신랑 어린 시절">
           <div class="story-label-top">김병길 &amp; 김향숙
 의 아들 재곤</div>
@@ -819,7 +840,7 @@
       <div class="story-heading">Bride's Childhood</div>
       <div class="story-inner">
         <div class="story-photo-wrap">
-          <!-- 신부 어린 시절 사진 (예시로 grid-2) -->
+          <!-- 신부 어린 시절 사진 -->
           <img class="main" src="images/grid-2.jpg" alt="신부 어린 시절">
           <div class="story-label-top">하재웅 &amp; 김지영
 의 딸 예림</div>
@@ -830,12 +851,12 @@
     </div>
   </section>
 
-  <!-- 8. Letter 섹션 (화이트 배경, 사진 + 손글씨 알파만) -->
+  <!-- 8. Letter 섹션 (화이트 + 메인사진 + 우리 손글씨 자리) -->
   <section class="letter-section">
     <div class="letter-photo-wrap">
-      <!-- 메인 사진 (예시로 grid-3) -->
+      <!-- 메인 사진 -->
       <img class="main" src="images/grid-3.jpg" alt="메인 세 번째 사진">
-      <!-- 신랑 신부 손글씨 알파 이미지 (파일 준비되면 교체) -->
+      <!-- 신랑 신부 손글씨 알파 이미지 (PNG) -->
       <img class="letter" src="images/our-letter.png" alt="신랑 신부 손글씨" onerror="this.style.display='none';">
     </div>
     <div class="letter-text">
@@ -843,7 +864,7 @@
     </div>
   </section>
 
-  <!-- 9. 갤러리 (메인 + 그리드) -->
+  <!-- 9. 갤러리 -->
   <section class="gallery-section">
     <div class="gallery-main">
       <img src="images/grid-9.jpg" alt="갤러리 메인 사진" class="gallery-click">
@@ -870,7 +891,7 @@
     <img id="lightbox-img" src="" alt="확대 이미지">
   </div>
 
-  <!-- 10. 캘린더 (오렌지 배경) -->
+  <!-- 10. 캘린더 -->
   <section class="calendar-section">
     <div class="calendar-highlight-text">2026.02.22 SUN · 04:30PM</div>
 
@@ -889,7 +910,6 @@
       <div class="calendar-dayname">F</div>
       <div class="calendar-dayname">S</div>
 
-      <!-- 간단히 1~28 배치, 22 하이라이트 -->
       <div class="calendar-day">1</div>
       <div class="calendar-day">2</div>
       <div class="calendar-day">3</div>
@@ -924,7 +944,7 @@
     </div>
   </section>
 
-  <!-- 11. 오시는 길 (화이트) -->
+  <!-- 11. 오시는 길 -->
   <section class="map-section">
     <div class="center-pill-wrap">
       <span class="pill-title">오시는 길</span>
@@ -945,24 +965,24 @@
 
     <hr class="map-divider">
 
-    <div class="map-subtitle">지하철</div>
+    <div class="map-subtitle">🚇 지하철</div>
     <div class="map-desc">
       2호선 삼성역 인근 / 드레스가든 방향 도보 이동 안내 문구를 이 영역에 작성하면 좋습니다.
     </div>
 
-    <div class="map-subtitle">버스</div>
+    <div class="map-subtitle">🚌 버스</div>
     <div class="map-desc">
       주변 버스 노선 및 정류장 안내를 이 영역에 작성합니다.
     </div>
 
-    <div class="map-subtitle">자가용</div>
+    <div class="map-subtitle">🚗 자가용</div>
     <div class="map-desc">
       내비게이션 목적지 : “드레스가든”<br>
       주차 및 진입 동선 안내 문구를 이 영역에 작성합니다.
     </div>
   </section>
 
-  <!-- 12. 마음 전하실 곳 (연한 오렌지) -->
+  <!-- 12. 마음 전하실 곳 -->
   <section class="account-section">
     <div class="center-pill-wrap">
       <span class="pill-title">마음 전하실 곳</span>
@@ -1018,10 +1038,10 @@
     </div>
   </section>
 
-  <!-- 13. 참석 여부 (연한 오렌지) -->
+  <!-- 13. 방명록 -->
   <section class="rsvp-section">
     <div class="center-pill-wrap">
-      <span class="pill-title">참석 여부</span>
+      <span class="pill-title">방명록</span>
     </div>
 
     <div class="rsvp-card" style="margin-top: 18px;">
@@ -1055,13 +1075,20 @@
         </select>
       </div>
 
+      <div class="rsvp-field">
+        <label class="rsvp-label" for="rsvp-message">
+          방명록 메시지
+        </label>
+        <textarea id="rsvp-message" class="rsvp-textarea" rows="3" placeholder="축하 메시지를 적어주세요."></textarea>
+      </div>
+
       <button type="button" class="rsvp-btn" onclick="submitRSVP()">
-        참석의사 전달하기
+        메시지 남기기
       </button>
     </div>
   </section>
 
-  <!-- 14. 공유 섹션 (화이트) -->
+  <!-- 14. 공유 섹션 -->
   <section class="share-section">
     <div>소중한 분들께 초대장을 공유해 주세요.</div>
 
@@ -1162,16 +1189,14 @@
     }
   }
 
-  /* ===== RSVP (현재는 알림만) ===== */
+  /* ===== 방명록 (현재는 알림만) ===== */
   function submitRSVP() {
     const name = document.getElementById("rsvp-name").value.trim();
     if (!name) {
       alert("성함을 입력해주세요.");
       return;
     }
-
-    // 여기서는 단순 알림만 띄움 (데이터 저장 X)
-    alert("참석 의사가 정상적으로 전달되었습니다.\n감사합니다.");
+    alert("메시지가 전달되었습니다.\n축하의 마음 고맙습니다.");
   }
 
   /* ===== 공유 ===== */
@@ -1179,9 +1204,11 @@
     const url = window.location.href;
     const text = "재곤 & 예림의 결혼식에 초대합니다.";
 
+    // 브라우저 기본 공유 기능 (카카오 인앱 브라우저에서도 동작할 수 있음)
     if (navigator.share) {
       navigator.share({ title: "재곤 & 예림 결혼식 초대장", text, url });
     } else {
+      // 지원 안 되면 주소 복사로 대체
       copyInviteUrl();
     }
   }
