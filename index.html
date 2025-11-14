@@ -45,7 +45,7 @@
     section {
       max-width: 640px;
       margin: 0 auto;
-      padding: 48px 20px;
+      padding: 56px 20px; /* 기본값도 넉넉하게 */
     }
 
     /* ===== 음악 토글(고정) ===== */
@@ -88,6 +88,7 @@
       height: 85vh;
       min-height: 520px;
       overflow: hidden;
+      padding: 0 0; /* hero는 별도로 처리 */
     }
 
     .hero-bg {
@@ -105,7 +106,7 @@
       transform: scale(1.03);
     }
 
-    /* 메인 사진 아래로 블랙으로 자연스럽게 그라데이션 */
+    /* 메인 사진 아래로 블랙 그라데이션 */
     .hero-bg::after {
       content: "";
       position: absolute;
@@ -150,7 +151,7 @@
     .hero-date-line {
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 15px;
-      letter-spacing: 0.28em;   /* 조금 길게 보이게 */
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--accent-soft);
       font-weight: 600;
@@ -175,21 +176,26 @@
       height: 38px;
       margin: 0 auto;
       border-radius: 50%;
-      border: 1px solid var(--accent-soft);
-      background: transparent;
+      border: 1px solid var(--accent);
+      background: var(--accent);   /* 안쪽 채운 형태 */
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 11px;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--accent-soft);
+      color: #000000;             /* 글씨 검정 */
+    }
+
+    .center-pill-wrap {
+      text-align: center;
+      margin-bottom: 24px; /* 타이틀 아래 여백 조금 더 */
     }
 
     /* ===== 2. SAVE THE DATE ===== */
     .save-section {
       background: #000000;
       color: #ffffff;
-      padding-top: 72px;   /* 상하 여백 확장 */
-      padding-bottom: 72px;
+      padding-top: 88px;   /* 상하 여백 더 넓게 */
+      padding-bottom: 88px;
       text-align: center;
     }
 
@@ -211,9 +217,9 @@
     }
 
     .save-text {
-      margin-top: 24px;
+      margin-top: 28px;
       font-size: 13px;
-      line-height: 1.8;
+      line-height: 1.9;
       color: #f5f5f5;
     }
     .save-text span {
@@ -224,8 +230,9 @@
     .postcard-section {
       background: #000000;
       color: #ffffff;
-      padding-top: 32px;
-      padding-bottom: 40px;
+      padding-top: 64px;
+      padding-bottom: 64px;
+      text-align: center;
     }
 
     .postcard-image {
@@ -234,10 +241,9 @@
     }
 
     .postcard-caption {
-      margin-top: 18px;
+      margin-top: 24px;
       font-size: 13px;
-      line-height: 1.7;
-      text-align: center;
+      line-height: 1.8;
       color: #d9d9d9;
     }
 
@@ -245,8 +251,8 @@
     .names-section {
       background: #000000;
       color: #ffffff;
-      padding-top: 48px;
-      padding-bottom: 56px;
+      padding-top: 64px;
+      padding-bottom: 72px;
       text-align: center;
     }
 
@@ -256,13 +262,13 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .names-heading {
       font-size: 21px;
       font-weight: 600;
-      margin-bottom: 30px;
+      margin-bottom: 36px;
     }
 
     .names-block {
@@ -289,7 +295,7 @@
     /* ===== 5. 메인 사진 1 (블랙 배경) ===== */
     .main-photo {
       background: #000000;
-      padding: 36px 0 40px;
+      padding: 56px 0 64px;
       max-width: 640px;
       margin: 0 auto;
     }
@@ -305,23 +311,23 @@
     .story-section {
       background: var(--accent);
       color: #000000;
-      padding-top: 56px;     /* 위 여백 넓힘 */
-      padding-bottom: 48px;
+      padding-top: 72px;
+      padding-bottom: 64px;
     }
 
     .story-block {
       max-width: 560px;
-      margin: 0 auto 40px;
+      margin: 0 auto 48px; /* 블록 사이 여백 확대 */
     }
 
     .story-heading {
       font-family: -apple-system, BlinkMacSystemFont, "Noto Sans KR", "맑은 고딕", sans-serif;
       font-size: 15px;
-      font-weight: 700;      /* 더 굵게 */
-      letter-spacing: 0.15em;/* 자간 조금 줄임 */
+      font-weight: 700;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin-bottom: 18px;
-      text-align: center;    /* 사진 가운데 정렬 느낌 */
+      margin-bottom: 20px;
+      text-align: center;
     }
 
     .story-inner {
@@ -331,7 +337,7 @@
 
     .story-photo-wrap {
       position: relative;
-      max-width: 300px;      /* 어린시절 사진 크기 줄이기 */
+      max-width: 300px;
       margin: 0 auto;
     }
 
@@ -364,7 +370,7 @@
     .letter-section {
       background: #ffffff;
       color: #000000;
-      padding: 64px 0 40px;  /* 위 흰배경 여백 더 넓게, 좌우 0 */
+      padding: 80px 0 56px;
     }
 
     .letter-photo-wrap {
@@ -397,12 +403,12 @@
     .gallery-section {
       background: #ffffff;
       color: #000000;
-      padding: 40px 0 0;   /* 좌우 여백 제거, 위쪽만 약간 */
+      padding: 56px 0 0; /* 위 여백만, 아래는 0 */
     }
 
     .gallery-main {
-      margin-bottom: 14px;
-      padding: 0 0 12px;    /* 위/옆 여백 없이 꽉 차게 */
+      margin-bottom: 16px;
+      padding: 0 0 12px;
     }
 
     .gallery-main img {
@@ -416,7 +422,7 @@
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0;               /* 여백 없이 다닥다닥 */
+      gap: 0;
     }
 
     .photo-grid-item img {
@@ -427,7 +433,6 @@
       cursor: pointer;
     }
 
-    /* 라이트박스 + 슬라이드 */
     .lightbox {
       position: fixed;
       inset: 0;
@@ -468,18 +473,18 @@
     .calendar-section {
       background: var(--accent);
       color: #000000;
-      padding-top: 60px;   /* 상하 여백 확대 */
-      padding-bottom: 60px;
+      padding-top: 72px;
+      padding-bottom: 72px;
       text-align: center;
     }
 
     .calendar-highlight-text {
       font-family: "Cormorant Garamond", "Times New Roman", serif;
-      font-size: 18px;     /* 크게 */
+      font-size: 18px;
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
     }
 
     .calendar-header {
@@ -487,7 +492,7 @@
       justify-content: center;
       gap: 8px;
       align-items: baseline;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
     }
 
@@ -507,12 +512,12 @@
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 4px;
-      font-size: 14px;  /* 글씨 키움 */
+      font-size: 14px;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
     }
 
     .calendar-grid div {
-      padding: 8px 0; /* 위아래 패딩 늘림 */
+      padding: 8px 0;
     }
 
     .calendar-dayname {
@@ -534,13 +539,8 @@
     .map-section {
       background: #ffffff;
       color: #000000;
-      padding-top: 40px;
-      padding-bottom: 40px;
-    }
-
-    .center-pill-wrap {
-      text-align: center;
-      margin-bottom: 18px;
+      padding-top: 56px;
+      padding-bottom: 56px;
     }
 
     .map-embed {
@@ -548,7 +548,7 @@
       height: 220px;
       background: #eeeeee;
       border-radius: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -558,12 +558,12 @@
 
     .map-address {
       font-size: 13px;
-      line-height: 1.7;
+      line-height: 1.8;
       margin-bottom: 10px;
     }
 
     .btn-copy {
-      margin-top: 8px;
+      margin-top: 10px;
       padding: 7px 16px;
       font-size: 12px;
       border-radius: 999px;
@@ -574,13 +574,13 @@
     }
 
     .map-divider {
-      margin: 20px 0;
+      margin: 28px 0;
       border: none;
       border-top: 1px solid rgba(0,0,0,0.08);
     }
 
     .map-subtitle {
-      margin-top: 10px;
+      margin-top: 14px;
       margin-bottom: 4px;
       font-size: 13px;
       color: #333333;
@@ -589,7 +589,7 @@
 
     .map-desc {
       font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.8;
       color: #555555;
     }
 
@@ -597,13 +597,13 @@
     .account-section {
       background: var(--accent-light-bg);
       color: #000000;
-      padding-top: 36px;
-      padding-bottom: 6px;
+      padding-top: 56px;
+      padding-bottom: 24px;
     }
 
     .account-group-title {
       font-size: 14px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       color: #333333;
       font-weight: 600;
     }
@@ -613,7 +613,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 10px;
-      padding: 8px 0;
+      padding: 10px 0;
       border-bottom: 1px solid rgba(0,0,0,0.06);
       font-size: 13px;
     }
@@ -640,30 +640,30 @@
     }
 
     .account-note {
-      margin-top: 16px;
+      margin-top: 20px;
       font-size: 12px;
       opacity: 0.8;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     /* ===== 13. 방명록 ===== */
     .rsvp-section {
       background: var(--accent-light-bg);
       color: #000000;
-      padding-top: 24px;
-      padding-bottom: 40px;
+      padding-top: 40px;
+      padding-bottom: 56px;
     }
 
     .rsvp-card {
       background: #ffffff;
       border-radius: 8px;
-      padding: 18px 16px 18px;
+      padding: 20px 16px 20px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.04);
       font-size: 13px;
     }
 
     .rsvp-field {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .rsvp-label {
@@ -706,7 +706,7 @@
     }
 
     .rsvp-list {
-      margin-top: 18px;
+      margin-top: 20px;
       font-size: 12px;
     }
 
@@ -729,8 +729,8 @@
     .share-section {
       background: #ffffff;
       color: #000000;
-      padding-top: 32px;
-      padding-bottom: 52px;
+      padding-top: 40px;
+      padding-bottom: 64px;
       text-align: center;
       font-size: 13px;
     }
@@ -738,9 +738,9 @@
     .share-buttons {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       align-items: center;
-      margin-top: 12px;
+      margin-top: 16px;
     }
 
     .share-btn {
@@ -1021,7 +1021,7 @@
       <span class="pill-title">마음 전하실 곳</span>
     </div>
 
-    <div class="account-group" style="margin-top: 18px;">
+    <div class="account-group" style="margin-top: 20px;">
       <div class="account-group-title">신랑측 계좌번호</div>
 
       <div class="account-item">
@@ -1043,7 +1043,7 @@
       </div>
     </div>
 
-    <div class="account-group" style="margin-top: 18px;">
+    <div class="account-group" style="margin-top: 24px;">
       <div class="account-group-title">신부측 계좌번호</div>
 
       <div class="account-item">
@@ -1077,7 +1077,7 @@
       <span class="pill-title">방명록</span>
     </div>
 
-    <div class="rsvp-card" style="margin-top: 18px;">
+    <div class="rsvp-card" style="margin-top: 20px;">
       <div class="rsvp-field">
         <label class="rsvp-label" for="rsvp-name">
           참석자 성함
@@ -1107,7 +1107,6 @@
         메시지 남기기
       </button>
 
-      <!-- 방명록 기록이 여기 쌓임 -->
       <div id="rsvp-list" class="rsvp-list"></div>
     </div>
   </section>
@@ -1178,7 +1177,6 @@
       });
     }
 
-    // 갤러리 이미지 리스트 만들기
     galleryImages = Array.from(document.querySelectorAll(".gallery-click"));
     galleryImages.forEach((img, index) => {
       img.dataset.index = index;
@@ -1248,14 +1246,12 @@
       '</div>' +
       (message ? '<div class="rsvp-item-msg">' + message + "</div>" : "");
 
-    // 가장 위에 쌓이게 prepend
     if (list.firstChild) {
       list.insertBefore(item, list.firstChild);
     } else {
       list.appendChild(item);
     }
 
-    // 입력창 초기화
     document.getElementById("rsvp-name").value = "";
     document.getElementById("rsvp-message").value = "";
 
