@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>재곤 & 하예림 결혼식 초대장</title>
+
+  <style>
+    :root {
+      --accent: #ff7a00;
+      --text: #ffffff;
+      --bg: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", sans-serif;
+    }
+
+    .page {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* ===== 히어로 메인 ===== */
+    .hero {
+      position: relative;
+      height: 85vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 80px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 15%; /* 필요하면 10~30% 사이에서 조정 */
+      filter: brightness(0.55);
+      transform: scale(1.03);
+    }
+
+    .hero-inner {
+      position: relative;
+      text-align: center;
+      width: 100%;
+      color: white;
+      padding: 0 24px;
+    }
+
+    .hero-top {
+      font-size: 13px;
+      font-weight: 300;
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+
+    .hero-script {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-family: "Georgia", serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-names {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-date-script {
+      font-size: 15px;
+      opacity: 0.85;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    /* ===== 음악 토글 버튼 ===== */
+    .music-toggle {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 6px 10px;
+      font-size: 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(0,0,0,0.45);
+      color: #ffffff;
+      backdrop-filter: blur(6px);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 10;
+      transition: background .2s ease, border-color .2s ease, color .2s ease, transform .1s ease;
+    }
+    .music-toggle.on {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #000;
+    }
+    .music-toggle:active {
+      transform: scale(0.96);
+    }
+
+    /* ===== 공통 섹션 ===== */
+    section {
+      padding: 64px 24px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .section-heading {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 26px;
+    }
+
+    /* ===== 엽서 카드 ===== */
+    .postcard {
+      background: #111111;
+      border-radius: 14px;
+      padding: 22px 18px 20px;
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .postcard-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .postcard-label {
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+
+    .postcard-script {
+      margin-top: 10px;
+      text-align: center;
+      font-family: "Georgia", serif;
+      font-size: 18px;
+      color: var(--accent);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* ===== 부모님 섹션 ===== */
+    .parent-card {
+      background: #111111;
+      border-radius: 14px;
+      padding: 20px 18px 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      margin-bottom: 26px;
+    }
+
+    .parent-label {
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .parent-top {
+      display: flex;
+      gap: 14px;
+    }
+
+    .parent-photo img {
+      width: 88px;
+      height: 88px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .parent-names {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .role {
+      color: var(--accent);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .parent-handwriting {
+      margin-top: 14px;
+      font-size: 13px;
+      opacity: 0.85;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    /* ===== 3장 그리드 섹션 ===== */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .photo-grid-item {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #080808;
+    }
+
+    .photo-grid-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        max-width: 640px;
+        margin: 0 auto;
+        border-radius: 20px;
+      }
+      .hero-inner {
+        padding-bottom: 40px;
+      }
+      section {
+        padding: 72px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+  <!-- ===== BGM (로컬 파일 기준) ===== -->
+  <!-- bgm.mp4 파일을 index.html과 같은 폴더에 둡니다 -->
+  <audio id="bgm"
+         src="bgm.mp4"
+         preload="auto"
+         loop></audio>
+
+  <!-- ===== 히어로 메인 ===== -->
+  <section class="hero">
+    <div class="hero-bg">
+      <!-- JRB_0996_main.jpg 파일을 index.html과 같은 폴더에 둡니다 -->
+      <img src="JRB_0996_main.jpg" alt="메인 배경">
+    </div>
+
+    <div class="hero-inner">
+
+      <!-- 음악 토글 버튼 -->
+      <button type="button" class="music-toggle" id="music-toggle" onclick="toggleMusic()">
+        <span>♪</span><span>Music Off</span>
+      </button>
+
+      <div class="hero-top">Wedding Invitation</div>
+
+      <div class="hero-script">Our Wedding</div>
+
+      <div class="hero-names">김재곤 &nbsp; · &nbsp; 하예림</div>
+
+      <div class="hero-date-script">2026.02.22. SUN 04:30PM</div>
+
+      <div class="hero-sub">
+        드레스가든 4층 블리스돔홀<br>
+        서울 강남구 영동대로 707
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 초대장(엽서) 섹션 ===== -->
+  <section>
+    <div class="section-title">Invitation</div>
+    <div class="section-heading">초대합니다</div>
+
+    <div class="postcard">
+      <div class="postcard-row">
+        <div>
+          <div class="postcard-label">Date</div>
+          <div>2026.02.22. SUN 04:30PM</div>
+        </div>
+
+        <div style="text-align:right;">
+          <div class="postcard-label">Place</div>
+          <div>드레스가든 4층 블리스돔홀</div>
+        </div>
+      </div>
+
+      <div class="postcard-row">
+        <div>
+          <div class="postcard-label">Address</div>
+          <div>서울 강남구 영동대로 707</div>
+        </div>
+      </div>
+
+      <div class="postcard-script">Save the Date</div>
+    </div>
+  </section>
+
+  <!-- ===== 부모님 섹션 ===== -->
+  <section>
+    <div class="section-title">Family</div>
+    <div class="section-heading">양가 부모님</div>
+
+    <!-- 신랑측 -->
+    <div class="parent-card">
+      <div class="parent-label">Groom Side</div>
+      <div class="parent-top">
+        <div class="parent-photo">
+          <!-- 나중에 실제 사진으로 교체 -->
+          <img src="images/parents-groom.jpg" alt="신랑측 부모님">
+        </div>
+        <div class="parent-names">
+          <div class="role">신랑측</div>
+          <div>아버지 김병길</div>
+          <div>어머니 김향숙</div>
+        </div>
+      </div>
+      <div class="parent-handwriting">
+신랑 부모님 손글씨나 짧은 인사말이 들어갈 자리입니다.
+원하시면 이미지를 넣는 형태로 변경해도 됩니다.
+      </div>
+    </div>
+
+    <!-- 신부측 -->
+    <div class="parent-card">
+      <div class="parent-label">Bride Side</div>
+      <div class="parent-top">
+        <div class="parent-photo">
+          <img src="images/parents-bride.jpg" alt="신부측 부모님">
+        </div>
+        <div class="parent-names">
+          <div class="role">신부측</div>
+          <div>아버지 하재웅</div>
+          <div>어머니 김지영</div>
+        </div>
+      </div>
+      <div class="parent-handwriting">
+신부 부모님 손글씨나 짧은 인사말이 들어갈 자리입니다.
+한두 문장 정도로 간단하게 담아도 충분합니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3장 그리드 사진 섹션 ===== -->
+  <section>
+    <div class="section-title">Photos</div>
+    <div class="section-heading">우리의 순간</div>
+
+    <div class="photo-grid">
+      <div class="photo-grid-item">
+        <img src="images/grid-1.jpg" alt="그리드 사진 1">
+      </div>
+      <div class="photo-grid-item">
+        <img src="images/grid-2.jpg" alt="그리드 사진 2">
+      </div>
+      <div class="photo-grid-item">
+        <img src="images/grid-3.jpg" alt="그리드 사진 3">
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  let isMusicPlaying = false;
+
+  function updateMusicButton() {
+    const btn = document.getElementById("music-toggle");
+    if (!btn) return;
+
+    if (isMusicPlaying) {
+      btn.classList.add("on");
+      btn.innerHTML = "<span>♪</span><span>Music On</span>";
+    } else {
+      btn.classList.remove("on");
+      btn.innerHTML = "<span>♪</span><span>Music Off</span>";
+    }
+  }
+
+  function toggleMusic() {
+    const audio = document.getElementById("bgm");
+    if (!audio) return;
+
+    if (audio.paused) {
+      audio.play().then(() => {
+        isMusicPlaying = true;
+        updateMusicButton();
+      });
+    } else {
+      audio.pause();
+      isMusicPlaying = false;
+      updateMusicButton();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const audio = document.getElementById("bgm");
+    if (!audio) return;
+
+    audio.volume = 0.65;
+
+    audio.play().then(() => {
+      isMusicPlaying = true;
+      updateMusicButton();
+    }).catch(() => {
+      // 자동재생이 막힌 경우: 버튼으로 재생
+      isMusicPlaying = false;
+      updateMusicButton();
+    });
+  });
+</script>
+
+</body>
+</html>
