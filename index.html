@@ -62,7 +62,8 @@
       text-align: center;
       width: 100%;
       color: white;
-      padding: 0 24px;
+      /* 여기 padding 수정: 위쪽 여백 크게 줌 */
+      padding: 72px 24px 0;
     }
 
     .hero-top {
@@ -103,11 +104,9 @@
 
     /* ===== 음악 토글 버튼 ===== */
     .music-toggle {
-      /* 여기부터 수정된 부분 */
-      position: fixed;             /* 화면 기준 고정 */
-      top: 16px;
+      position: fixed; /* 화면 기준 고정 */
+      top: calc(env(safe-area-inset-top, 0px) + 10px);
       right: 16px;
-      /* 여기까지가 위치 관련 핵심 */
       padding: 6px 10px;
       font-size: 11px;
       border-radius: 999px;
@@ -277,7 +276,6 @@
 <div class="page">
 
   <!-- ===== BGM (로컬 파일 기준) ===== -->
-  <!-- bgm.mp4 파일을 index.html과 같은 폴더에 둡니다 -->
   <audio id="bgm"
          src="bgm.mp4"
          preload="auto"
@@ -286,7 +284,6 @@
   <!-- ===== 히어로 메인 ===== -->
   <section class="hero">
     <div class="hero-bg">
-      <!-- JRB_0996_main.jpg 파일을 index.html과 같은 폴더에 둡니다 -->
       <img src="JRB_0996_main.jpg" alt="메인 배경">
     </div>
 
@@ -351,7 +348,6 @@
       <div class="parent-label">Groom Side</div>
       <div class="parent-top">
         <div class="parent-photo">
-          <!-- 나중에 실제 사진으로 교체 -->
           <img src="images/parents-groom.jpg" alt="신랑측 부모님">
         </div>
         <div class="parent-names">
@@ -448,7 +444,7 @@
       isMusicPlaying = true;
       updateMusicButton();
     }).catch(() => {
-      // 자동재생이 막힌 경우: 버튼으로만 재생
+      // 자동재생이 막힌 경우: 버튼으로 재생
       isMusicPlaying = false;
       updateMusicButton();
     });
