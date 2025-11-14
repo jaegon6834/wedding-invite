@@ -30,75 +30,27 @@
       overflow-x: hidden;
     }
 
-    /* ===== 히어로 메인 ===== */
-    .hero {
-      position: relative;
-      height: 85vh;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      padding-bottom: 80px;
-      overflow: hidden;
+    /* ===== 공통 섹션 ===== */
+    section {
+      padding: 56px 24px;
+      max-width: 640px;
+      margin: 0 auto;
     }
 
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-    }
-
-    .hero-bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 50% 15%; /* 필요하면 10~30% 사이에서 조정 */
-      filter: brightness(0.55);
-      transform: scale(1.03);
-    }
-
-    .hero-inner {
-      position: relative;
+    .section-title {
       text-align: center;
-      width: 100%;
-      color: white;
-      padding: 72px 24px 0;
-    }
-
-    .hero-top {
       font-size: 13px;
-      font-weight: 300;
-      margin-bottom: 12px;
-      opacity: 0.9;
-    }
-
-    .hero-script {
-      font-size: 22px;
-      font-weight: 500;
       color: var(--accent);
-      margin-bottom: 8px;
-      font-family: "Georgia", serif;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
+      margin-bottom: 8px;
     }
 
-    .hero-names {
-      font-size: 28px;
+    .section-heading {
+      text-align: center;
+      font-size: 22px;
       font-weight: 600;
-      margin-bottom: 6px;
-      letter-spacing: 0.08em;
-    }
-
-    .hero-date-script {
-      font-size: 15px;
-      opacity: 0.85;
-      margin-bottom: 20px;
-    }
-
-    .hero-sub {
-      font-size: 14px;
-      line-height: 1.6;
-      opacity: 0.9;
+      margin-bottom: 26px;
     }
 
     /* ===== 음악 토글 버튼 (고정 우상단) ===== */
@@ -110,7 +62,7 @@
       font-size: 11px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.35);
-      background: rgba(0,0,0,0.45);
+      background: rgba(0,0,0,0.5);
       color: #ffffff;
       backdrop-filter: blur(6px);
       cursor: pointer;
@@ -129,33 +81,139 @@
       transform: scale(0.96);
     }
 
-    /* ===== 공통 섹션 ===== */
-    section {
-      padding: 64px 24px;
+    /* ===== 히어로 메인 (레퍼런스 느낌) ===== */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 90vh;
+      max-height: 820px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .hero-inner-wrapper {
+      position: relative;
+      width: 100%;
       max-width: 640px;
       margin: 0 auto;
+      height: 100%;
     }
 
-    .section-title {
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 20%;
+      transform: scale(1.03);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.05) 0%,
+        rgba(0,0,0,0.25) 40%,
+        rgba(0,0,0,0.85) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 80px 24px 40px;
       text-align: center;
-      font-size: 13px;
+      color: #ffffff;
+    }
+
+    .hero-label {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       color: var(--accent);
-      letter-spacing: 0.14em;
+      margin-bottom: 10px;
+    }
+
+    .hero-script {
+      font-family: "Georgia", serif;
+      font-size: 30px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      color: var(--accent);
+    }
+
+    .hero-names-kor {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .hero-names-eng {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 16px;
+    }
+
+    .hero-date {
+      font-size: 14px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 6px;
+      opacity: 0.95;
     }
 
-    .section-heading {
+    .hero-place {
+      font-size: 13px;
+      line-height: 1.7;
+      opacity: 0.88;
+    }
+
+    /* ===== SAVE THE DATE 오벌 배지 섹션 ===== */
+    .save-date-section {
+      padding-top: 32px;
+    }
+
+    .save-date-pill {
+      margin: 0 auto 20px;
+      padding: 8px 28px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .save-date-text {
       text-align: center;
-      font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 26px;
+      font-size: 14px;
+      line-height: 1.7;
+      opacity: 0.92;
     }
 
-    /* ===== 엽서 카드 ===== */
+    /* ===== INVITATION 카드 (엽서 이미지 + 텍스트) ===== */
     .postcard {
+      margin-top: 40px;
       background: #111111;
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 22px 18px 20px;
       border: 1px solid rgba(255,255,255,0.16);
     }
@@ -178,7 +236,7 @@
       display: flex;
       justify-content: space-between;
       gap: 10px;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
       font-size: 14px;
     }
 
@@ -189,19 +247,58 @@
     }
 
     .postcard-script {
-      margin-top: 10px;
+      margin-top: 12px;
       text-align: center;
       font-family: "Georgia", serif;
-      font-size: 18px;
+      font-size: 17px;
       color: var(--accent);
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
+    /* ===== Groom / Bride 영어 이름 섹션 ===== */
+    .couple-section-inner {
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: #111111;
+      padding: 22px 18px 18px;
+    }
+
+    .couple-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .couple-col {
+      flex: 1;
+      text-align: left;
+    }
+
+    .couple-label {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .couple-name-eng {
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .couple-name-kor {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
     /* ===== 부모님 섹션 ===== */
     .parent-card {
       background: #111111;
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 20px 18px 18px;
       border: 1px solid rgba(255,255,255,0.18);
       margin-bottom: 26px;
@@ -266,7 +363,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr); /* 모바일 포함 항상 3열 */
       gap: 6px;
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
     .photo-grid-item {
@@ -283,17 +380,25 @@
       object-fit: cover;
     }
 
-    @media (min-width: 768px) {
-      .hero {
-        max-width: 640px;
-        margin: 0 auto;
-        border-radius: 20px;
+    @media (max-width: 360px) {
+      .hero-script {
+        font-size: 26px;
       }
-      .hero-inner {
-        padding-bottom: 40px;
+      .hero-content {
+        padding-bottom: 32px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero-inner-wrapper {
+        border-radius: 20px;
+        overflow: hidden;
       }
       section {
-        padding: 72px 24px;
+        padding: 64px 24px;
+      }
+      .couple-row {
+        gap: 40px;
       }
     }
   </style>
@@ -308,66 +413,91 @@
          preload="auto"
          loop></audio>
 
+  <!-- 음악 토글 버튼 (전체 공통) -->
+  <button type="button" class="music-toggle" id="music-toggle" onclick="toggleMusic()">
+    <span>♪</span><span>Music Off</span>
+  </button>
+
   <!-- ===== 히어로 메인 ===== -->
   <section class="hero">
-    <div class="hero-bg">
-      <!-- images/hero-main.jpg 파일을 images 폴더에 업로드했다고 가정 -->
-      <img src="images/hero-main.jpg" alt="메인 배경">
-    </div>
+    <div class="hero-inner-wrapper">
+      <div class="hero-bg">
+        <!-- 메인 배경 사진 -->
+        <img src="images/hero-main.jpg" alt="메인 배경">
+        <div class="hero-overlay"></div>
+      </div>
 
-    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="hero-label">YOU'RE INVITED TO</p>
+        <p class="hero-script">Our Wedding</p>
 
-      <!-- 음악 토글 버튼 -->
-      <button type="button" class="music-toggle" id="music-toggle" onclick="toggleMusic()">
-        <span>♪</span><span>Music Off</span>
-      </button>
+        <p class="hero-names-kor">김재곤 · 하예림</p>
+        <p class="hero-names-eng">KIM JAE GON &nbsp; &amp; &nbsp; YELIM HA</p>
 
-      <div class="hero-top">Wedding Invitation</div>
-
-      <div class="hero-script">Our Wedding</div>
-
-      <div class="hero-names">김재곤 &nbsp; · &nbsp; 하예림</div>
-
-      <div class="hero-date-script">2026.02.22. SUN 04:30PM</div>
-
-      <div class="hero-sub">
-        드레스가든 4층 블리스돔홀<br>
-        서울 강남구 영동대로 707
+        <p class="hero-date">2026.02.22 SUN 4:30 PM</p>
+        <p class="hero-place">
+          드레스가든 4층 블리스돔홀<br>
+          서울 강남구 영동대로 707
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- ===== 초대장(엽서) 섹션 ===== -->
-  <section>
-    <div class="section-title">Invitation</div>
-    <div class="section-heading">초대합니다</div>
+  <!-- ===== SAVE THE DATE + INVITATION 섹션 ===== -->
+  <section class="save-date-section">
+    <div class="save-date-pill">SAVE THE DATE</div>
+    <p class="save-date-text">
+      서로가 마주보며 다져온 사랑을 이제 함께 한 방향을 바라보며 걸어가고자 합니다.<br>
+      귀한 걸음 하셔서 저희의 시작을 따뜻한 마음으로 축복해 주시면 감사하겠습니다.
+    </p>
 
     <div class="postcard">
-      <!-- 엽서 이미지 -->
       <div class="postcard-image">
+        <!-- 엽서 디자인 이미지 -->
         <img src="images/postcard.jpg" alt="엽서 이미지">
       </div>
 
       <div class="postcard-row">
         <div>
-          <div class="postcard-label">Date</div>
+          <div class="postcard-label">DATE</div>
           <div>2026.02.22. SUN 04:30PM</div>
         </div>
 
         <div style="text-align:right;">
-          <div class="postcard-label">Place</div>
+          <div class="postcard-label">PLACE</div>
           <div>드레스가든 4층 블리스돔홀</div>
         </div>
       </div>
 
       <div class="postcard-row">
         <div>
-          <div class="postcard-label">Address</div>
+          <div class="postcard-label">ADDRESS</div>
           <div>서울 강남구 영동대로 707</div>
         </div>
       </div>
 
       <div class="postcard-script">Save the Date</div>
+    </div>
+  </section>
+
+  <!-- ===== Groom / Bride 영어 이름 섹션 ===== -->
+  <section>
+    <div class="section-title">Couple</div>
+    <div class="section-heading">Groom &amp; Bride</div>
+
+    <div class="couple-section-inner">
+      <div class="couple-row">
+        <div class="couple-col">
+          <div class="couple-label">Groom</div>
+          <div class="couple-name-eng">KIM JAE GON</div>
+          <div class="couple-name-kor">김재곤</div>
+        </div>
+        <div class="couple-col">
+          <div class="couple-label">Bride</div>
+          <div class="couple-name-eng">YELIM HA</div>
+          <div class="couple-name-kor">하예림</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -391,7 +521,6 @@
       </div>
       <div class="parent-handwriting">
 신랑 부모님 손글씨나 짧은 인사말이 들어갈 자리입니다.
-지금은 손글씨 이미지를 별도 박스로 노출하도록 구성했습니다.
       </div>
       <div class="parent-letter-image">
         <img src="images/parents-groom-letter.jpg" alt="신랑측 부모님 손글씨">
@@ -413,7 +542,6 @@
       </div>
       <div class="parent-handwriting">
 신부 부모님 손글씨나 짧은 인사말이 들어갈 자리입니다.
-역시 손글씨 이미지를 아래에 배치했습니다.
       </div>
       <div class="parent-letter-image">
         <img src="images/parents-bride-letter.jpg" alt="신부측 부모님 손글씨">
@@ -501,7 +629,6 @@
       isMusicPlaying = true;
       updateMusicButton();
     }).catch(() => {
-      // 자동재생이 막힌 경우: 버튼으로 재생
       isMusicPlaying = false;
       updateMusicButton();
     });
