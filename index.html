@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>재곤 & 예림 결혼식 초대장</title>
 
-  <!-- 카카오톡 / SNS 미리보기용 Open Graph -->
+  <!-- 기본 메타 -->
+  <meta name="description" content="재곤 · 예림의 결혼식 초대장입니다. 2026년 2월 22일 일요일 오후 4시 30분, 드레스가든 4층 블리스돔홀에서 뵙겠습니다.">
+
+  <!-- 카카오/카톡 미리보기용 OG 메타 -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="김재곤 💍 하예림 결혼합니다">
-  <meta property="og:description" content="💒 예식일 | 2026년 2월 22일 일요일 오후 4시 30분 · 📍 드레스가든 4층 블리스돔홀">
-  <meta property="og:image" content="https://jaegon6834.github.io/wedding-invite/images/hero-main.jpg">
-  <meta property="og:url" content="https://jaegon6834.github.io/wedding-invite/">
-  <meta property="og:site_name" content="재곤 & 예림 모바일 청첩장">
-  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="💍 재곤 · 예림 결혼합니다">
+  <meta property="og:description" content="📅 예식일 : 2026년 2월 22일 일요일 오후 4시 30분 · 📍 드레스가든 4층 블리스돔홀">
+  <meta property="og:image" content="https://jaegonyrlim.github.io/wedding-invite/images/hero-main.jpg?v=1">
+  <meta property="og:url" content="https://jaegonyrlim.github.io/wedding-invite/">
 
   <!-- 폰트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1150,6 +1151,12 @@
 </div>
 
 <script>
+  /* 여기 아이디/주소 한 번만 수정해서 쓰면 됨 */
+  const INVITE_USERNAME = "jaegonyrlim"; // 실제로 변경한 깃허브 아이디로 맞춰서 수정
+  const INVITE_URL = "https://" + INVITE_USERNAME + ".github.io/wedding-invite/";
+  const SHARE_URL = INVITE_URL + "?v=1";
+  const SHARE_IMAGE = INVITE_URL + "images/hero-main.jpg?v=1";
+
   (function initKakaoSDK() {
     if (typeof Kakao !== "undefined" && !Kakao.isInitialized()) {
       Kakao.init("6fa997e63ec0359541d10b0328f9b29e");
@@ -1214,7 +1221,6 @@
 
   function initMap() {
     if (!window.kakao || !kakao.maps || !kakao.maps.load) {
-      console.log("Kakao map not ready, retrying...");
       setTimeout(initMap, 300);
       return;
     }
@@ -1254,8 +1260,6 @@
         content: iwContent
       });
       infowindow.open(map, marker);
-
-      console.log("Kakao map loaded with Dress Garden coords!");
     });
   }
 
@@ -1366,9 +1370,11 @@
   }
 
   function shareInvite() {
-    const url = window.location.href;
-    const title = "김재곤 💍 하예림 결혼합니다";
-    const description = "💒 예식일 | 2026년 2월 22일 일요일 오후 4시 30분 · 📍 드레스가든 4층 블리스돔홀";
+    const title = "💍 재곤 · 예림 결혼합니다";
+    const description =
+      "👰‍♀️🤵‍♂️ 김재곤 · 하예림의 결혼식에 초대합니다.\n" +
+      "📅 예식일 : 2026년 2월 22일 일요일 오후 4시 30분\n" +
+      "📍 드레스가든 4층 블리스돔홀";
 
     if (typeof Kakao !== "undefined" && Kakao.isInitialized()) {
       Kakao.Link.sendDefault({
@@ -1376,18 +1382,18 @@
         content: {
           title: title,
           description: description,
-          imageUrl: "https://jaegon6834.github.io/wedding-invite/images/hero-main.jpg",
+          imageUrl: SHARE_IMAGE,
           link: {
-            mobileWebUrl: url,
-            webUrl: url
+            mobileWebUrl: SHARE_URL,
+            webUrl: SHARE_URL
           }
         },
         buttons: [
           {
-            title: "청첩장 열기 💌",
+            title: "청첩장 열기",
             link: {
-              mobileWebUrl: url,
-              webUrl: url
+              mobileWebUrl: SHARE_URL,
+              webUrl: SHARE_URL
             }
           }
         ]
@@ -1398,8 +1404,7 @@
   }
 
   function copyInviteUrl() {
-    const url = window.location.href;
-    copyText(url);
+    copyText(SHARE_URL);
   }
 </script>
 
