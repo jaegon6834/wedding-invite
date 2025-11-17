@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>재곤 & 예림 결혼식 초대장</title>
 
-  <!-- 카카오 / SNS 미리보기용 메타 -->
-  <meta property="og:title" content="재곤 💍 예림 결혼합니다">
-  <meta property="og:description" content="👰‍♀️ 하예림 🤵‍♂️ 김재곤 결혼합니다. 예식일: 2026년 2월 22일(일) 오후 4시 30분 · 드레스가든 4층 블리스돔홀">
+  <!-- 메타 (카카오톡/미리보기용) -->
+  <meta name="description" content="김재곤 🤍 하예림 결혼식 초대장 · 2026년 2월 22일 일요일 오후 4시 30분 · 드레스가든 4층 블리스돔홀.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="김재곤 🤍 하예림 결혼합니다">
+  <meta property="og:description" content="예식일 : 2026년 2월 22일 일요일 오후 4시 30분 · 드레스가든 4층 블리스돔홀">
   <meta property="og:image" content="https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg">
   <meta property="og:url" content="https://jaegonyelim.github.io/wedding-invite/">
-  <meta property="og:type" content="website">
-  <meta name="description" content="2026년 2월 22일 일요일 오후 4시 30분, 드레스가든 4층 블리스돔홀에서 진행되는 김재곤 · 하예림 결혼식 모바일 청첩장입니다.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="김재곤 🤍 하예림 결혼합니다">
+  <meta name="twitter:description" content="예식일 : 2026년 2월 22일 일요일 오후 4시 30분 · 드레스가든 4층 블리스돔홀">
+  <meta name="twitter:image" content="https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg">
 
   <!-- 폰트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -666,7 +669,7 @@
       text-align: center;
     }
 
-    /* ===== 13. 참석 여부 ===== */
+    /* ===== 13. 참석 여부 (RSVP) ===== */
     .rsvp-section {
       background: var(--accent-light-bg);
       color: #000000;
@@ -723,13 +726,6 @@
       font-size: 14px;
       cursor: pointer;
       font-weight: 600;
-    }
-
-    .rsvp-status {
-      margin-top: 12px;
-      font-size: 12px;
-      color: #444444;
-      white-space: pre-line;
     }
 
     /* ===== 14. 공유 섹션 ===== */
@@ -1080,7 +1076,7 @@
     </div>
   </section>
 
-  <!-- 13. 참석 여부 -->
+  <!-- 13. 참석 여부 (RSVP) -->
   <section class="rsvp-section">
     <div class="center-pill-wrap">
       <span class="pill-title">참석 여부</span>
@@ -1088,10 +1084,10 @@
 
     <div class="rsvp-card" style="margin-top: 20px;">
       <div class="rsvp-field">
-        <label class="rsvp-label" for="rsvp-name">
+        <label class="rsvp-label" for="attend-name">
           참석자 성함
         </label>
-        <input id="rsvp-name" class="rsvp-input" type="text" placeholder="이름을 입력해주세요.">
+        <input id="attend-name" class="rsvp-input" type="text" placeholder="이름을 입력해주세요.">
       </div>
 
       <div class="rsvp-field">
@@ -1099,7 +1095,7 @@
           <span class="rsvp-label-emoji">👫</span>
           <span>구분</span>
         </div>
-        <select id="rsvp-side" class="rsvp-select">
+        <select id="attend-side" class="rsvp-select">
           <option value="신랑측">신랑측</option>
           <option value="신부측">신부측</option>
         </select>
@@ -1110,10 +1106,11 @@
           <span class="rsvp-label-emoji">👥</span>
           <span>인원수</span>
         </div>
-        <select id="rsvp-count" class="rsvp-select">
+        <select id="attend-count" class="rsvp-select">
+          <option value="">선택해주세요</option>
           <option value="본인만 참석">본인만 참석</option>
-          <option value="본인 + 1명 (총 2명)">본인 + 1명 (총 2명)</option>
-          <option value="본인 + 2명 (총 3명)">본인 + 2명 (총 3명)</option>
+          <option value="본인 + 1명">본인 + 1명</option>
+          <option value="본인 + 2명">본인 + 2명</option>
           <option value="본인 + 3명 이상">본인 + 3명 이상</option>
         </select>
       </div>
@@ -1122,7 +1119,7 @@
         참석 여부
       </button>
 
-      <div id="rsvp-status" class="rsvp-status"></div>
+      <div id="attend-status" style="margin-top: 12px; font-size: 12px; color: #444;"></div>
     </div>
   </section>
 
@@ -1143,7 +1140,9 @@
 </div>
 
 <script>
-  // Kakao SDK 초기화
+  // ===== 이 URL만 새 배포할 때마다 교체해주면 됨 =====
+  const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzMAyzlk-SNntUpyQ0FS4M1za1SDXUd8N8iSH95wbYoHCMq5p9gvuPSzrYWYoifK2h3/exec";
+
   (function initKakaoSDK() {
     if (typeof Kakao !== "undefined" && !Kakao.isInitialized()) {
       Kakao.init("6fa997e63ec0359541d10b0328f9b29e");
@@ -1185,7 +1184,6 @@
 
   function initMap() {
     if (!window.kakao || !kakao.maps || !kakao.maps.load) {
-      console.log("Kakao map not ready, retrying...");
       setTimeout(initMap, 300);
       return;
     }
@@ -1225,8 +1223,6 @@
         content: iwContent
       });
       infowindow.open(map, marker);
-
-      console.log("Kakao map loaded with Dress Garden coords!");
     });
   }
 
@@ -1252,7 +1248,6 @@
     initMap();
   });
 
-  // 라이트박스
   function openLightbox(index) {
     const lightbox = document.getElementById("lightbox");
     const img = document.getElementById("lightbox-img");
@@ -1275,7 +1270,6 @@
     img.src = galleryImages[currentIndex].src;
   }
 
-  // 텍스트 복사 공통
   function copyText(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(() => {
@@ -1292,62 +1286,57 @@
     }
   }
 
-  // 참석 여부 → 구글 스크립트 웹앱으로 전송
-  function submitRSVP() {
-    const nameInput = document.getElementById("rsvp-name");
-    const sideSelect = document.getElementById("rsvp-side");
-    const countSelect = document.getElementById("rsvp-count");
-    const statusEl = document.getElementById("rsvp-status");
-
-    const name = nameInput.value.trim();
-    const side = sideSelect.value;
-    const count = countSelect.value;
+  // 참석 여부 전송 → Google Apps Script 웹앱(doPost)으로 POST
+  async function submitRSVP() {
+    const name = document.getElementById("attend-name").value.trim();
+    const side = document.getElementById("attend-side").value;
+    const count = document.getElementById("attend-count").value;
+    const statusEl = document.getElementById("attend-status");
 
     if (!name) {
-      alert("참석자 성함을 입력해주세요.");
-      nameInput.focus();
+      alert("성함을 입력해주세요.");
+      return;
+    }
+    if (!side) {
+      alert("신랑측 / 신부측을 선택해주세요.");
+      return;
+    }
+    if (!count) {
+      alert("인원수를 선택해주세요.");
       return;
     }
 
-    if (statusEl) {
-      statusEl.textContent = "전송 중입니다...";
-    }
+    statusEl.textContent = "전송 중입니다...";
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("side", side);
-    formData.append("count", count);
+    const payload = {
+      name,
+      side,
+      count,
+      timestamp: new Date().toISOString()
+    };
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwzoYBcLrXuACCpIwRhmhDB-NnbJu38Py12Fhix8V549Gr541NB3JV0DOWckj1RHM7k/exec";
-
-    fetch(scriptURL, {
-      method: "POST",
-      body: formData
-    })
-      .then(() => {
-        if (statusEl) {
-          statusEl.textContent = "참석 여부가 정상적으로 전달되었습니다.\n축하해 주셔서 감사합니다.";
-        }
-        nameInput.value = "";
-        sideSelect.value = "신랑측";
-        countSelect.value = "본인만 참석";
-      })
-      .catch((error) => {
-        console.error("RSVP error:", error);
-        if (statusEl) {
-          statusEl.textContent = "전송 중 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.";
-        }
+    try {
+      await fetch(RSVP_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(payload)
       });
+
+      statusEl.textContent = "참석 여부가 정상적으로 전달되었습니다. 축하해 주셔서 감사합니다.";
+
+      document.getElementById("attend-name").value = "";
+      document.getElementById("attend-count").value = "";
+      document.getElementById("attend-side").value = "신랑측";
+    } catch (e) {
+      console.error(e);
+      statusEl.textContent = "전달 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.";
+    }
   }
 
-  // 카카오톡 공유
   function shareInvite() {
     const url = window.location.href;
-    const title = "재곤 💍 예림 결혼합니다";
-    const description =
-      "👰‍♀️ 하예림 🤵‍♂️ 김재곤 결혼합니다.\n" +
-      "📅 예식일 : 2026년 2월 22일(일) 오후 4시 30분\n" +
-      "📍 드레스가든 4층 블리스돔홀";
+    const title = "김재곤 🤍 하예림 결혼합니다";
+    const description = "예식일 : 2026년 2월 22일 일요일 오후 4시 30분 ⏰\n드레스가든 4층 블리스돔홀에서 뵙겠습니다.";
 
     if (typeof Kakao !== "undefined" && Kakao.isInitialized()) {
       Kakao.Link.sendDefault({
