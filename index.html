@@ -3,7 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>재곤 & 예림 결혼식 초대장</title>
+
+  <!-- 카카오 / SNS 미리보기용 메타 -->
+  <meta property="og:title" content="재곤 💍 예림 결혼합니다">
+  <meta property="og:description" content="👰‍♀️ 하예림 🤵‍♂️ 김재곤 결혼합니다. 예식일: 2026년 2월 22일(일) 오후 4시 30분 · 드레스가든 4층 블리스돔홀">
+  <meta property="og:image" content="https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg">
+  <meta property="og:url" content="https://jaegonyelim.github.io/wedding-invite/">
+  <meta property="og:type" content="website">
+  <meta name="description" content="2026년 2월 22일 일요일 오후 4시 30분, 드레스가든 4층 블리스돔홀에서 진행되는 김재곤 · 하예림 결혼식 모바일 청첩장입니다.">
 
   <!-- 폰트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -690,7 +699,8 @@
     }
 
     .rsvp-input,
-    .rsvp-select {
+    .rsvp-select,
+    .rsvp-textarea {
       width: 100%;
       padding: 8px 10px;
       background: #ffffff;
@@ -698,6 +708,7 @@
       border: 1px solid rgba(0,0,0,0.18);
       color: #000000;
       font-size: 13px;
+      resize: vertical;
       min-height: 34px;
     }
 
@@ -712,6 +723,13 @@
       font-size: 14px;
       cursor: pointer;
       font-weight: 600;
+    }
+
+    .rsvp-status {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #444444;
+      white-space: pre-line;
     }
 
     /* ===== 14. 공유 섹션 ===== */
@@ -1082,28 +1100,29 @@
           <span>구분</span>
         </div>
         <select id="rsvp-side" class="rsvp-select">
-          <option value="groom">신랑측</option>
-          <option value="bride">신부측</option>
+          <option value="신랑측">신랑측</option>
+          <option value="신부측">신부측</option>
         </select>
       </div>
 
       <div class="rsvp-field">
         <div class="rsvp-label">
-          <span class="rsvp-label-emoji">👨‍👩‍👧‍👦</span>
-          <span>인원 수</span>
+          <span class="rsvp-label-emoji">👥</span>
+          <span>인원수</span>
         </div>
         <select id="rsvp-count" class="rsvp-select">
-          <option value="">인원 수를 선택해주세요</option>
-          <option value="1">본인만 참석</option>
-          <option value="2">본인 + 1명</option>
-          <option value="3">본인 + 2명</option>
-          <option value="4">본인 + 3명 이상</option>
+          <option value="본인만 참석">본인만 참석</option>
+          <option value="본인 + 1명 (총 2명)">본인 + 1명 (총 2명)</option>
+          <option value="본인 + 2명 (총 3명)">본인 + 2명 (총 3명)</option>
+          <option value="본인 + 3명 이상">본인 + 3명 이상</option>
         </select>
       </div>
 
       <button type="button" class="rsvp-btn" onclick="submitRSVP()">
-        참석 의사 전달하기
+        참석 여부
       </button>
+
+      <div id="rsvp-status" class="rsvp-status"></div>
     </div>
   </section>
 
@@ -1124,6 +1143,7 @@
 </div>
 
 <script>
+  // Kakao SDK 초기화
   (function initKakaoSDK() {
     if (typeof Kakao !== "undefined" && !Kakao.isInitialized()) {
       Kakao.init("6fa997e63ec0359541d10b0328f9b29e");
@@ -1131,6 +1151,8 @@
   })();
 
   let isMusicPlaying = false;
+  let galleryImages = [];
+  let currentIndex = 0;
 
   function updateMusicButton() {
     const btn = document.getElementById("music-toggle");
@@ -1160,9 +1182,6 @@
       updateMusicButton();
     }
   }
-
-  let galleryImages = [];
-  let currentIndex = 0;
 
   function initMap() {
     if (!window.kakao || !kakao.maps || !kakao.maps.load) {
@@ -1233,6 +1252,7 @@
     initMap();
   });
 
+  // 라이트박스
   function openLightbox(index) {
     const lightbox = document.getElementById("lightbox");
     const img = document.getElementById("lightbox-img");
@@ -1255,6 +1275,7 @@
     img.src = galleryImages[currentIndex].src;
   }
 
+  // 텍스트 복사 공통
   function copyText(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(() => {
@@ -1271,73 +1292,62 @@
     }
   }
 
-  // 참석 여부 메일 전송 함수
+  // 참석 여부 → 구글 스크립트 웹앱으로 전송
   function submitRSVP() {
-    const nameEl = document.getElementById("rsvp-name");
-    const sideEl = document.getElementById("rsvp-side");
-    const countEl = document.getElementById("rsvp-count");
+    const nameInput = document.getElementById("rsvp-name");
+    const sideSelect = document.getElementById("rsvp-side");
+    const countSelect = document.getElementById("rsvp-count");
+    const statusEl = document.getElementById("rsvp-status");
 
-    if (!nameEl || !sideEl || !countEl) return;
-
-    const name = nameEl.value.trim();
-    const side = sideEl.value;
-    const count = countEl.value;
+    const name = nameInput.value.trim();
+    const side = sideSelect.value;
+    const count = countSelect.value;
 
     if (!name) {
       alert("참석자 성함을 입력해주세요.");
-      return;
-    }
-    if (!count) {
-      alert("인원 수를 선택해주세요.");
+      nameInput.focus();
       return;
     }
 
-    const sideLabel = side === "groom" ? "신랑측" : "신부측";
-
-    let countLabel = "";
-    switch (count) {
-      case "1":
-        countLabel = "본인만 참석";
-        break;
-      case "2":
-        countLabel = "본인 + 1명";
-        break;
-      case "3":
-        countLabel = "본인 + 2명";
-        break;
-      case "4":
-        countLabel = "본인 + 3명 이상";
-        break;
-      default:
-        countLabel = count;
+    if (statusEl) {
+      statusEl.textContent = "전송 중입니다...";
     }
 
-    const subject = "재곤 & 예림 결혼식 참석 여부 안내";
-    const bodyLines = [
-      "아래와 같이 참석 의사를 전달드립니다.",
-      "",
-      "참석자 성함: " + name,
-      "구분: " + sideLabel,
-      "인원 수: " + countLabel,
-      "",
-      "※ 이 메일은 모바일 청첩장에서 자동 작성된 참석 안내 메일입니다."
-    ];
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("side", side);
+    formData.append("count", count);
 
-    const mailto =
-      "mailto:mvpgh123@gmail.com" +
-      "?subject=" + encodeURIComponent(subject) +
-      "&body=" + encodeURIComponent(bodyLines.join("\n"));
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwzoYBcLrXuACCpIwRhmhDB-NnbJu38Py12Fhix8V549Gr541NB3JV0DOWckj1RHM7k/exec";
 
-    window.location.href = mailto;
+    fetch(scriptURL, {
+      method: "POST",
+      body: formData
+    })
+      .then(() => {
+        if (statusEl) {
+          statusEl.textContent = "참석 여부가 정상적으로 전달되었습니다.\n축하해 주셔서 감사합니다.";
+        }
+        nameInput.value = "";
+        sideSelect.value = "신랑측";
+        countSelect.value = "본인만 참석";
+      })
+      .catch((error) => {
+        console.error("RSVP error:", error);
+        if (statusEl) {
+          statusEl.textContent = "전송 중 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.";
+        }
+      });
   }
 
+  // 카카오톡 공유
   function shareInvite() {
     const url = window.location.href;
-    const title = "재곤 & 예림 결혼식 초대장";
-    const description = "2026년 2월 22일, 드레스가든 4층 블리스돔홀에서 뵙겠습니다.";
-
-    const origin = window.location.origin;
-    const imageUrl = origin + "/wedding-invite/images/hero-main.jpg";
+    const title = "재곤 💍 예림 결혼합니다";
+    const description =
+      "👰‍♀️ 하예림 🤵‍♂️ 김재곤 결혼합니다.\n" +
+      "📅 예식일 : 2026년 2월 22일(일) 오후 4시 30분\n" +
+      "📍 드레스가든 4층 블리스돔홀";
 
     if (typeof Kakao !== "undefined" && Kakao.isInitialized()) {
       Kakao.Link.sendDefault({
@@ -1345,7 +1355,7 @@
         content: {
           title: title,
           description: description,
-          imageUrl: imageUrl,
+          imageUrl: "https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg",
           link: {
             mobileWebUrl: url,
             webUrl: url
