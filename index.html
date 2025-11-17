@@ -437,9 +437,10 @@
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0;                 /* 그리드 사이 여백 제거 */
-      max-width: 520px;
-      margin: 0 auto 0;       /* 메인사진과 그리드 사이 여백 제거 */
+      gap: 0;           /* 사이 여백 제거 */
+      width: 100%;      /* 섹션 폭 전체 사용 */
+      max-width: none;  /* 폭 제한 해제 */
+      margin: 0;        /* 가운데 여백 제거 */
     }
 
     .photo-grid-item {
