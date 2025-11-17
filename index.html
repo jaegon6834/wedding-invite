@@ -657,7 +657,7 @@
       text-align: center;
     }
 
-    /* ===== 13. 참석 여부 전달하기 ===== */
+    /* ===== 13. 참석 여부 ===== */
     .rsvp-section {
       background: var(--accent-light-bg);
       color: #000000;
@@ -1062,10 +1062,10 @@
     </div>
   </section>
 
-  <!-- 13. 참석 여부 전달하기 -->
+  <!-- 13. 참석 여부 -->
   <section class="rsvp-section">
     <div class="center-pill-wrap">
-      <span class="pill-title">참석 여부 전달하기</span>
+      <span class="pill-title">참석 여부</span>
     </div>
 
     <div class="rsvp-card" style="margin-top: 20px;">
@@ -1271,7 +1271,7 @@
     }
   }
 
-  // 참석 여부 전달용 함수
+  // 참석 여부 메일 전송 함수
   function submitRSVP() {
     const nameEl = document.getElementById("rsvp-name");
     const sideEl = document.getElementById("rsvp-side");
@@ -1323,9 +1323,8 @@
       "※ 이 메일은 모바일 청첩장에서 자동 작성된 참석 안내 메일입니다."
     ];
 
-    // 🔽 여기 이메일 주소를 네 실제 메일 주소로 바꿔서 사용하면 됨
     const mailto =
-      "mvpgh123@gmail.com" +
+      "mailto:mvpgh123@gmail.com" +
       "?subject=" + encodeURIComponent(subject) +
       "&body=" + encodeURIComponent(bodyLines.join("\n"));
 
