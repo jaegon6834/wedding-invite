@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>재곤 & 예림 결혼식 초대장</title>
 
+  <!-- 카카오톡 / SNS 미리보기용 Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="김재곤 💍 하예림 결혼합니다">
+  <meta property="og:description" content="💒 예식일 | 2026년 2월 22일 일요일 오후 4시 30분 · 📍 드레스가든 4층 블리스돔홀">
+  <meta property="og:image" content="https://jaegon6834.github.io/wedding-invite/images/hero-main.jpg">
+  <meta property="og:url" content="https://jaegon6834.github.io/wedding-invite/">
+  <meta property="og:site_name" content="재곤 & 예림 모바일 청첩장">
+  <meta property="og:locale" content="ko_KR">
+
   <!-- 폰트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -201,7 +210,7 @@
       background: #000000;
       color: #ffffff;
       padding-top: 100px;
-      padding-bottom: 60px; /* ↓ 여백 줄임 */
+      padding-bottom: 60px;
       text-align: center;
     }
 
@@ -213,12 +222,12 @@
       height: 50px;
       margin: 0 auto;
       border-radius: 50%;
-      border: 1.5px solid var(--accent-soft); /* 선 두께 조정 */
+      border: 1.5px solid var(--accent-soft);
       background: transparent;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 11px;
-      font-weight: 600;              /* 텍스트 두께 조정 */
-      letter-spacing: 0.28em;        /* 살짝 줄여 두께감 맞춤 */
+      font-weight: 600;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--accent-soft);
     }
@@ -237,7 +246,7 @@
     .postcard-section {
       background: #000000;
       color: #ffffff;
-      padding-top: 20px;   /* ↓ 위 여백 확 줄임 */
+      padding-top: 20px;
       padding-bottom: 50px;
       text-align: center;
     }
@@ -1358,8 +1367,8 @@
 
   function shareInvite() {
     const url = window.location.href;
-    const title = "재곤 & 예림 결혼식 초대장";
-    const description = "2026년 2월 22일, 드레스가든 4층 블리스돔홀에서 뵙겠습니다.";
+    const title = "김재곤 💍 하예림 결혼합니다";
+    const description = "💒 예식일 | 2026년 2월 22일 일요일 오후 4시 30분 · 📍 드레스가든 4층 블리스돔홀";
 
     if (typeof Kakao !== "undefined" && Kakao.isInitialized()) {
       Kakao.Link.sendDefault({
@@ -1375,7 +1384,7 @@
         },
         buttons: [
           {
-            title: "청첩장 열기",
+            title: "청첩장 열기 💌",
             link: {
               mobileWebUrl: url,
               webUrl: url
