@@ -5,15 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>재곤 & 예림 결혼식 초대장</title>
 
-  <!-- 기본 메타 -->
-  <meta name="description" content="재곤 · 예림의 결혼식 초대장입니다. 2026년 2월 22일 일요일 오후 4시 30분, 드레스가든 4층 블리스돔홀에서 뵙겠습니다.">
+  <!-- 기본 설명 (브라우저 + 검색엔진용) -->
+  <meta name="description" content="💍 재곤 & 예림의 결혼식 초대장입니다. 2026년 2월 22일 일요일 오후 4시 30분, 드레스가든 4층 블리스돔홀에서 뵙겠습니다.">
 
-  <!-- 카카오/카톡 미리보기용 OG 메타 -->
+  <!-- 카카오톡 등 미리보기용 Open Graph 메타태그 -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="💍 재곤 · 예림 결혼합니다">
-  <meta property="og:description" content="📅 예식일 : 2026년 2월 22일 일요일 오후 4시 30분 · 📍 드레스가든 4층 블리스돔홀">
-  <meta property="og:image" content="https://jaegonyrlim.github.io/wedding-invite/images/hero-main.jpg?v=1">
-  <meta property="og:url" content="https://jaegonyrlim.github.io/wedding-invite/">
+  <meta property="og:title" content="💍 재곤 & 예림 결혼합니다">
+  <meta property="og:description" content="📅 예식일: 2026년 2월 22일(일) 오후 4시 30분 · 📍 드레스가든 4층 블리스돔홀">
+  <meta property="og:url" content="https://jaegonyelim.github.io/wedding-invite/">
+  <meta property="og:image" content="https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- 트위터 카드(카카오가 이걸 참조하는 경우도 있어 옵션으로 추가) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="💍 재곤 & 예림 결혼합니다">
+  <meta name="twitter:description" content="📅 예식일: 2026년 2월 22일(일) 오후 4시 30분 · 📍 드레스가든 4층 블리스돔홀">
+  <meta name="twitter:image" content="https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg">
 
   <!-- 폰트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1151,12 +1159,6 @@
 </div>
 
 <script>
-  /* 여기 아이디/주소 한 번만 수정해서 쓰면 됨 */
-  const INVITE_USERNAME = "jaegonyrlim"; // 실제로 변경한 깃허브 아이디로 맞춰서 수정
-  const INVITE_URL = "https://" + INVITE_USERNAME + ".github.io/wedding-invite/";
-  const SHARE_URL = INVITE_URL + "?v=1";
-  const SHARE_IMAGE = INVITE_URL + "images/hero-main.jpg?v=1";
-
   (function initKakaoSDK() {
     if (typeof Kakao !== "undefined" && !Kakao.isInitialized()) {
       Kakao.init("6fa997e63ec0359541d10b0328f9b29e");
@@ -1221,6 +1223,7 @@
 
   function initMap() {
     if (!window.kakao || !kakao.maps || !kakao.maps.load) {
+      console.log("Kakao map not ready, retrying...");
       setTimeout(initMap, 300);
       return;
     }
@@ -1260,6 +1263,8 @@
         content: iwContent
       });
       infowindow.open(map, marker);
+
+      console.log("Kakao map loaded with Dress Garden coords!");
     });
   }
 
@@ -1370,10 +1375,12 @@
   }
 
   function shareInvite() {
-    const title = "💍 재곤 · 예림 결혼합니다";
+    const url = window.location.href.split("#")[0];
+
+    const title = "💍 재곤 & 예림 결혼합니다";
     const description =
-      "👰‍♀️🤵‍♂️ 김재곤 · 하예림의 결혼식에 초대합니다.\n" +
-      "📅 예식일 : 2026년 2월 22일 일요일 오후 4시 30분\n" +
+      "👰‍♀️🤵‍♂️ 소중한 분들을 초대합니다.\n" +
+      "📅 예식일: 2026년 2월 22일(일) 오후 4시 30분\n" +
       "📍 드레스가든 4층 블리스돔홀";
 
     if (typeof Kakao !== "undefined" && Kakao.isInitialized()) {
@@ -1382,18 +1389,18 @@
         content: {
           title: title,
           description: description,
-          imageUrl: SHARE_IMAGE,
+          imageUrl: "https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg",
           link: {
-            mobileWebUrl: SHARE_URL,
-            webUrl: SHARE_URL
+            mobileWebUrl: url,
+            webUrl: url
           }
         },
         buttons: [
           {
             title: "청첩장 열기",
             link: {
-              mobileWebUrl: SHARE_URL,
-              webUrl: SHARE_URL
+              mobileWebUrl: url,
+              webUrl: url
             }
           }
         ]
@@ -1404,7 +1411,8 @@
   }
 
   function copyInviteUrl() {
-    copyText(SHARE_URL);
+    const url = window.location.href.split("#")[0];
+    copyText(url);
   }
 </script>
 
