@@ -201,7 +201,7 @@
       background: #000000;
       color: #ffffff;
       padding-top: 100px;
-      padding-bottom: 80px;
+      padding-bottom: 60px; /* ↓ 여백 줄임 */
       text-align: center;
     }
 
@@ -213,12 +213,12 @@
       height: 50px;
       margin: 0 auto;
       border-radius: 50%;
-      border: 2px solid var(--accent-soft);
+      border: 1.5px solid var(--accent-soft); /* 선 두께 조정 */
       background: transparent;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.30em;
+      font-weight: 600;              /* 텍스트 두께 조정 */
+      letter-spacing: 0.28em;        /* 살짝 줄여 두께감 맞춤 */
       text-transform: uppercase;
       color: var(--accent-soft);
     }
@@ -237,7 +237,7 @@
     .postcard-section {
       background: #000000;
       color: #ffffff;
-      padding-top: 100px;
+      padding-top: 40px;   /* ↓ 위 여백 확 줄임 */
       padding-bottom: 50px;
       text-align: center;
     }
@@ -285,7 +285,7 @@
       color: #ffffff;
     }
 
-    /* ===== 5. 메인 사진 1 (오렌지 위 메인) ===== */
+    /* ===== 5. 메인 사진 1 ===== */
     .main-photo {
       background: #000000;
       padding: 56px 0 0;
@@ -812,7 +812,6 @@
   <div class="hero-wrap">
     <section class="hero">
       <div class="hero-bg">
-        <!-- 여기 경로 수정 -->
         <img src="images/hero-main.jpg" alt="메인 배경">
       </div>
 
@@ -859,9 +858,8 @@
     </div>
   </section>
 
-  <!-- 5. 메인 사진 1 (오렌지 위 메인) -->
+  <!-- 5. 메인 사진 1 -->
   <section class="main-photo">
-    <!-- 여기 hero-main2 적용 + images 폴더 -->
     <img src="images/hero-main2.jpg" alt="메인 첫 번째 사진">
   </section>
 
