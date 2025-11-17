@@ -200,8 +200,8 @@
     .save-section {
       background: #000000;
       color: #ffffff;
-      padding-top: 100px;   /* 윗 여백 */
-      padding-bottom: 80px; /* 아래 여백 조금 줄여서 전체 간격 타이트하게 */
+      padding-top: 100px;
+      padding-bottom: 80px;
       text-align: center;
     }
 
@@ -213,11 +213,11 @@
       height: 50px;
       margin: 0 auto;
       border-radius: 50%;
-      border: 2px solid var(--accent-soft); /* 선 더 두껍게 */
+      border: 2px solid var(--accent-soft);
       background: transparent;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 11px;
-      font-weight: 700; /* 텍스트 두께 업 */
+      font-weight: 700;
       letter-spacing: 0.30em;
       text-transform: uppercase;
       color: var(--accent-soft);
@@ -237,18 +237,19 @@
     .postcard-section {
       background: #000000;
       color: #ffffff;
-      padding-top: 100px;   /* SAVE THE DATE 윗 여백과 동일하게 맞춤 */
+      padding-top: 100px;
       padding-bottom: 86px;
       text-align: center;
     }
 
     .postcard-image {
-      width: 100%;
+      width: 70%;
+      margin: 0 auto;
       border-radius: 0;
     }
 
     .postcard-caption {
-      margin-top: 10px; /* 엽서와 문구를 더 붙임 */
+      margin-top: 10px;
       font-size: 13px;
       line-height: 1.8;
       color: #d9d9d9;
@@ -284,7 +285,7 @@
       color: #ffffff;
     }
 
-    /* ===== 5. 메인 사진 1 (Groom & Bride 밑 사진) ===== */
+    /* ===== 5. 메인 사진 1 ===== */
     .main-photo {
       background: #000000;
       padding: 56px 0 0;
@@ -357,7 +358,7 @@
       border-radius: 0;
     }
 
-    /* ===== 8. 메인 사진 2 + 손글씨 (메인3번) ===== */
+    /* ===== 8. 메인 사진 2 + 손글씨 ===== */
     .letter-section {
       background: #ffffff;
       color: #000000;
@@ -891,7 +892,7 @@
     </div>
   </section>
 
-  <!-- 8. 메인 사진 2 + 우리 손글씨 자리 (메인3번) -->
+  <!-- 8. 메인 사진 2 + 우리 손글씨 자리 -->
   <section class="letter-section">
     <div class="letter-photo-wrap">
       <img class="main" src="images/grid-3.jpg" alt="메인 두 번째 사진">
@@ -1140,14 +1141,12 @@
 </div>
 
 <script>
-  /* ===== Kakao 초기화 (공유용) ===== */
   (function initKakaoSDK() {
     if (typeof Kakao !== "undefined" && !Kakao.isInitialized()) {
       Kakao.init("6fa997e63ec0359541d10b0328f9b29e");
     }
   })();
 
-  /* ===== BGM 토글 ===== */
   let isMusicPlaying = false;
 
   function updateMusicButton() {
@@ -1179,11 +1178,9 @@
     }
   }
 
-  /* ===== 라이트박스/갤러리 전역 ===== */
   let galleryImages = [];
   let currentIndex = 0;
 
-  /* ===== 방명록 로딩 (localStorage) ===== */
   function loadRSVP() {
     const list = document.getElementById("rsvp-list");
     if (!list) return;
@@ -1206,7 +1203,6 @@
     } catch (e) {}
   }
 
-  /* ===== Kakao Map 초기화 (autoload=false + load 콜백) ===== */
   function initMap() {
     if (!window.kakao || !kakao.maps || !kakao.maps.load) {
       console.log("Kakao map not ready, retrying...");
@@ -1277,7 +1273,6 @@
     initMap();
   });
 
-  /* ===== 라이트박스 + 슬라이드 ===== */
   function openLightbox(index) {
     const lightbox = document.getElementById("lightbox");
     const img = document.getElementById("lightbox-img");
@@ -1300,7 +1295,6 @@
     img.src = galleryImages[currentIndex].src;
   }
 
-  /* ===== 텍스트 복사 ===== */
   function copyText(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(() => {
@@ -1317,7 +1311,6 @@
     }
   }
 
-  /* ===== 방명록 기록 (localStorage 저장 포함) ===== */
   function submitRSVP() {
     const name = document.getElementById("rsvp-name").value.trim();
     const side = document.getElementById("rsvp-side").value;
@@ -1363,7 +1356,6 @@
     alert("방명록에 기록이 남겨졌습니다.");
   }
 
-  /* ===== 공유 기능 (카카오톡 우선) ===== */
   function shareInvite() {
     const url = window.location.href;
     const title = "재곤 & 예림 결혼식 초대장";
