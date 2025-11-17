@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>재곤 & 예림 결혼식 초대장</title>
 
-  <!-- 기본 설명 (브라우저 + 검색엔진용) -->
-  <meta name="description" content="💍 재곤 & 예림의 결혼식 초대장입니다. 2026년 2월 22일 일요일 오후 4시 30분, 드레스가든 4층 블리스돔홀에서 뵙겠습니다.">
-
-  <!-- 카카오톡 등 미리보기용 Open Graph 메타태그 -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="💍 재곤 & 예림 결혼합니다">
-  <meta property="og:description" content="📅 예식일: 2026년 2월 22일(일) 오후 4시 30분 · 📍 드레스가든 4층 블리스돔홀">
-  <meta property="og:url" content="https://jaegonyelim.github.io/wedding-invite/">
-  <meta property="og:image" content="https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <!-- 트위터 카드(카카오가 이걸 참조하는 경우도 있어 옵션으로 추가) -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="💍 재곤 & 예림 결혼합니다">
-  <meta name="twitter:description" content="📅 예식일: 2026년 2월 22일(일) 오후 4시 30분 · 📍 드레스가든 4층 블리스돔홀">
-  <meta name="twitter:image" content="https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg">
-
   <!-- 폰트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -675,7 +657,7 @@
       text-align: center;
     }
 
-    /* ===== 13. 방명록 ===== */
+    /* ===== 13. 참석 여부 전달하기 ===== */
     .rsvp-section {
       background: var(--accent-light-bg);
       color: #000000;
@@ -708,8 +690,7 @@
     }
 
     .rsvp-input,
-    .rsvp-select,
-    .rsvp-textarea {
+    .rsvp-select {
       width: 100%;
       padding: 8px 10px;
       background: #ffffff;
@@ -717,7 +698,6 @@
       border: 1px solid rgba(0,0,0,0.18);
       color: #000000;
       font-size: 13px;
-      resize: vertical;
       min-height: 34px;
     }
 
@@ -732,26 +712,6 @@
       font-size: 14px;
       cursor: pointer;
       font-weight: 600;
-    }
-
-    .rsvp-list {
-      margin-top: 20px;
-      font-size: 12px;
-    }
-
-    .rsvp-item {
-      padding: 8px 0;
-      border-top: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .rsvp-item-top {
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    .rsvp-item-msg {
-      white-space: pre-line;
-      color: #444444;
     }
 
     /* ===== 14. 공유 섹션 ===== */
@@ -1102,10 +1062,10 @@
     </div>
   </section>
 
-  <!-- 13. 방명록 -->
+  <!-- 13. 참석 여부 전달하기 -->
   <section class="rsvp-section">
     <div class="center-pill-wrap">
-      <span class="pill-title">방명록</span>
+      <span class="pill-title">참석 여부 전달하기</span>
     </div>
 
     <div class="rsvp-card" style="margin-top: 20px;">
@@ -1128,17 +1088,22 @@
       </div>
 
       <div class="rsvp-field">
-        <label class="rsvp-label" for="rsvp-message">
-          방명록 메시지
-        </label>
-        <textarea id="rsvp-message" class="rsvp-textarea" rows="3" placeholder="축하 메시지를 적어주세요."></textarea>
+        <div class="rsvp-label">
+          <span class="rsvp-label-emoji">👨‍👩‍👧‍👦</span>
+          <span>인원 수</span>
+        </div>
+        <select id="rsvp-count" class="rsvp-select">
+          <option value="">인원 수를 선택해주세요</option>
+          <option value="1">본인만 참석</option>
+          <option value="2">본인 + 1명</option>
+          <option value="3">본인 + 2명</option>
+          <option value="4">본인 + 3명 이상</option>
+        </select>
       </div>
 
       <button type="button" class="rsvp-btn" onclick="submitRSVP()">
-        메시지 남기기
+        참석 의사 전달하기
       </button>
-
-      <div id="rsvp-list" class="rsvp-list"></div>
     </div>
   </section>
 
@@ -1198,28 +1163,6 @@
 
   let galleryImages = [];
   let currentIndex = 0;
-
-  function loadRSVP() {
-    const list = document.getElementById("rsvp-list");
-    if (!list) return;
-    const data = localStorage.getItem("weddingGuestbook");
-    if (!data) return;
-
-    try {
-      const arr = JSON.parse(data);
-      arr.forEach(entry => {
-        const item = document.createElement("div");
-        item.className = "rsvp-item";
-        const sideLabel = entry.side === "groom" ? "신랑측" : "신부측";
-        item.innerHTML =
-          '<div class="rsvp-item-top">' +
-          entry.name + " · " + sideLabel +
-          '</div>' +
-          (entry.message ? '<div class="rsvp-item-msg">' + entry.message + "</div>" : "");
-        list.appendChild(item);
-      });
-    } catch (e) {}
-  }
 
   function initMap() {
     if (!window.kakao || !kakao.maps || !kakao.maps.load) {
@@ -1287,7 +1230,6 @@
       img.addEventListener("click", () => openLightbox(index));
     });
 
-    loadRSVP();
     initMap();
   });
 
@@ -1329,59 +1271,74 @@
     }
   }
 
+  // 참석 여부 전달용 함수
   function submitRSVP() {
-    const name = document.getElementById("rsvp-name").value.trim();
-    const side = document.getElementById("rsvp-side").value;
-    const message = document.getElementById("rsvp-message").value.trim();
-    const list = document.getElementById("rsvp-list");
+    const nameEl = document.getElementById("rsvp-name");
+    const sideEl = document.getElementById("rsvp-side");
+    const countEl = document.getElementById("rsvp-count");
+
+    if (!nameEl || !sideEl || !countEl) return;
+
+    const name = nameEl.value.trim();
+    const side = sideEl.value;
+    const count = countEl.value;
 
     if (!name) {
-      alert("성함을 입력해주세요.");
+      alert("참석자 성함을 입력해주세요.");
+      return;
+    }
+    if (!count) {
+      alert("인원 수를 선택해주세요.");
       return;
     }
 
     const sideLabel = side === "groom" ? "신랑측" : "신부측";
 
-    const item = document.createElement("div");
-    item.className = "rsvp-item";
-    item.innerHTML =
-      '<div class="rsvp-item-top">' +
-      name + " · " + sideLabel +
-      '</div>' +
-      (message ? '<div class="rsvp-item-msg">' + message + "</div>" : "");
-
-    if (list.firstChild) {
-      list.insertBefore(item, list.firstChild);
-    } else {
-      list.appendChild(item);
+    let countLabel = "";
+    switch (count) {
+      case "1":
+        countLabel = "본인만 참석";
+        break;
+      case "2":
+        countLabel = "본인 + 1명";
+        break;
+      case "3":
+        countLabel = "본인 + 2명";
+        break;
+      case "4":
+        countLabel = "본인 + 3명 이상";
+        break;
+      default:
+        countLabel = count;
     }
 
-    let arr = [];
-    const stored = localStorage.getItem("weddingGuestbook");
-    if (stored) {
-      try {
-        arr = JSON.parse(stored) || [];
-      } catch (e) {
-        arr = [];
-      }
-    }
-    arr.unshift({ name, side, message });
-    localStorage.setItem("weddingGuestbook", JSON.stringify(arr));
+    const subject = "재곤 & 예림 결혼식 참석 여부 안내";
+    const bodyLines = [
+      "아래와 같이 참석 의사를 전달드립니다.",
+      "",
+      "참석자 성함: " + name,
+      "구분: " + sideLabel,
+      "인원 수: " + countLabel,
+      "",
+      "※ 이 메일은 모바일 청첩장에서 자동 작성된 참석 안내 메일입니다."
+    ];
 
-    document.getElementById("rsvp-name").value = "";
-    document.getElementById("rsvp-message").value = "";
+    // 🔽 여기 이메일 주소를 네 실제 메일 주소로 바꿔서 사용하면 됨
+    const mailto =
+      "mvpgh123@gmail.com" +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(bodyLines.join("\n"));
 
-    alert("방명록에 기록이 남겨졌습니다.");
+    window.location.href = mailto;
   }
 
   function shareInvite() {
-    const url = window.location.href.split("#")[0];
+    const url = window.location.href;
+    const title = "재곤 & 예림 결혼식 초대장";
+    const description = "2026년 2월 22일, 드레스가든 4층 블리스돔홀에서 뵙겠습니다.";
 
-    const title = "💍 재곤 & 예림 결혼합니다";
-    const description =
-      "👰‍♀️🤵‍♂️ 소중한 분들을 초대합니다.\n" +
-      "📅 예식일: 2026년 2월 22일(일) 오후 4시 30분\n" +
-      "📍 드레스가든 4층 블리스돔홀";
+    const origin = window.location.origin;
+    const imageUrl = origin + "/wedding-invite/images/hero-main.jpg";
 
     if (typeof Kakao !== "undefined" && Kakao.isInitialized()) {
       Kakao.Link.sendDefault({
@@ -1389,7 +1346,7 @@
         content: {
           title: title,
           description: description,
-          imageUrl: "https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg",
+          imageUrl: imageUrl,
           link: {
             mobileWebUrl: url,
             webUrl: url
@@ -1411,7 +1368,7 @@
   }
 
   function copyInviteUrl() {
-    const url = window.location.href.split("#")[0];
+    const url = window.location.href;
     copyText(url);
   }
 </script>
