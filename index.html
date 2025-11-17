@@ -437,7 +437,14 @@
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0;
+      gap: 2px;
+      max-width: 520px;
+      margin: 16px auto 0;
+    }
+
+    .photo-grid-item {
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
     }
 
     .photo-grid-item img {
@@ -905,18 +912,22 @@
     </div>
 
     <div class="photo-grid">
-      <div class="photo-grid-item"><img src="images/grid-1.jpg" alt="사진 1" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-2.jpg" alt="사진 2" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-3.jpg" alt="사진 3" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-4.jpg" alt="사진 4" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-5.jpg" alt="사진 5" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-6.jpg" alt="사진 6" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-7.jpg" alt="사진 7" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-8.jpg" alt="사진 8" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-9.jpg" alt="사진 9" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-10.jpg" alt="사진 10" class="gallery-click" onerror="this.style.display='none';"></div>
-      <div class="photo-grid-item"><img src="images/grid-11.jpg" alt="사진 11" class="gallery-click" onerror="this.style.display='none';"></div>
-      <div class="photo-grid-item"><img src="images/grid-12.jpg" alt="사진 12" class="gallery-click" onerror="this.style.display='none';"></div>
+      <!-- 총 15장, grid-1~9를 돌려 쓰는 구성 -->
+      <div class="photo-grid-item"><img src="images/grid-1.jpg"  alt="사진 1"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-2.jpg"  alt="사진 2"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-3.jpg"  alt="사진 3"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-4.jpg"  alt="사진 4"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-5.jpg"  alt="사진 5"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-6.jpg"  alt="사진 6"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-7.jpg"  alt="사진 7"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-8.jpg"  alt="사진 8"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-9.jpg"  alt="사진 9"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-1.jpg"  alt="사진 10" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-2.jpg"  alt="사진 11" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-3.jpg"  alt="사진 12" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-4.jpg"  alt="사진 13" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-5.jpg"  alt="사진 14" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-6.jpg"  alt="사진 15" class="gallery-click"></div>
     </div>
   </section>
 
@@ -991,7 +1002,8 @@
       서울특별시 강남구 영동대로 707<br>
       드레스가든 4층 블리스돔홀
     </div>
-    <button type="button" class="btn-copy btn-copy-map" onclick="copyText('서울특별시 강남구 영동대로 707 드레스가든 4층 블리스돔홀')">
+    <!-- 주소 복사: 도로명까지만 복사 -->
+    <button type="button" class="btn-copy btn-copy-map" onclick="copyText('서울특별시 강남구 영동대로 707')">
       주소 복사하기
     </button>
 
@@ -1035,7 +1047,8 @@
           <div>신한은행 000-000-000000</div>
           <div class="account-name">예금주 김재곤</div>
         </div>
-        <button type="button" class="btn-copy" onclick="copyText('신한은행 000-000-000000 / 예금주 김재곤')">복사</button>
+        <!-- 계좌번호만 복사 -->
+        <button type="button" class="btn-copy" onclick="copyText('신한은행 000-000-000000')">복사</button>
       </div>
 
       <div class="account-item">
@@ -1044,7 +1057,8 @@
           <div>국민은행 000000-00-000000</div>
           <div class="account-name">예금주 김병길</div>
         </div>
-        <button type="button" class="btn-copy" onclick="copyText('국민은행 000000-00-000000 / 예금주 김병길')">복사</button>
+        <!-- 계좌번호만 복사 -->
+        <button type="button" class="btn-copy" onclick="copyText('국민은행 000000-00-000000')">복사</button>
       </div>
     </div>
 
@@ -1057,7 +1071,8 @@
           <div>카카오뱅크 0000-00-000000</div>
           <div class="account-name">예금주 하예림</div>
         </div>
-        <button type="button" class="btn-copy" onclick="copyText('카카오뱅크 0000-00-000000 / 예금주 하예림')">복사</button>
+        <!-- 계좌번호만 복사 -->
+        <button type="button" class="btn-copy" onclick="copyText('카카오뱅크 0000-00-000000')">복사</button>
       </div>
 
       <div class="account-item">
@@ -1066,7 +1081,8 @@
           <div>농협 000-0000-0000-00</div>
           <div class="account-name">예금주 하재웅</div>
         </div>
-        <button type="button" class="btn-copy" onclick="copyText('농협 000-0000-0000-00 / 예금주 하재웅')">복사</button>
+        <!-- 계좌번호만 복사 -->
+        <button type="button" class="btn-copy" onclick="copyText('농협 000-0000-0000-00')">복사</button>
       </div>
     </div>
 
