@@ -200,8 +200,8 @@
     .save-section {
       background: #000000;
       color: #ffffff;
-      padding-top: 176px;
-      padding-bottom: 120px; /* 아래 여백 1/3 정도 축소 */
+      padding-top: 120px;   /* 윗 여백 */
+      padding-bottom: 120px;/* 엽서와의 여백과 동일하게 */
       text-align: center;
     }
 
@@ -217,7 +217,7 @@
       background: transparent;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 11px;
-      font-weight: 600; /* 글씨 두께 살짝 업 */
+      font-weight: 700; /* 텍스트 두께 추가 */
       letter-spacing: 0.30em;
       text-transform: uppercase;
       color: var(--accent-soft);
@@ -237,8 +237,8 @@
     .postcard-section {
       background: #000000;
       color: #ffffff;
-      padding-top: 80px;   /* 위 여백 줄임 */
-      padding-bottom: 86px; /* 아래 여백 1/3 정도 축소 */
+      padding-top: 80px;
+      padding-bottom: 86px;
       text-align: center;
     }
 
@@ -248,7 +248,7 @@
     }
 
     .postcard-caption {
-      margin-top: 24px;
+      margin-top: 16px; /* 엽서와 문구를 조금 더 붙이기 */
       font-size: 13px;
       line-height: 1.8;
       color: #d9d9d9;
@@ -258,12 +258,10 @@
     .names-section {
       background: #000000;
       color: #ffffff;
-      padding-top: 86px;   /* 위 여백 1/3 정도 축소 */
+      padding-top: 86px;
       padding-bottom: 72px;
       text-align: center;
     }
-
-    /* 주황 Couble / Groom & Bride 텍스트는 HTML에서 제거 */
 
     .names-block {
       display: inline-flex;
@@ -296,7 +294,7 @@
 
     .main-photo img {
       width: 100%;
-      height: auto;      /* 온전하게 전체가 보이도록 */
+      height: auto;
       border-radius: 0;
     }
 
@@ -305,7 +303,7 @@
       background: var(--accent);
       color: #000000;
       padding-top: 72px;
-      padding-bottom: 40px; /* 하단 여백 1/3 정도 축소 */
+      padding-bottom: 40px;
     }
 
     .story-block {
@@ -363,7 +361,7 @@
     .letter-section {
       background: #ffffff;
       color: #000000;
-      padding: 220px 0 190px; /* 위/아래 여백 모두 1/3 정도 축소 */
+      padding: 220px 0 190px;
     }
 
     .letter-photo-wrap {
@@ -395,7 +393,7 @@
     .gallery-section {
       background: #ffffff;
       color: #000000;
-      padding: 40px 0 0; /* 위 여백 1/3 정도 축소 */
+      padding: 40px 0 0;
     }
 
     .gallery-main {
@@ -410,7 +408,7 @@
     .gallery-main-wrap img.main {
       width: 100%;
       border-radius: 0;
-      height: auto;     /* 메인3번 사진과 동일하게 비율 유지 */
+      height: auto;
       cursor: pointer;
     }
 
@@ -813,7 +811,6 @@
   <div class="hero-wrap">
     <section class="hero">
       <div class="hero-bg">
-        <!-- 메인 히어로 이미지 -->
         <img src="hero-main.jpg" alt="메인 배경">
       </div>
 
@@ -848,7 +845,6 @@
 
   <!-- 4. 커플 이름 -->
   <section class="names-section">
-    <!-- 주황색 Couple / Groom & Bride 제거 후, 이름만 표시 -->
     <div class="names-block">
       <div>
         <div class="names-label">GROOM</div>
@@ -899,7 +895,6 @@
   <section class="letter-section">
     <div class="letter-photo-wrap">
       <img class="main" src="images/grid-3.jpg" alt="메인 두 번째 사진">
-      <!-- 신랑·신부 공통 문장(신랑 손글씨 PNG) -->
       <img class="letter" src="images/groom-letter.png" alt="신랑 신부 손글씨" onerror="this.style.display='none';">
     </div>
     <div class="letter-text">
@@ -912,7 +907,6 @@
     <div class="gallery-main">
       <div class="gallery-main-wrap">
         <img src="images/grid-9.jpg" alt="갤러리 메인 사진" class="gallery-click main">
-        <!-- 신부 손글씨 PNG 오버레이 -->
         <img src="images/bride-letter.png" alt="신부 손글씨" class="gallery-letter" onerror="this.style.display='none';">
       </div>
     </div>
@@ -998,7 +992,6 @@
       <span class="pill-title">오시는 길</span>
     </div>
 
-    <!-- Kakao Map 영역 -->
     <div id="kakao-map" class="map-embed"></div>
 
     <div class="map-address">
@@ -1213,7 +1206,6 @@
 
   /* ===== Kakao Map 초기화 (autoload=false + load 콜백) ===== */
   function initMap() {
-    // Kakao Maps SDK가 아직 준비 안 됐으면 재시도
     if (!window.kakao || !kakao.maps || !kakao.maps.load) {
       console.log("Kakao map not ready, retrying...");
       setTimeout(initMap, 300);
@@ -1224,10 +1216,9 @@
       const container = document.getElementById("kakao-map");
       if (!container) return;
 
-      // 드레스가든 실제 좌표 (서울 강남구 영동대로 707 / 청담동 71-8)
       const position = new kakao.maps.LatLng(
-        37.5206971208477,  // 위도
-        127.055927962235   // 경도
+        37.5206971208477,
+        127.055927962235
       );
 
       const options = {
@@ -1237,13 +1228,11 @@
 
       const map = new kakao.maps.Map(container, options);
 
-      // 마커
       const marker = new kakao.maps.Marker({
         position: position
       });
       marker.setMap(map);
 
-      // 인포윈도우 + 카카오맵 길찾기 링크
       const iwContent =
         '<div style="padding:6px 8px;font-size:12px;line-height:1.5;">' +
           '드레스가든 블리스돔홀<br>' +
@@ -1283,8 +1272,6 @@
     });
 
     loadRSVP();
-
-    // Kakao Map 초기화 시도
     initMap();
   });
 
