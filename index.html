@@ -17,10 +17,10 @@
   <meta name="twitter:description" content="예식일 : 2026년 2월 22일 일요일 오후 4시 30분 · 드레스가든 4층 블리스돔홀">
   <meta name="twitter:image" content="https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg">
 
-  <!-- 폰트 -->
+  <!-- 폰트 (Cormorant, Great Vibes만 사용) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <!-- Kakao JavaScript SDK (카카오톡 공유용) -->
   <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -64,6 +64,17 @@
       max-width: 640px;
       margin: 0 auto;
       padding: 56px 20px;
+    }
+
+    /* 스크롤 등장 애니메이션 공통 */
+    .section-fade {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .section-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* ===== 음악 토글(고정) ===== */
@@ -162,13 +173,13 @@
       line-height: 1;
       color: var(--accent);
       margin-bottom: 26px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.04em; /* 자간 축소 */
     }
 
     .hero-date-line {
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 15px;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--accent-soft);
       font-weight: 600;
@@ -195,11 +206,10 @@
       border-radius: 50%;
       border: 1px solid var(--accent);
       background: var(--accent);
-      font-family: "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", system-ui, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", system-ui, sans-serif;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.14em;
-      text-transform: none;
       color: #000000;
     }
 
@@ -212,7 +222,7 @@
     .save-section {
       background: #000000;
       color: #ffffff;
-      padding-top: 100px;
+      padding-top: 80px; /* 100 -> 80 */
       padding-bottom: 60px;
       text-align: center;
     }
@@ -356,9 +366,12 @@
       top: 10px;
       font-size: 15px;
       color: #ffffff;
-      text-shadow: 0 0 4px rgba(0,0,0,0.5);
       white-space: pre-line;
-      font-family: "Nanum Pen Script", cursive;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", sans-serif;
+      text-shadow: 0 0 4px rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.25);
+      padding: 4px 6px;
+      border-radius: 4px;
     }
 
     .story-photo-wrap img.letter {
@@ -370,11 +383,11 @@
       border-radius: 0;
     }
 
-    /* ===== 8. 메인 사진 2 + 손글씨 ===== */
+    /* ===== 8. 메인 사진 2 + 우리 손글씨 자리 ===== */
     .letter-section {
       background: #ffffff;
       color: #000000;
-      padding: 220px 0 190px;
+      padding: 180px 0 140px; /* 220/190 -> 180/140 */
     }
 
     .letter-photo-wrap {
@@ -492,6 +505,23 @@
     .lightbox-nav.prev { left: 16px; }
     .lightbox-nav.next { right: 16px; }
 
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0,0,0,0.7);
+      color: #ffffff;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     /* ===== 10. 캘린더 ===== */
     .calendar-section {
       background: var(--accent);
@@ -505,7 +535,7 @@
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-size: 18px;
       font-weight: 600;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.12em; /* 0.2 -> 0.12 */
       text-transform: uppercase;
       margin-bottom: 22px;
     }
@@ -548,6 +578,10 @@
       font-weight: 500;
     }
 
+    .calendar-dayname:first-child {
+      color: #b00020; /* 일요일 강조 */
+    }
+
     .calendar-day {
       border-radius: 3px;
     }
@@ -584,7 +618,7 @@
       font-size: 13px;
       line-height: 1.8;
       margin-bottom: 10px;
-      text-align: right;
+      text-align: left; /* 오른쪽 정렬 -> 왼쪽 정렬 */
     }
 
     .btn-copy {
@@ -596,6 +630,7 @@
       background: var(--accent);
       color: #000000;
       cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
     .btn-copy-map {
@@ -657,6 +692,11 @@
       flex: 1;
     }
 
+    /* 계좌번호만 살짝 굵게 */
+    .account-text > div:first-child {
+      font-weight: 500;
+    }
+
     .account-name {
       margin-top: 2px;
       opacity: 0.8;
@@ -683,6 +723,14 @@
       color: #000000;
       padding-top: 40px;
       padding-bottom: 56px;
+    }
+
+    .rsvp-intro {
+      text-align: center;
+      font-size: 12px;
+      color: #444444;
+      margin-bottom: 16px;
+      line-height: 1.7;
     }
 
     .rsvp-card {
@@ -734,6 +782,8 @@
       font-size: 14px;
       cursor: pointer;
       font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
     /* ===== 14. 공유 섹션 ===== */
@@ -762,6 +812,7 @@
       border: none;
       font-size: 13px;
       cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
     .share-btn.kakao {
@@ -772,6 +823,14 @@
     .share-btn.copy {
       background: #000000;
       color: #ffffff;
+    }
+
+    /* 버튼 active 인터랙션 */
+    .rsvp-btn:active,
+    .share-btn:active,
+    .btn-copy:active {
+      transform: scale(0.97);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     }
 
     @media (min-width: 768px) {
@@ -818,14 +877,16 @@
       <div class="hero-inner">
         <div class="hero-top">YOU'RE INVITED TO</div>
         <div class="hero-script">Our Wedding</div>
-        <div class="hero-date-line">2026.02.22 SUN 04:30PM</div>
+        <div class="hero-date-line">
+          2026.02.22 SUN<br>04:30 PM
+        </div>
         <div class="hero-place-line">DRESS GARDEN 4F BLISS DOME HALL</div>
       </div>
     </section>
   </div>
 
   <!-- 2. SAVE THE DATE + 한글 안내 -->
-  <section class="save-section">
+  <section class="save-section section-fade">
     <div class="save-pill">SAVE THE DATE</div>
     <div class="save-text">
       <span>2026.02.22 일요일 오후 4시 30분</span>
@@ -835,7 +896,7 @@
   </section>
 
   <!-- 3. 엽서 이미지 + 문구 -->
-  <section class="postcard-section">
+  <section class="postcard-section section-fade">
     <img class="postcard-image" src="images/postcard.png" alt="엽서 이미지">
     <div class="postcard-caption">
       소중한 분들을 모시고<br>
@@ -845,7 +906,7 @@
   </section>
 
   <!-- 4. 커플 이름 -->
-  <section class="names-section">
+  <section class="names-section section-fade">
     <div class="names-block">
       <div>
         <div class="names-label">GROOM</div>
@@ -859,20 +920,19 @@
   </section>
 
   <!-- 5. 메인 사진 1 -->
-  <section class="main-photo">
+  <section class="main-photo section-fade">
     <img src="images/hero-main2.jpg" alt="메인 첫 번째 사진">
   </section>
 
   <!-- 6~7. Groom / Bride Childhood (오렌지 배경) -->
-  <section class="story-section">
+  <section class="story-section section-fade">
     <!-- Groom -->
     <div class="story-block">
       <div class="story-heading">Groom's Childhood</div>
       <div class="story-inner">
         <div class="story-photo-wrap">
           <img class="main" src="images/groom-childhood.jpg" alt="신랑 어린 시절">
-          <div class="story-label-top">김병길 &amp; 김향숙
-의 아들 재곤</div>
+          <div class="story-label-top">김병길 &amp; 김향숙의<br>아들 재곤</div>
           <img class="letter" src="images/parents-groom-letter.png" alt="신랑 부모님 손글씨" onerror="this.style.display='none';">
         </div>
       </div>
@@ -884,8 +944,7 @@
       <div class="story-inner">
         <div class="story-photo-wrap">
           <img class="main" src="images/bride-childhood.jpg" alt="신부 어린 시절">
-          <div class="story-label-top">하재웅 &amp; 김지영
-의 딸 예림</div>
+          <div class="story-label-top">하재웅 &amp; 김지영의<br>딸 예림</div>
           <img class="letter" src="images/parents-bride-letter.png" alt="신부 부모님 손글씨" onerror="this.style.display='none';">
         </div>
       </div>
@@ -893,7 +952,7 @@
   </section>
 
   <!-- 8. 메인 사진 2 + 우리 손글씨 자리 -->
-  <section class="letter-section">
+  <section class="letter-section section-fade">
     <div class="letter-photo-wrap">
       <img class="main" src="images/grid-3.jpg" alt="메인 두 번째 사진">
       <img class="letter" src="images/groom-letter.png" alt="신랑 신부 손글씨" onerror="this.style.display='none';">
@@ -904,7 +963,7 @@
   </section>
 
   <!-- 9. 갤러리 -->
-  <section class="gallery-section">
+  <section class="gallery-section section-fade">
     <div class="gallery-main">
       <div class="gallery-main-wrap">
         <img src="images/grid-9.jpg" alt="갤러리 메인 사진" class="gallery-click main">
@@ -934,13 +993,14 @@
 
   <!-- 라이트박스 -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button type="button" class="lightbox-close" onclick="hideLightbox(event)">×</button>
     <button type="button" class="lightbox-nav prev" onclick="event.stopPropagation(); changeLightbox(-1);">‹</button>
     <img id="lightbox-img" src="" alt="확대 이미지">
     <button type="button" class="lightbox-nav next" onclick="event.stopPropagation(); changeLightbox(1);">›</button>
   </div>
 
   <!-- 10. 캘린더 -->
-  <section class="calendar-section">
+  <section class="calendar-section section-fade">
     <div class="calendar-highlight-text">2026.02.22 SUN · 04:30PM</div>
 
     <div class="calendar-header">
@@ -992,7 +1052,7 @@
   </section>
 
   <!-- 11. 오시는 길 -->
-  <section class="map-section">
+  <section class="map-section section-fade">
     <div class="center-pill-wrap">
       <span class="pill-title">오시는 길</span>
     </div>
@@ -1006,6 +1066,10 @@
     <!-- 주소 복사: 도로명까지만 복사 -->
     <button type="button" class="btn-copy btn-copy-map" onclick="copyText('서울특별시 강남구 영동대로 707')">
       주소 복사하기
+    </button>
+    <!-- 카카오맵 길찾기 버튼 -->
+    <button type="button" class="btn-copy btn-copy-map" style="margin-top:6px;" onclick="openKakaoMap()">
+      카카오맵으로 길찾기
     </button>
 
     <hr class="map-divider">
@@ -1034,7 +1098,7 @@
   </section>
 
   <!-- 12. 마음 전하실 곳 -->
-  <section class="account-section">
+  <section class="account-section section-fade">
     <div class="center-pill-wrap">
       <span class="pill-title">마음 전하실 곳</span>
     </div>
@@ -1094,10 +1158,14 @@
   </section>
 
   <!-- 13. 참석 여부 (RSVP) -->
-  <section class="rsvp-section">
+  <section class="rsvp-section section-fade">
     <div class="center-pill-wrap">
       <span class="pill-title">참석 여부</span>
     </div>
+
+    <p class="rsvp-intro">
+      예식 준비를 위해 참석 여부를 알려주시면 큰 도움이 됩니다.
+    </p>
 
     <div class="rsvp-card" style="margin-top: 20px;">
       <div class="rsvp-field">
@@ -1141,8 +1209,8 @@
   </section>
 
   <!-- 14. 공유 섹션 -->
-  <section class="share-section">
-    <div>소중한 분들께 초대장을 공유해 주세요.</div>
+  <section class="share-section section-fade">
+    <div>함께하고 싶은 분들께 초대장을 편하게 공유해 주세요.</div>
 
     <div class="share-buttons">
       <button type="button" class="share-btn kakao" onclick="shareInvite()">
@@ -1243,6 +1311,11 @@
     });
   }
 
+  function openKakaoMap() {
+    const url = "https://map.kakao.com/link/to/드레스가든,37.5206971208477,127.055927962235";
+    window.open(url, "_blank");
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     const audio = document.getElementById("bgm");
     if (audio) {
@@ -1263,6 +1336,23 @@
     });
 
     initMap();
+
+    // 섹션 페이드 인 인터섹션 옵저버
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document.querySelectorAll(".section-fade").forEach(sec => {
+      observer.observe(sec);
+    });
   });
 
   function openLightbox(index) {
@@ -1278,6 +1368,11 @@
     if (event.target.id === "lightbox") {
       document.getElementById("lightbox").classList.remove("visible");
     }
+  }
+
+  function hideLightbox(event) {
+    event.stopPropagation();
+    document.getElementById("lightbox").classList.remove("visible");
   }
 
   function changeLightbox(step) {
@@ -1353,7 +1448,7 @@
   function shareInvite() {
     const url = window.location.href;
     const title = "김재곤 🤍 하예림 결혼합니다";
-    const description = "예식일 : 2026년 2월 22일 일요일 오후 4시 30분 ⏰\n드레스가든 4층 블리스돔홀에서 뵙겠습니다.";
+    const description = "예식일 : 2026년 2월 22일 일요일 오후 4시 30분\n드레스가든 4층 블리스돔홀에서 뵙겠습니다.";
 
     if (typeof Kakao !== "undefined" && Kakao.isInitialized()) {
       Kakao.Link.sendDefault({
