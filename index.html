@@ -367,7 +367,7 @@
       font-size: 15px;
       color: #ffffff;
       white-space: pre-line;
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", system-ui, sans-serif;
       text-shadow: 0 0 4px rgba(0,0,0,0.6);
       background: rgba(0,0,0,0.25);
       padding: 4px 6px;
@@ -1238,6 +1238,14 @@
   let galleryImages = [];
   let currentIndex = 0;
 
+  // 라이트박스 스와이프용 변수
+  let swipeStartX = 0;
+  let swipeStartY = 0;
+  let swipeCurrentX = 0;
+  let swipeCurrentY = 0;
+  const SWIPE_THRESHOLD = 40;          // 좌우 스와이프 최소 이동 거리(px)
+  const SWIPE_VERTICAL_THRESHOLD = 80; // 아래로 스와이프 최소 이동 거리(px)
+
   function updateMusicButton() {
     const btn = document.getElementById("music-toggle");
     if (!btn) return;
@@ -1353,6 +1361,14 @@
     document.querySelectorAll(".section-fade").forEach(sec => {
       observer.observe(sec);
     });
+
+    // 라이트박스 스와이프 이벤트 등록
+    const lightboxEl = document.getElementById("lightbox");
+    if (lightboxEl) {
+      lightboxEl.addEventListener("touchstart", onLightboxTouchStart, { passive: true });
+      lightboxEl.addEventListener("touchmove", onLightboxTouchMove, { passive: true });
+      lightboxEl.addEventListener("touchend", onLightboxTouchEnd, { passive: true });
+    }
   });
 
   function openLightbox(index) {
@@ -1380,6 +1396,55 @@
     currentIndex = (currentIndex + step + galleryImages.length) % galleryImages.length;
     const img = document.getElementById("lightbox-img");
     img.src = galleryImages[currentIndex].src;
+  }
+
+  // 라이트박스 터치 핸들러들
+  function onLightboxTouchStart(e) {
+    if (!e.touches || e.touches.length === 0) return;
+    const touch = e.touches[0];
+    swipeStartX = touch.clientX;
+    swipeStartY = touch.clientY;
+    swipeCurrentX = swipeStartX;
+    swipeCurrentY = swipeStartY;
+  }
+
+  function onLightboxTouchMove(e) {
+    if (!e.touches || e.touches.length === 0) return;
+    const touch = e.touches[0];
+    swipeCurrentX = touch.clientX;
+    swipeCurrentY = touch.clientY;
+  }
+
+  function onLightboxTouchEnd() {
+    const dx = swipeCurrentX - swipeStartX;
+    const dy = swipeCurrentY - swipeStartY;
+
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+
+    // 좌우 스와이프 우선 판정
+    if (absDx > absDy && absDx > SWIPE_THRESHOLD) {
+      if (dx < 0) {
+        // 왼쪽으로 밀기 → 다음 사진
+        changeLightbox(1);
+      } else {
+        // 오른쪽으로 밀기 → 이전 사진
+        changeLightbox(-1);
+      }
+    } else if (absDy > absDx && absDy > SWIPE_VERTICAL_THRESHOLD) {
+      // 아래로 스와이프 → 라이트박스 닫기
+      if (dy > 0) {
+        const lightbox = document.getElementById("lightbox");
+        if (lightbox) {
+          lightbox.classList.remove("visible");
+        }
+      }
+    }
+
+    swipeStartX = 0;
+    swipeStartY = 0;
+    swipeCurrentX = 0;
+    swipeCurrentY = 0;
   }
 
   function copyText(text) {
