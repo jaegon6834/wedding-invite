@@ -427,10 +427,15 @@
 
     /* ===== 9. 갤러리 ===== */
     .gallery-section {
-      background: #ffffff;
-      color: #000000;
-      padding: 40px 20px 0;
-    }
+  background: #ffffff;
+  color: #000000;
+  /* 좌우 여백 제거: 상단만 40px, 좌우 0, 아래 0 */
+  padding: 40px 0 0;
+  /* 공통 section에 있는 중앙 정렬 / 최대폭 제한 덮어쓰기 */
+  max-width: 100%;
+  margin: 0;
+}
+
 
     .gallery-main {
       margin: 0;
