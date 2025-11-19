@@ -43,11 +43,27 @@
       padding: 0;
     }
 
+    /* 스크롤을 body 하나로만 통일 */
+    html,
     body {
       margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
       background: var(--bg);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", sans-serif;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* 라이트박스 열릴 때 배경 스크롤 잠금 */
+    body.no-scroll {
+      overflow: hidden;
     }
 
     img {
@@ -57,6 +73,7 @@
 
     .page {
       width: 100%;
+      min-height: 100%;
       overflow-x: hidden;
     }
 
@@ -477,6 +494,8 @@
       justify-content: center;
       align-items: center;
       z-index: 1200;
+      /* 라이트박스 스와이프 시 페이지 스크롤 방지 */
+      touch-action: none;
     }
     .lightbox.visible {
       display: flex;
@@ -968,7 +987,7 @@
   <!-- 8. 메인 사진 2 + 우리 손글씨 자리 -->
   <section class="letter-section section-fade">
     <div class="letter-photo-wrap">
-      <!-- 여기: 8번 사진 → hero-main3.jpg -->
+      <!-- 8번 사진 → hero-main3.jpg -->
       <img class="main" src="images/hero-main3.jpg" alt="메인 두 번째 사진">
       <img class="letter" src="images/groom-letter.png" alt="신랑 신부 손글씨" onerror="this.style.display='none';">
     </div>
@@ -981,7 +1000,7 @@
   <section class="gallery-section section-fade">
     <div class="gallery-main">
       <div class="gallery-main-wrap">
-        <!-- 여기: 10번 사진 → hero-main4.jpg -->
+        <!-- 10번 사진 → hero-main4.jpg -->
         <img src="images/hero-main4.jpg" alt="갤러리 메인 사진" class="gallery-click main">
         <img src="images/bride-letter.png" alt="신부 손글씨" class="gallery-letter" onerror="this.style.display='none';">
       </div>
@@ -1375,6 +1394,8 @@
     setSlideWidth();
     updateTrackPosition(false);
     lightbox.classList.add("visible");
+    // 라이트박스 열릴 때 배경 스크롤 잠금
+    document.body.classList.add("no-scroll");
   }
 
   function closeLightbox(event) {
@@ -1382,6 +1403,7 @@
     if (event.target.id === "lightbox") {
       const lightbox = document.getElementById("lightbox");
       if (lightbox) lightbox.classList.remove("visible");
+      document.body.classList.remove("no-scroll");
     }
   }
 
@@ -1389,6 +1411,7 @@
     event.stopPropagation();
     const lightbox = document.getElementById("lightbox");
     if (lightbox) lightbox.classList.remove("visible");
+    document.body.classList.remove("no-scroll");
   }
 
   function changeLightbox(step) {
@@ -1447,6 +1470,7 @@
     // 아래로 스와이프 → 닫기
     if (absDy > absDx && absDy > SWIPE_VERTICAL_THRESHOLD && dy > 0) {
       if (lightbox) lightbox.classList.remove("visible");
+      document.body.classList.remove("no-scroll");
       return;
     }
 
