@@ -134,8 +134,7 @@
       width: 100%;
       height: auto;
       object-fit: contain;
-      /* 어둡게 만들던 오버레이 제거 */
-      filter: none;
+      filter: brightness(0.58); /* 살짝 어둡게 */
       display: block;
     }
 
@@ -279,7 +278,7 @@
 
     .postcard-caption {
       margin-top: 7px;
-      font-size: 14px;     /* 살짝 키움 */
+      font-size: 14px;
       line-height: 1.8;
       color: #d9d9d9;
     }
@@ -289,7 +288,7 @@
       background: #000000;
       color: #ffffff;
       padding-top: 86px;
-      padding-bottom: 40px;  /* hero-main2와 간격 줄이기 위해 감소 */
+      padding-bottom: 40px;
       text-align: center;
     }
 
@@ -317,7 +316,7 @@
     /* ===== 5. 메인 사진 1 (hero-main2) ===== */
     .main-photo {
       background: #000000;
-      padding: 40px 0 0;  /* 위쪽 패딩 줄여서 이름과 더 붙게 */
+      padding: 40px 0 0;
       max-width: 640px;
       margin: 0 auto;
     }
@@ -372,12 +371,11 @@
       position: absolute;
       left: 10px;
       top: 10px;
-      font-size: 13px;  /* 살짝 더 작게 */
+      font-size: 13px;
       color: #ffffff;
       white-space: pre-line;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
       text-shadow: 0 0 3px rgba(0,0,0,0.7);
-      /* 뒤 사각 박스 제거 */
       background: none;
       padding: 0;
       border-radius: 0;
@@ -411,7 +409,6 @@
       height: auto;
     }
 
-    /* 손글씨: 사진과 여백 사이 중간쯤으로 조금 더 위로 */
     .letter-photo-wrap img.letter {
       position: absolute;
       left: 50%;
@@ -450,7 +447,6 @@
       cursor: pointer;
     }
 
-    /* 손글씨: 여기서도 여백 쪽으로 조금 더 위로 */
     .gallery-main-wrap img.gallery-letter {
       position: absolute;
       left: 50%;
@@ -1009,7 +1005,7 @@
   <section class="gallery-section section-fade">
     <div class="gallery-main">
       <div class="gallery-main-wrap">
-        <img src="images/hero-main4.jpg" alt="갤러리 메인 사진" class="main">
+        <img src="images/hdro-main4.jpg" alt="갤러리 메인 사진" class="main">
         <img src="images/bride-letter.png" alt="신부 손글씨" class="gallery-letter" onerror="this.style.display='none';">
       </div>
     </div>
