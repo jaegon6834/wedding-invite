@@ -79,7 +79,6 @@
       padding: 56px 20px;
     }
 
-    /* section-fade는 애니메이션 없이 바로 보이게 */
     .section-fade {
       opacity: 1;
       transform: none;
@@ -137,7 +136,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 50% 50%; /* PC/모바일 공통으로 중앙 기준으로 보이도록 수정 */
+      object-position: 50% 50%;
       filter: brightness(0.58);
     }
 
@@ -151,14 +150,15 @@
       background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #000000 100%);
     }
 
+    /* 텍스트를 사진의 '하단'에 고정 */
     .hero-inner {
-      position: absolute;      /* 사진의 하단에 고정되도록 절대 위치 */
+      position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
       z-index: 2;
       width: 100%;
-      padding: 0 24px 40px;    /* 아래쪽 여백만 줘서 사진 하단에 붙이기 */
+      padding: 0 24px 40px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -318,15 +318,15 @@
     /* ===== 5. 메인 사진 1 (hero-main2) ===== */
     .main-photo {
       background: #000000;
-      padding: 56px 0 0;
-      max-width: none;   /* PC에서 좌우 여백 없이 꽉 차도록 */
-      margin: 0;
+      padding: 56px 20px 0;  /* 상단 56, 좌우 20, 하단 0 */
+      max-width: 640px;
+      margin: 0 auto;
     }
 
     .main-photo img {
       width: 100%;
-      height: auto;
-      max-height: 90vh;
+      height: auto;     /* 세로 자유 */
+      max-height: none; /* 전체가 다 보이도록 제한 제거 */
       object-fit: contain;
       border-radius: 0;
     }
@@ -337,8 +337,7 @@
       color: #000000;
       padding-top: 72px;
       padding-bottom: 40px;
-      max-width: none;   /* 메인2 바로 아래 오렌지 배경도 PC에서 좌우 꽉 차게 */
-      margin: 0;
+      /* 좌우 폭/패딩은 section 기본값(640px + 20px) 그대로 사용 → 위/아래 섹션과 일자 정렬 */
     }
 
     .story-block {
@@ -399,7 +398,7 @@
     .letter-section {
       background: #ffffff;
       color: #000000;
-      padding: 180px 0 140px;
+      padding: 180px 20px 140px;  /* 좌우 20px로 맞춰서 위/아래와 일자 정렬 */
     }
 
     .letter-photo-wrap {
@@ -431,7 +430,7 @@
     .gallery-section {
       background: #ffffff;
       color: #000000;
-      padding: 40px 0 0;
+      padding: 40px 20px 0;  /* 좌우 20px로 맞춰서 일자 정렬 */
     }
 
     .gallery-main {
@@ -553,7 +552,6 @@
       z-index: 1300;
     }
 
-    /* 현재번호 / 전체개수 표시 */
     .lightbox-counter {
       position: absolute;
       top: 20px;
@@ -868,7 +866,6 @@
       color: #ffffff;
     }
 
-    /* 버튼 active 인터랙션 */
     .rsvp-btn:active,
     .share-btn:active,
     .btn-copy:active {
@@ -876,7 +873,6 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     }
 
-    /* 데스크톱에서 라이트박스 이미지 더 작게 */
     @media (min-width: 768px) {
       .hero-top {
         font-size: 15px;
@@ -894,7 +890,7 @@
         gap: 140px;
       }
       .lightbox-slide img {
-        max-width: 60%;  /* PC에서 너무 크게 안 보이도록 축소 */
+        max-width: 60%;
         max-height: 70%;
       }
     }
@@ -1011,14 +1007,12 @@
   <section class="gallery-section section-fade">
     <div class="gallery-main">
       <div class="gallery-main-wrap">
-        <!-- 라이트박스 대상에서 제외: gallery-click 제거 -->
         <img src="images/grid-9.jpg" alt="갤러리 메인 사진" class="main">
         <img src="images/bride-letter.png" alt="신부 손글씨" class="gallery-letter" onerror="this.style.display='none';">
       </div>
     </div>
 
     <div class="photo-grid">
-      <!-- 1~9 : grid-1 ~ grid-9 -->
       <div class="photo-grid-item"><img src="images/grid-1.jpg" alt="사진 1"  class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-2.jpg" alt="사진 2"  class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-3.jpg" alt="사진 3"  class="gallery-click"></div>
@@ -1029,7 +1023,6 @@
       <div class="photo-grid-item"><img src="images/grid-8.jpg" alt="사진 8"  class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-9.jpg" alt="사진 9"  class="gallery-click"></div>
 
-      <!-- 10~15 : 다시 grid-1 ~ grid-6 반복 -->
       <div class="photo-grid-item"><img src="images/grid-1.jpg" alt="사진 10" class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-2.jpg" alt="사진 11" class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-3.jpg" alt="사진 12" class="gallery-click"></div>
@@ -1112,11 +1105,9 @@
       서울특별시 강남구 영동대로 707<br>
       드레스가든 4층 블리스돔홀
     </div>
-    <!-- 주소 복사: 도로명까지만 복사 -->
     <button type="button" class="btn-copy btn-copy-map" onclick="copyText('서울특별시 강남구 영동대로 707')">
       주소 복사하기
     </button>
-    <!-- 카카오맵 길찾기 버튼 -->
     <button type="button" class="btn-copy btn-copy-map" style="margin-top:6px;" onclick="openKakaoMap()">
       카카오맵으로 길찾기
     </button>
@@ -1270,10 +1261,8 @@
 </div>
 
 <script>
-  // ===== RSVP 저장용 웹앱 엔드포인트 =====
   const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzMAyzlk-SNntUpyQ0FS4M1za1SDXUd8N8iSH95wbYoHCMq5p9gvuPSzrYWYoifK2h3/exec";
 
-  // Kakao SDK 초기화
   (function initKakaoSDK() {
     if (typeof Kakao !== "undefined" && !Kakao.isInitialized()) {
       Kakao.init("6fa997e63ec0359541d10b0328f9b29e");
@@ -1284,7 +1273,6 @@
   let galleryImages = [];
   let currentIndex = 0;
 
-  // 라이트박스 슬라이드용 변수
   let lightboxTrack = null;
   let slideWidth = 0;
   let isDragging = false;
@@ -1293,8 +1281,8 @@
   let lastDx = 0;
   let lastDy = 0;
 
-  const SWIPE_THRESHOLD = 40;          // 좌우 스와이프 최소 이동 거리(px)
-  const SWIPE_VERTICAL_THRESHOLD = 80; // 아래로 스와이프 최소 이동 거리(px)
+  const SWIPE_THRESHOLD = 40;
+  const SWIPE_VERTICAL_THRESHOLD = 80;
 
   function updateMusicButton() {
     const btn = document.getElementById("music-toggle");
@@ -1439,7 +1427,6 @@
     let newIndex = currentIndex + step;
     const lastIndex = galleryImages.length - 1;
 
-    // 양 끝에서 순환
     if (newIndex < 0) {
       newIndex = lastIndex;
     } else if (newIndex > lastIndex) {
@@ -1451,7 +1438,6 @@
     updateLightboxCounter();
   }
 
-  // 라이트박스 터치 핸들러들
   function onLightboxTouchStart(e) {
     if (!lightboxTrack) return;
     if (!e.touches || e.touches.length === 0) return;
@@ -1492,25 +1478,20 @@
 
     const lightbox = document.getElementById("lightbox");
 
-    // 아래로 스와이프 → 닫기
     if (absDy > absDx && absDy > SWIPE_VERTICAL_THRESHOLD && dy > 0) {
       if (lightbox) lightbox.classList.remove("visible");
       document.body.classList.remove("no-scroll");
       return;
     }
 
-    // 좌우 스와이프 → 이전/다음 (순환)
     if (absDx > SWIPE_THRESHOLD) {
       if (dx < 0) {
-        // 오른쪽으로 넘김 → 다음
         currentIndex = (currentIndex + 1) % galleryImages.length;
       } else if (dx > 0) {
-        // 왼쪽으로 넘김 → 이전
         currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
       }
     }
 
-    // 현재 인덱스로 스르륵 스냅
     updateTrackPosition(true);
     updateLightboxCounter();
 
@@ -1531,15 +1512,12 @@
       });
     }
 
-    // 갤러리 이미지 수집 + 클릭 시 라이트박스 오픈
-    // → photo-grid 안의 gallery-click만 대상으로 제한
     galleryImages = Array.from(document.querySelectorAll(".photo-grid .gallery-click"));
     galleryImages.forEach((img, index) => {
       img.dataset.index = index;
       img.addEventListener("click", () => openLightbox(index));
     });
 
-    // 라이트박스 트랙 구성
     lightboxTrack = document.getElementById("lightbox-track");
     if (lightboxTrack && galleryImages.length) {
       galleryImages.forEach((img, idx) => {
@@ -1557,7 +1535,6 @@
 
     initMap();
 
-    // 라이트박스 스와이프 이벤트 등록
     const lightboxEl = document.getElementById("lightbox");
     if (lightboxEl) {
       lightboxEl.addEventListener("touchstart", onLightboxTouchStart, { passive: true });
@@ -1565,7 +1542,6 @@
       lightboxEl.addEventListener("touchend", onLightboxTouchEnd, { passive: true });
     }
 
-    // 리사이즈 시 슬라이드 폭 재계산
     window.addEventListener("resize", () => {
       const lb = document.getElementById("lightbox");
       if (lb && lb.classList.contains("visible")) {
@@ -1591,7 +1567,6 @@
     }
   }
 
-  // 참석 여부 전송 → Google Apps Script 웹앱(doPost)으로 POST
   async function submitRSVP() {
     const name = document.getElementById("attend-name").value.trim();
     const side = document.getElementById("attend-side").value;
