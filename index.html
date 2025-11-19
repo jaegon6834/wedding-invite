@@ -53,12 +53,11 @@
       background: var(--bg);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", sans-serif;
+      overflow-x: hidden;
     }
 
-    /* 라이트박스 열릴 때 배경 스크롤 잠금 (고급형) */
+    /* 라이트박스 열릴 때 배경 스크롤 잠금 (심플 버전) */
     body.no-scroll {
-      position: fixed;
-      width: 100%;
       overflow: hidden;
     }
 
@@ -186,7 +185,7 @@
       line-height: 1;
       color: var(--accent);
       margin-bottom: 26px;
-      letter-spacing: 0.04em; /* 자간 축소 */
+      letter-spacing: 0.04em;
     }
 
     .hero-date-line {
@@ -490,15 +489,11 @@
       justify-content: center;
       align-items: center;
       z-index: 1200;
-      /* 라이트박스 스와이프 시 페이지 스크롤 방지 */
       touch-action: none;
+      overflow: hidden; /* 내부 스크롤 방지 */
     }
     .lightbox.visible {
       display: flex;
-    }
-    .lightbox img {
-      max-width: 92%;
-      max-height: 92%;
     }
 
     .lightbox-track {
@@ -507,6 +502,8 @@
       align-items: center;
       will-change: transform;
       transition: transform 0.25s ease-out;
+      position: relative;
+      z-index: 1;
     }
 
     .lightbox-slide {
@@ -514,6 +511,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
     }
 
     .lightbox-nav {
@@ -531,6 +533,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 2; /* 트랙 위로 */
     }
     .lightbox-nav.prev { left: 16px; }
     .lightbox-nav.next { right: 16px; }
@@ -550,6 +553,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 2; /* 트랙 위로 */
     }
 
     /* ===== 10. 캘린더 ===== */
@@ -880,6 +884,10 @@
       }
       .names-block {
         gap: 140px;
+      }
+      .lightbox img {
+        max-width: 75%;
+        max-height: 80%;
       }
     }
   </style>
@@ -1391,17 +1399,15 @@
     setSlideWidth();
     updateTrackPosition(false);
 
-    // 현재 스크롤 위치 저장 + 배경 고정
-    savedScrollY = window.scrollY || window.pageYOffset || 0;
+    // 현재 스크롤 위치 저장 + 배경 스크롤 잠금
+    savedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
     document.body.classList.add("no-scroll");
-    document.body.style.top = `-${savedScrollY}px`;
 
     lightbox.classList.add("visible");
   }
 
   function unlockBodyScroll() {
     document.body.classList.remove("no-scroll");
-    document.body.style.top = "";
     window.scrollTo(0, savedScrollY || 0);
   }
 
@@ -1426,7 +1432,6 @@
 
     const newIndex = currentIndex + step;
     if (newIndex < 0 || newIndex >= galleryImages.length) {
-      // 양 끝에서는 더 이상 넘기지 않음
       return;
     }
     currentIndex = newIndex;
