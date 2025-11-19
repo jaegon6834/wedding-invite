@@ -134,7 +134,8 @@
       width: 100%;
       height: auto;
       object-fit: contain;
-      filter: brightness(0.58);
+      /* 어둡게 만들던 오버레이 제거 */
+      filter: none;
       display: block;
     }
 
@@ -237,14 +238,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 200px;
-      height: 50px;
+      width: 220px;
+      height: 56px;
       margin: 0 auto;
       border-radius: 50%;
       border: 1.5px solid var(--accent-soft);
       background: transparent;
       font-family: "Cormorant Garamond", "Times New Roman", serif;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.28em;
       text-transform: uppercase;
@@ -253,7 +254,7 @@
 
     .save-text {
       margin-top: 28px;
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.9;
       color: #f5f5f5;
     }
@@ -278,7 +279,7 @@
 
     .postcard-caption {
       margin-top: 7px;
-      font-size: 13px;
+      font-size: 14px;     /* 살짝 키움 */
       line-height: 1.8;
       color: #d9d9d9;
     }
@@ -288,7 +289,7 @@
       background: #000000;
       color: #ffffff;
       padding-top: 86px;
-      padding-bottom: 72px;
+      padding-bottom: 40px;  /* hero-main2와 간격 줄이기 위해 감소 */
       text-align: center;
     }
 
@@ -316,7 +317,7 @@
     /* ===== 5. 메인 사진 1 (hero-main2) ===== */
     .main-photo {
       background: #000000;
-      padding: 56px 0 0;
+      padding: 40px 0 0;  /* 위쪽 패딩 줄여서 이름과 더 붙게 */
       max-width: 640px;
       margin: 0 auto;
     }
@@ -371,14 +372,15 @@
       position: absolute;
       left: 10px;
       top: 10px;
-      font-size: 15px;
+      font-size: 13px;  /* 살짝 더 작게 */
       color: #ffffff;
       white-space: pre-line;
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", system-ui, sans-serif;
-      text-shadow: 0 0 4px rgba(0,0,0,0.6);
-      background: rgba(0,0,0,0.25);
-      padding: 4px 6px;
-      border-radius: 4px;
+      font-family: "Cormorant Garamond", "Times New Roman", serif;
+      text-shadow: 0 0 3px rgba(0,0,0,0.7);
+      /* 뒤 사각 박스 제거 */
+      background: none;
+      padding: 0;
+      border-radius: 0;
     }
 
     .story-photo-wrap img.letter {
@@ -409,11 +411,11 @@
       height: auto;
     }
 
-    /* 손글씨: 사진 상단/위 여백에 겹치게 + 조금 더 크게 */
+    /* 손글씨: 사진과 여백 사이 중간쯤으로 조금 더 위로 */
     .letter-photo-wrap img.letter {
       position: absolute;
       left: 50%;
-      top: -40px;
+      top: -70px;
       transform: translateX(-50%);
       width: 82%;
       max-width: 360px;
@@ -448,11 +450,11 @@
       cursor: pointer;
     }
 
-    /* 손글씨: 갤러리 메인에서도 상단/여백 겹치게 + 조금 더 크게 */
+    /* 손글씨: 여기서도 여백 쪽으로 조금 더 위로 */
     .gallery-main-wrap img.gallery-letter {
       position: absolute;
       left: 50%;
-      top: -32px;
+      top: -60px;
       transform: translateX(-50%);
       width: 80%;
       max-width: 340px;
@@ -995,7 +997,6 @@
   <!-- 8. 메인 사진 2 + 우리 손글씨 자리 -->
   <section class="letter-section section-fade">
     <div class="letter-photo-wrap">
-      <!-- grid-3 -> hero-main3 으로 교체 -->
       <img class="main" src="images/hero-main3.jpg" alt="메인 두 번째 사진">
       <img class="letter" src="images/groom-letter.png" alt="신랑 신부 손글씨" onerror="this.style.display='none';">
     </div>
@@ -1008,14 +1009,13 @@
   <section class="gallery-section section-fade">
     <div class="gallery-main">
       <div class="gallery-main-wrap">
-        <!-- grid-9 -> hero-main4 으로 교체 -->
-        <img src="images/hero-main4.jpg" alt="갤러리 메인 사진" class="main">
+        <img src="images/hdro-main4.jpg" alt="갤러리 메인 사진" class="main">
         <img src="images/bride-letter.png" alt="신부 손글씨" class="gallery-letter" onerror="this.style.display='none';">
       </div>
     </div>
 
     <div class="photo-grid">
-      <!-- 1~9 : grid-1 ~ grid-9 (그대로 유지) -->
+      <!-- 1~9 : grid-1 ~ grid-9 -->
       <div class="photo-grid-item"><img src="images/grid-1.jpg" alt="사진 1"  class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-2.jpg" alt="사진 2"  class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-3.jpg" alt="사진 3"  class="gallery-click"></div>
