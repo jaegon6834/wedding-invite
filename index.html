@@ -79,7 +79,7 @@
       padding: 56px 20px;
     }
 
-    /* section-fade는 이제 애니메이션 없이 바로 보이게 */
+    /* section-fade는 애니메이션 없이 바로 보이게 */
     .section-fade {
       opacity: 1;
       transform: none;
@@ -325,6 +325,8 @@
     .main-photo img {
       width: 100%;
       height: auto;
+      max-height: 90vh;      /* PC에서 짤리지 않도록 제한 */
+      object-fit: contain;   /* 이미지 전체가 보이도록 */
       border-radius: 0;
     }
 
@@ -858,6 +860,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     }
 
+    /* 데스크톱에서 라이트박스 이미지 더 작게 */
     @media (min-width: 768px) {
       .hero-top {
         font-size: 15px;
@@ -873,6 +876,10 @@
       }
       .names-block {
         gap: 140px;
+      }
+      .lightbox-slide img {
+        max-width: 70%;
+        max-height: 70%;
       }
     }
   </style>
@@ -988,13 +995,14 @@
   <section class="gallery-section section-fade">
     <div class="gallery-main">
       <div class="gallery-main-wrap">
-        <img src="images/grid-9.jpg" alt="갤러리 메인 사진" class="gallery-click main">
+        <!-- 라이트박스 대상에서 제외: gallery-click 제거 -->
+        <img src="images/grid-9.jpg" alt="갤러리 메인 사진" class="main">
         <img src="images/bride-letter.png" alt="신부 손글씨" class="gallery-letter" onerror="this.style.display='none';">
       </div>
     </div>
 
     <div class="photo-grid">
-      <!-- 15장 중 8번/10번만 hero-main3, hero-main4로 변경 -->
+      <!-- 15장 중 8번/10번만 hero-main3, hero-main4로 유지 -->
       <div class="photo-grid-item"><img src="images/grid-1.jpg"        alt="사진 1"  class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-2.jpg"        alt="사진 2"  class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-3.jpg"        alt="사진 3"  class="gallery-click"></div>
@@ -1485,7 +1493,8 @@
     }
 
     // 갤러리 이미지 수집 + 클릭 시 라이트박스 오픈
-    galleryImages = Array.from(document.querySelectorAll(".gallery-click"));
+    // → photo-grid 안의 gallery-click만 대상으로 제한
+    galleryImages = Array.from(document.querySelectorAll(".photo-grid .gallery-click"));
     galleryImages.forEach((img, index) => {
       img.dataset.index = index;
       img.addEventListener("click", () => openLightbox(index));
