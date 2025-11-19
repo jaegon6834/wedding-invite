@@ -429,7 +429,7 @@
     .gallery-section {
       background: #ffffff;
       color: #000000;
-      padding: 40px 0 0;
+      padding: 40px 20px 0;
     }
 
     .gallery-main {
@@ -548,6 +548,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 1300;
+    }
+
+    /* 새로 추가: 라이트박스 사진 번호(1/15) 표시 */
+    .lightbox-counter {
+      position: absolute;
+      top: 24px;
+      right: 60px; /* 닫기 버튼 왼쪽에 위치 */
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.7);
+      color: #ffffff;
+      font-size: 12px;
       z-index: 1300;
     }
 
@@ -861,20 +874,6 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     }
 
-    /* ===== 넓은 섹션들(배경을 전체 폭으로 확장) ===== */
-    .story-section,
-    .letter-section,
-    .gallery-section,
-    .calendar-section,
-    .map-section,
-    .account-section,
-    .rsvp-section,
-    .share-section {
-      max-width: 100%;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
     /* 데스크톱에서 라이트박스 이미지 더 작게 + 히어로 전체 보기 */
     @media (min-width: 768px) {
       .hero-top {
@@ -1049,6 +1048,7 @@
     <button type="button" class="lightbox-nav prev" onclick="event.stopPropagation(); changeLightbox(-1);">‹</button>
     <div class="lightbox-track" id="lightbox-track"></div>
     <button type="button" class="lightbox-nav next" onclick="event.stopPropagation(); changeLightbox(1);">›</button>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
   </div>
 
   <!-- 10. 캘린더 -->
@@ -1400,6 +1400,12 @@
     lightboxTrack.style.transform = `translateX(${offset}px)`;
   }
 
+  function updateLightboxCounter() {
+    const counterEl = document.getElementById("lightbox-counter");
+    if (!counterEl || !galleryImages.length) return;
+    counterEl.textContent = (currentIndex + 1) + " / " + galleryImages.length;
+  }
+
   function openLightbox(index) {
     const lightbox = document.getElementById("lightbox");
     if (!lightbox || !lightboxTrack || !galleryImages.length) return;
@@ -1407,6 +1413,8 @@
     currentIndex = index;
     setSlideWidth();
     updateTrackPosition(false);
+    updateLightboxCounter();
+
     lightbox.classList.add("visible");
     document.body.classList.add("no-scroll");
   }
@@ -1426,15 +1434,22 @@
     document.body.classList.remove("no-scroll");
   }
 
+  // 순환 슬라이드 적용
   function changeLightbox(step) {
     if (!galleryImages.length || !lightboxTrack) return;
 
-    const newIndex = currentIndex + step;
-    if (newIndex < 0 || newIndex >= galleryImages.length) {
-      return;
+    let newIndex = currentIndex + step;
+    const total = galleryImages.length;
+
+    if (newIndex < 0) {
+      newIndex = total - 1;
+    } else if (newIndex >= total) {
+      newIndex = 0;
     }
+
     currentIndex = newIndex;
     updateTrackPosition(true);
+    updateLightboxCounter();
   }
 
   // 라이트박스 터치 핸들러들
@@ -1485,17 +1500,21 @@
       return;
     }
 
-    // 좌우 스와이프 → 이전/다음
+    // 좌우 스와이프 → 이전/다음 (순환)
     if (absDx > SWIPE_THRESHOLD) {
-      if (dx < 0 && currentIndex < galleryImages.length - 1) {
-        currentIndex++;
-      } else if (dx > 0 && currentIndex > 0) {
-        currentIndex--;
+      const total = galleryImages.length;
+      if (dx < 0) {
+        // 왼쪽으로 밀면 다음
+        currentIndex = (currentIndex + 1) % total;
+      } else {
+        // 오른쪽으로 밀면 이전
+        currentIndex = (currentIndex - 1 + total) % total;
       }
     }
 
     // 현재 인덱스로 스르륵 스냅
     updateTrackPosition(true);
+    updateLightboxCounter();
 
     lastDx = 0;
     lastDy = 0;
@@ -1531,7 +1550,7 @@
 
         const bigImg = document.createElement("img");
         bigImg.src = img.src;
-        bigImg.alt = img.alt || `사진 ${idx + 1}`;
+        bigImg.alt = img.alt || ("사진 " + (idx + 1));
 
         slide.appendChild(bigImg);
         lightboxTrack.appendChild(slide);
