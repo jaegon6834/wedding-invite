@@ -125,7 +125,6 @@
       padding: 0;
     }
 
-    /* 이미지 전체가 보이도록 재구성 */
     .hero-bg {
       position: relative;
       overflow: hidden;
@@ -134,7 +133,7 @@
     .hero-bg img {
       width: 100%;
       height: auto;
-      object-fit: contain; /* 잘리지 않고 전체 노출 */
+      object-fit: contain;
       filter: brightness(0.58);
       display: block;
     }
@@ -150,7 +149,6 @@
       pointer-events: none;
     }
 
-    /* 텍스트를 사진의 하단에 고정 */
     .hero-inner {
       position: absolute;
       left: 0;
@@ -318,7 +316,7 @@
     /* ===== 5. 메인 사진 1 (hero-main2) ===== */
     .main-photo {
       background: #000000;
-      padding: 56px 0 0;  /* 좌우 여백 0 */
+      padding: 56px 0 0;
       max-width: 640px;
       margin: 0 auto;
     }
@@ -326,7 +324,7 @@
     .main-photo img {
       width: 100%;
       height: auto;
-      max-height: none;    /* 전체가 다 보이도록 제한 해제 */
+      max-height: none;
       object-fit: contain;
       border-radius: 0;
     }
@@ -335,7 +333,7 @@
     .story-section {
       background: var(--accent);
       color: #000000;
-      padding: 72px 0 40px;  /* 좌우 여백 0 (메인1, 메인2와 일자) */
+      padding: 72px 0 40px;
     }
 
     .story-block {
@@ -396,7 +394,7 @@
     .letter-section {
       background: #ffffff;
       color: #000000;
-      padding: 180px 0 140px;  /* 좌우 여백 0 */
+      padding: 180px 0 140px;
     }
 
     .letter-photo-wrap {
@@ -411,13 +409,14 @@
       height: auto;
     }
 
+    /* 손글씨: 사진 상단/위 여백에 겹치게 + 조금 더 크게 */
     .letter-photo-wrap img.letter {
       position: absolute;
       left: 50%;
+      top: -40px;
       transform: translateX(-50%);
-      bottom: 12px;
-      width: 70%;
-      max-width: 320px;
+      width: 82%;
+      max-width: 360px;
     }
 
     .letter-text {
@@ -428,7 +427,7 @@
     .gallery-section {
       background: #ffffff;
       color: #000000;
-      padding: 40px 0 0;   /* 좌우 여백 0 */
+      padding: 40px 0 0;
     }
 
     .gallery-main {
@@ -449,13 +448,14 @@
       cursor: pointer;
     }
 
+    /* 손글씨: 갤러리 메인에서도 상단/여백 겹치게 + 조금 더 크게 */
     .gallery-main-wrap img.gallery-letter {
       position: absolute;
       left: 50%;
+      top: -32px;
       transform: translateX(-50%);
-      bottom: 12px;
-      width: 70%;
-      max-width: 320px;
+      width: 80%;
+      max-width: 340px;
     }
 
     .photo-grid {
@@ -873,7 +873,6 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     }
 
-    /* 데스크톱에서 라이트박스 이미지 더 작게 + 타이포 확대 */
     @media (min-width: 768px) {
       .hero-top {
         font-size: 15px;
@@ -996,7 +995,8 @@
   <!-- 8. 메인 사진 2 + 우리 손글씨 자리 -->
   <section class="letter-section section-fade">
     <div class="letter-photo-wrap">
-      <img class="main" src="images/grid-3.jpg" alt="메인 두 번째 사진">
+      <!-- grid-3 -> hero-main3 으로 교체 -->
+      <img class="main" src="images/hero-main3.jpg" alt="메인 두 번째 사진">
       <img class="letter" src="images/groom-letter.png" alt="신랑 신부 손글씨" onerror="this.style.display='none';">
     </div>
     <div class="letter-text">
@@ -1008,14 +1008,14 @@
   <section class="gallery-section section-fade">
     <div class="gallery-main">
       <div class="gallery-main-wrap">
-        <!-- 라이트박스 대상에서 제외: gallery-click 제거 -->
-        <img src="images/grid-9.jpg" alt="갤러리 메인 사진" class="main">
+        <!-- grid-9 -> hdro-main4 으로 교체 -->
+        <img src="images/hdro-main4.jpg" alt="갤러리 메인 사진" class="main">
         <img src="images/bride-letter.png" alt="신부 손글씨" class="gallery-letter" onerror="this.style.display='none';">
       </div>
     </div>
 
     <div class="photo-grid">
-      <!-- 1~9 : grid-1 ~ grid-9 -->
+      <!-- 1~9 : grid-1 ~ grid-9 (그대로 유지) -->
       <div class="photo-grid-item"><img src="images/grid-1.jpg" alt="사진 1"  class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-2.jpg" alt="사진 2"  class="gallery-click"></div>
       <div class="photo-grid-item"><img src="images/grid-3.jpg" alt="사진 3"  class="gallery-click"></div>
@@ -1265,10 +1265,8 @@
 </div>
 
 <script>
-  // ===== RSVP 저장용 웹앱 엔드포인트 =====
   const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzMAyzlk-SNntUpyQ0FS4M1za1SDXUd8N8iSH95wbYoHCMq5p9gvuPSzrYWYoifK2h3/exec";
 
-  // Kakao SDK 초기화
   (function initKakaoSDK() {
     if (typeof Kakao !== "undefined" && !Kakao.isInitialized()) {
       Kakao.init("6fa997e63ec0359541d10b0328f9b29e");
@@ -1279,7 +1277,6 @@
   let galleryImages = [];
   let currentIndex = 0;
 
-  // 라이트박스 슬라이드용 변수
   let lightboxTrack = null;
   let slideWidth = 0;
   let isDragging = false;
@@ -1485,14 +1482,12 @@
 
     const lightbox = document.getElementById("lightbox");
 
-    // 아래로 스와이프 → 닫기
     if (absDy > absDx && absDy > SWIPE_VERTICAL_THRESHOLD && dy > 0) {
       if (lightbox) lightbox.classList.remove("visible");
       document.body.classList.remove("no-scroll");
       return;
     }
 
-    // 좌우 스와이프 → 이전/다음 (순환)
     if (absDx > SWIPE_THRESHOLD) {
       if (dx < 0) {
         currentIndex = (currentIndex + 1) % galleryImages.length;
@@ -1501,7 +1496,6 @@
       }
     }
 
-    // 현재 인덱스로 스르륵 스냅
     updateTrackPosition(true);
     updateLightboxCounter();
 
@@ -1522,14 +1516,12 @@
       });
     }
 
-    // 갤러리 이미지 수집 + 클릭 시 라이트박스 오픈
     galleryImages = Array.from(document.querySelectorAll(".photo-grid .gallery-click"));
     galleryImages.forEach((img, index) => {
       img.dataset.index = index;
       img.addEventListener("click", () => openLightbox(index));
     });
 
-    // 라이트박스 트랙 구성
     lightboxTrack = document.getElementById("lightbox-track");
     if (lightboxTrack && galleryImages.length) {
       galleryImages.forEach((img, idx) => {
@@ -1547,7 +1539,6 @@
 
     initMap();
 
-    // 라이트박스 스와이프 이벤트 등록
     const lightboxEl = document.getElementById("lightbox");
     if (lightboxEl) {
       lightboxEl.addEventListener("touchstart", onLightboxTouchStart, { passive: true });
@@ -1555,7 +1546,6 @@
       lightboxEl.addEventListener("touchend", onLightboxTouchEnd, { passive: true });
     }
 
-    // 리사이즈 시 슬라이드 폭 재계산
     window.addEventListener("resize", () => {
       const lb = document.getElementById("lightbox");
       if (lb && lb.classList.contains("visible")) {
@@ -1581,7 +1571,6 @@
     }
   }
 
-  // 참석 여부 전송 → Google Apps Script 웹앱으로 POST
   async function submitRSVP() {
     const name = document.getElementById("attend-name").value.trim();
     const side = document.getElementById("attend-side").value;
