@@ -153,14 +153,15 @@
     }
 
     .hero-inner {
-      position: relative;
+      position: absolute;
       z-index: 2;
-      width: 100%;
-      height: 100%;
-      padding: 60px 24px 40px;
+      left: 0;
+      right: 0;
+      bottom: 40px;       /* 항상 하단에 붙게 */
+      padding: 0 24px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      align-items: center;
       text-align: center;
       color: #fff;
     }
@@ -325,7 +326,7 @@
     .main-photo img {
       width: 100%;
       height: auto;
-      max-height: 90vh;      /* PC에서 짤리지 않도록 제한 */
+      max-height: 90vh;      /* PC에서도 전체가 보이도록 제한 */
       object-fit: contain;   /* 이미지 전체가 보이도록 */
       border-radius: 0;
     }
@@ -507,8 +508,8 @@
     }
 
     .lightbox-slide img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 80%;
+      max-height: 80%;
       object-fit: contain;
     }
 
@@ -860,7 +861,21 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     }
 
-    /* 데스크톱에서 라이트박스 이미지 더 작게 */
+    /* ===== 넓은 섹션들(배경을 전체 폭으로 확장) ===== */
+    .story-section,
+    .letter-section,
+    .gallery-section,
+    .calendar-section,
+    .map-section,
+    .account-section,
+    .rsvp-section,
+    .share-section {
+      max-width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    /* 데스크톱에서 라이트박스 이미지 더 작게 + 히어로 전체 보기 */
     @media (min-width: 768px) {
       .hero-top {
         font-size: 15px;
@@ -878,8 +893,15 @@
         gap: 140px;
       }
       .lightbox-slide img {
-        max-width: 70%;
-        max-height: 70%;
+        max-width: 55%;
+        max-height: 55%;
+      }
+      .hero {
+        min-height: 720px;
+      }
+      .hero-bg img {
+        object-fit: contain;     /* PC에서 전체 이미지 보이도록 */
+        object-position: center center;
       }
     }
   </style>
@@ -1002,22 +1024,22 @@
     </div>
 
     <div class="photo-grid">
-      <!-- 15장 중 8번/10번만 hero-main3, hero-main4로 유지 -->
-      <div class="photo-grid-item"><img src="images/grid-1.jpg"        alt="사진 1"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-2.jpg"        alt="사진 2"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-3.jpg"        alt="사진 3"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-4.jpg"        alt="사진 4"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-5.jpg"        alt="사진 5"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-6.jpg"        alt="사진 6"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-7.jpg"        alt="사진 7"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/hero-main3.jpg"    alt="사진 8"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-9.jpg"        alt="사진 9"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/hero-main4.jpg"    alt="사진 10" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-2.jpg"        alt="사진 11" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-3.jpg"        alt="사진 12" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-4.jpg"        alt="사진 13" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-5.jpg"        alt="사진 14" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-6.jpg"        alt="사진 15" class="gallery-click"></div>
+      <!-- 15장: 1~9는 grid-1~grid-9, 10~15는 grid-1~grid-6 반복 -->
+      <div class="photo-grid-item"><img src="images/grid-1.jpg" alt="사진 1"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-2.jpg" alt="사진 2"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-3.jpg" alt="사진 3"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-4.jpg" alt="사진 4"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-5.jpg" alt="사진 5"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-6.jpg" alt="사진 6"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-7.jpg" alt="사진 7"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-8.jpg" alt="사진 8"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-9.jpg" alt="사진 9"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-1.jpg" alt="사진 10" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-2.jpg" alt="사진 11" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-3.jpg" alt="사진 12" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-4.jpg" alt="사진 13" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-5.jpg" alt="사진 14" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-6.jpg" alt="사진 15" class="gallery-click"></div>
     </div>
   </section>
 
