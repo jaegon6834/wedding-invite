@@ -6,14 +6,14 @@
   <title>재곤 & 예림 결혼식 초대장</title>
 
   <!-- 메타 (카카오톡/미리보기용) -->
-  <meta name="description" content="김재곤 💍 하예림 결혼식 초대장 💐 · 2026년 2월 22일 일요일 오후 4시 30분">
+  <meta name="description" content="김재곤 💍 하예림 결혼식 초대장 · 예식일 : 2026년 2월 22일 일요일 오후 4시 30분.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="김재곤 💍 하예림 결혼합니다 💐">
+  <meta property="og:title" content="김재곤 💍 하예림 결혼합니다 💕">
   <meta property="og:description" content="예식일 : 2026년 2월 22일 일요일 오후 4시 30분">
   <meta property="og:image" content="https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg">
   <meta property="og:url" content="https://jaegonyelim.github.io/wedding-invite/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="김재곤 💍 하예림 결혼합니다 💐">
+  <meta name="twitter:title" content="김재곤 💍 하예림 결혼합니다 💕">
   <meta name="twitter:description" content="예식일 : 2026년 2월 22일 일요일 오후 4시 30분">
   <meta name="twitter:image" content="https://jaegonyelim.github.io/wedding-invite/images/hero-main.jpg">
 
@@ -46,6 +46,9 @@
     html {
       margin: 0;
       padding: 0;
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
     }
 
     body {
@@ -56,9 +59,9 @@
       overflow-x: hidden;
     }
 
-    /* 라이트박스 열릴 때 배경 스크롤 잠금 (심플 버전) */
     body.no-scroll {
       overflow: hidden;
+      touch-action: none;
     }
 
     img {
@@ -68,8 +71,6 @@
 
     .page {
       width: 100%;
-      min-height: 100vh;
-      overflow-x: hidden;
     }
 
     section {
@@ -78,15 +79,10 @@
       padding: 56px 20px;
     }
 
-    /* 스크롤 등장 애니메이션 공통 */
+    /* section-fade는 이제 애니메이션 없이 바로 보이게 */
     .section-fade {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .section-fade.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
     /* ===== 음악 토글(고정) ===== */
@@ -126,7 +122,6 @@
     .hero {
       position: relative;
       width: 100%;
-      height: 85vh;
       min-height: 520px;
       overflow: hidden;
       padding: 0;
@@ -489,8 +484,6 @@
       justify-content: center;
       align-items: center;
       z-index: 1200;
-      touch-action: none;
-      overflow: hidden; /* 내부 스크롤 방지 */
     }
     .lightbox.visible {
       display: flex;
@@ -502,8 +495,6 @@
       align-items: center;
       will-change: transform;
       transition: transform 0.25s ease-out;
-      position: relative;
-      z-index: 1;
     }
 
     .lightbox-slide {
@@ -513,10 +504,10 @@
       justify-content: center;
     }
 
-    /* 이미지 크기 (모바일 + 기본) */
-    .lightbox img {
-      max-width: 86%;
-      max-height: 80%;
+    .lightbox-slide img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
     }
 
     .lightbox-nav {
@@ -534,7 +525,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 2; /* 트랙 위로 */
+      z-index: 1300;
     }
     .lightbox-nav.prev { left: 16px; }
     .lightbox-nav.next { right: 16px; }
@@ -554,7 +545,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 2; /* 트랙 위로 */
+      z-index: 1300;
     }
 
     /* ===== 10. 캘린더 ===== */
@@ -868,9 +859,6 @@
     }
 
     @media (min-width: 768px) {
-      .hero {
-        height: 90vh;
-      }
       .hero-top {
         font-size: 15px;
       }
@@ -885,11 +873,6 @@
       }
       .names-block {
         gap: 140px;
-      }
-      /* 데스크탑에서 라이트박스 이미지 더 작게 */
-      .lightbox img {
-        max-width: 55%;
-        max-height: 70%;
       }
     }
   </style>
@@ -993,8 +976,7 @@
   <!-- 8. 메인 사진 2 + 우리 손글씨 자리 -->
   <section class="letter-section section-fade">
     <div class="letter-photo-wrap">
-      <!-- 8번 사진 → hero-main3.jpg -->
-      <img class="main" src="images/hero-main3.jpg" alt="메인 두 번째 사진">
+      <img class="main" src="images/grid-3.jpg" alt="메인 두 번째 사진">
       <img class="letter" src="images/groom-letter.png" alt="신랑 신부 손글씨" onerror="this.style.display='none';">
     </div>
     <div class="letter-text">
@@ -1006,29 +988,28 @@
   <section class="gallery-section section-fade">
     <div class="gallery-main">
       <div class="gallery-main-wrap">
-        <!-- 10번 사진 → hero-main4.jpg -->
-        <img src="images/hero-main4.jpg" alt="갤러리 메인 사진" class="gallery-click main">
+        <img src="images/grid-9.jpg" alt="갤러리 메인 사진" class="gallery-click main">
         <img src="images/bride-letter.png" alt="신부 손글씨" class="gallery-letter" onerror="this.style.display='none';">
       </div>
     </div>
 
     <div class="photo-grid">
-      <!-- 총 15장, grid-1~9를 돌려 쓰는 구성 -->
-      <div class="photo-grid-item"><img src="images/grid-1.jpg"  alt="사진 1"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-2.jpg"  alt="사진 2"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-3.jpg"  alt="사진 3"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-4.jpg"  alt="사진 4"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-5.jpg"  alt="사진 5"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-6.jpg"  alt="사진 6"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-7.jpg"  alt="사진 7"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-8.jpg"  alt="사진 8"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-9.jpg"  alt="사진 9"  class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-1.jpg"  alt="사진 10" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-2.jpg"  alt="사진 11" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-3.jpg"  alt="사진 12" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-4.jpg"  alt="사진 13" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-5.jpg"  alt="사진 14" class="gallery-click"></div>
-      <div class="photo-grid-item"><img src="images/grid-6.jpg"  alt="사진 15" class="gallery-click"></div>
+      <!-- 15장 중 8번/10번만 hero-main3, hero-main4로 변경 -->
+      <div class="photo-grid-item"><img src="images/grid-1.jpg"        alt="사진 1"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-2.jpg"        alt="사진 2"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-3.jpg"        alt="사진 3"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-4.jpg"        alt="사진 4"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-5.jpg"        alt="사진 5"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-6.jpg"        alt="사진 6"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-7.jpg"        alt="사진 7"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/hero-main3.jpg"    alt="사진 8"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-9.jpg"        alt="사진 9"  class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/hero-main4.jpg"    alt="사진 10" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-2.jpg"        alt="사진 11" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-3.jpg"        alt="사진 12" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-4.jpg"        alt="사진 13" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-5.jpg"        alt="사진 14" class="gallery-click"></div>
+      <div class="photo-grid-item"><img src="images/grid-6.jpg"        alt="사진 15" class="gallery-click"></div>
     </div>
   </section>
 
@@ -1153,7 +1134,6 @@
           <div>신한은행 000-000-000000</div>
           <div class="account-name">예금주 김재곤</div>
         </div>
-        <!-- 계좌번호만 복사 -->
         <button type="button" class="btn-copy" onclick="copyText('신한은행 000-000-000000')">계좌 복사하기</button>
       </div>
 
@@ -1163,7 +1143,6 @@
           <div>국민은행 000000-00-000000</div>
           <div class="account-name">예금주 김병길</div>
         </div>
-        <!-- 계좌번호만 복사 -->
         <button type="button" class="btn-copy" onclick="copyText('국민은행 000000-00-000000')">계좌 복사하기</button>
       </div>
     </div>
@@ -1177,7 +1156,6 @@
           <div>카카오뱅크 0000-00-000000</div>
           <div class="account-name">예금주 하예림</div>
         </div>
-        <!-- 계좌번호만 복사 -->
         <button type="button" class="btn-copy" onclick="copyText('카카오뱅크 0000-00-000000')">계좌 복사하기</button>
       </div>
 
@@ -1187,7 +1165,6 @@
           <div>농협 000-0000-0000-00</div>
           <div class="account-name">예금주 하재웅</div>
         </div>
-        <!-- 계좌번호만 복사 -->
         <button type="button" class="btn-copy" onclick="copyText('농협 000-0000-0000-00')">계좌 복사하기</button>
       </div>
     </div>
@@ -1266,9 +1243,10 @@
 </div>
 
 <script>
-  // ===== 이 URL만 새 배포할 때마다 교체해주면 됨 =====
+  // ===== RSVP 저장용 웹앱 엔드포인트 =====
   const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzMAyzlk-SNntUpyQ0FS4M1za1SDXUd8N8iSH95wbYoHCMq5p9gvuPSzrYWYoifK2h3/exec";
 
+  // Kakao SDK 초기화
   (function initKakaoSDK() {
     if (typeof Kakao !== "undefined" && !Kakao.isInitialized()) {
       Kakao.init("6fa997e63ec0359541d10b0328f9b29e");
@@ -1287,7 +1265,6 @@
   let startY = 0;
   let lastDx = 0;
   let lastDy = 0;
-  let savedScrollY = 0; // 라이트박스 열기 전 스크롤 위치 저장
 
   const SWIPE_THRESHOLD = 40;          // 좌우 스와이프 최소 이동 거리(px)
   const SWIPE_VERTICAL_THRESHOLD = 80; // 아래로 스와이프 최소 이동 거리(px)
@@ -1400,25 +1377,15 @@
     currentIndex = index;
     setSlideWidth();
     updateTrackPosition(false);
-
-    // 현재 스크롤 위치 저장 + 배경 스크롤 잠금
-    savedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
-    document.body.classList.add("no-scroll");
-
     lightbox.classList.add("visible");
-  }
-
-  function unlockBodyScroll() {
-    document.body.classList.remove("no-scroll");
-    window.scrollTo(0, savedScrollY || 0);
+    document.body.classList.add("no-scroll");
   }
 
   function closeLightbox(event) {
-    // 배경 클릭 시만 닫기
     if (event.target.id === "lightbox") {
       const lightbox = document.getElementById("lightbox");
       if (lightbox) lightbox.classList.remove("visible");
-      unlockBodyScroll();
+      document.body.classList.remove("no-scroll");
     }
   }
 
@@ -1426,7 +1393,7 @@
     event.stopPropagation();
     const lightbox = document.getElementById("lightbox");
     if (lightbox) lightbox.classList.remove("visible");
-    unlockBodyScroll();
+    document.body.classList.remove("no-scroll");
   }
 
   function changeLightbox(step) {
@@ -1484,7 +1451,7 @@
     // 아래로 스와이프 → 닫기
     if (absDy > absDx && absDy > SWIPE_VERTICAL_THRESHOLD && dy > 0) {
       if (lightbox) lightbox.classList.remove("visible");
-      unlockBodyScroll();
+      document.body.classList.remove("no-scroll");
       return;
     }
 
@@ -1541,23 +1508,6 @@
     }
 
     initMap();
-
-    // 섹션 페이드 인 인터섹션 옵저버
-    const observer = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    document.querySelectorAll(".section-fade").forEach(sec => {
-      observer.observe(sec);
-    });
 
     // 라이트박스 스와이프 이벤트 등록
     const lightboxEl = document.getElementById("lightbox");
@@ -1642,7 +1592,7 @@
 
   function shareInvite() {
     const url = window.location.href;
-    const title = "김재곤 💍 하예림 결혼합니다 💐";
+    const title = "김재곤 💍 하예림 결혼합니다 💕";
     const description = "예식일 : 2026년 2월 22일 일요일 오후 4시 30분";
 
     if (typeof Kakao !== "undefined" && Kakao.isInitialized()) {
